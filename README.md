@@ -1,140 +1,50 @@
-# Undum
+# Desarrollo Ágil - Práctica 3
 
-Undum is a game framework for building a sophisticated form of
-hypertext interactive fiction.
+## Descripción
 
-If that means nothing to you, then let's go back a few steps. Remember
-those Choose Your Own Adventure, or Fighting Fantasy books? Where you
-got to choose what your character does next? Well if you think of that
-in a web-page you have hypertext interactive fiction, or HIF. Instead
-of turning to a particular page, you click a link, and the next bit of
-content appears.
+### Introducción
 
-The problem is that those kinds of games are pretty limited. Every
-time the player does something, the story could go in different
-directions. So the author has to either write masses of branches, or
-else the decisions you make as a player have to be relatively short
-lived. If you played CYOA books you'll know that the wrong move either
-ended the story pretty quickly, or else it didn't really matter what
-you did because you'd end up at the same place.
+El objetivo de este proyecto es utilizar la metodología Scrum para crear una aventura conversacional. Para ello emplearemos distintas herramientas, como son Telegram, Trello y GitHub.
 
-To beat this limitation, Undum allows you to make the output
-dynamic. It allows you to keep track of what has happened to the
-character (any kinds of data, in fact), and to then change the text
-that gets output accordingly. Effectively it is like writing a CYOA
-page that is different each time you read it. This allows for far
-richer and more rewarding game design.
+### Argumento
 
-Undum is a pure client client-side library. It consists of a HTML file
-and three Javascript files. The HTML file uses a nice bit of styling,
-so there's a bunch of CSS and images in the default package too, but
-that can be replaced if you want. To create your own game, you edit
-the HTML file a little (mainly just changing the title and author),
-and edit one of the Javascript files.
+El Rey Artorias de la familia Dragonborn es el gobernante de una importante ciudad. Él y su esposa Jera Mug están terriblemente preocupados por la salud de su hijo Alduino, futuro heredero al trono. Llamó a todos los sabios de su territorio para encontrar una solución al problema, después de unos meses de búsqueda se encontró que una planta llamada Remolacha que tenía las propiedades curativas para sanar a su hijo. Pero era muy difícil de encontrar por lo que Artorias ha puesto una recompensa a quien vaya al templo de Ver-dulería, donde residen unos monjes expertos en hierbas y luego traer la planta al palacio. El mayor problema es que el hermano menor del rey, el Duque Paul Married quiere que su hermano no obtenga la preciada planta, para cortar su linaje y así ocupar el trono, por eso está poniendo todos los medios para parar a los que busquen la planta.
 
-Because the game is written in Javascript, you get the full power of a
-dynamic and efficient programming language. This isn't a CYOA
-scripting system with limited functionality. You can take control of
-anything you want. Or you can just keep things simple using a bunch of
-simple functions provided by Undum.
+Tú, como intrépido aventurero, decides aceptar el encargo de su majestad e ir en busca de la famosa Remolacha.
 
+### Atributos del Personaje
 
-## Compatibility
+Atributos del personaje
+* Fuerza
+* Agilidad
+* Defensa
+* Sabiduría
+* Sigilo
 
-Undum is designed for HTML5 and CSS3 browsers. It has been tested on
-Firefox 3.6, Chrome 5, and Safari 5. Older browsers may work okay too,
-but some of the animation won't work, the styles may render poorly,
-and saving and loading of games is unlikely to work. Anyone who wants
-to hack around with it and make it work more widely is welcome. Just
-fork this project on Github.
+El valor de estos atributos estará establecido con valores del 1 al 5 y vendrán predefinidos según el arquetipo del personaje que elija el usuario al usuario al comienzo de la partida. Estos influirán cuando se realicen acciones. 
 
-The local storage system on some browsers does not work when loading a
-page from your hard drive. To test your game when developing it, you
-may want to start up a simple local webserver. I have found that
-Chrome seems to reliably provide local storage for local
-development. It also has excellent Javascript debugging tools.
+En las acciones se harán “tiradas de suerte”, en las que se generará un número aleatorio entre 1 y 10 o entre 1 y 20 (aún por definir), y se le sumará la puntuación de un atributo en concreto. Por ejemplo, si el jugador tiene que saltar de una plataforma a otra, el resultado de esta acción dependerá del número aleatorio más el valor del atributo “Agilidad” de su personaje. Cuanto más alto sea el resultado final, más probable es que realice la acción con éxito.
+
+Por otro lado, los combates dependen de “Fuerza” y “Defensa”. O si el jugador quiere averiguar si le están engañando, entrará en juego la “Sabiduría”.
+
+### Lista de situaciones
+A continuación se muestra un listado inicial de situaciones que se nos han ocurrido. Es posible que varíen a lo largo del desarrollo.
+* Palacio
+* Viaje
+* Templo
+* Caverna
+   * Entrada
+   * Gruta
+   * Foso
+   * Riada
+   * Lago
+   * Cementerio
+   * Guarida monstruo
+* Ataque final
+* Final
+   * Bueno
+   * Malo
 
 
-## Getting Started
-
-1. Download Undum. Use the 'download zip' link in the right column of
-   this page.
-
-2. Unzip Undum somewhere on your hard-drive.
-
-3. Open games/tutorial.html in your browser, and play through the tutorial.
-
-4. Copy games/tutorial.html to a file that reflects your game name.
-
-5. Edit your HTML file and add the title, author and description of
-   the game you want to write. At the bottom of the file change the
-   name of `tutorial.game.js` to something else (by convention
-   *your-game-name*`.game.js`.
-
-6. Copy `tutorial.game.js` to the file name you chose in the last
-   step. Open it and begin creating your game.
 
 
-Reference documentation, including full API details, is at
-[http://idmillington.github.io/undum/](http://idmillington.github.io/undum/),
-and is also included in the repository.
-
-The source code for all the files is also heavily commented, so if you
-get stuck, go in and read it.
-
-
-## Deploying
-
-To deploy your game, just upload your HTML file and the `media` folder
-to your webserver. You can serve several games with the same look and
-feel from the same directory. You need a different HTML file for each
-game, and each one should load the correct `.game.js` file at the
-end. Add any media you need for your game (images, audio, video), and
-the remaining files will be reused.
-
-For example, if you had 3 games: `episode1`, `episode2`, and
-`christmas-special`. You'd have a directory structure:
-
-    episode1.html
-    episode2.html
-    christmas-special.html
-    media/
-        css/ ...
-        img/ ...
-        js/
-            jquery-1.4.2.min.js
-            undum.js
-        games/
-            episode1/
-                episode1.game.js
-                ... media for episode 1 ...
-            episode2/
-                episode2.game.js
-                ... media for episode 1 ...
-            christmas-special/
-                christmas-special.game.js
-                ... media for christmas special ...
-
-This assumes you use the same directory lay out that I do. You are
-welcome to change things around, of course, as long as you work and
-change the references.
-
-
-## Undum
-
-The name `undum` came from a little project that preceded this code
-base. In 2008 I put together a simple browser based game. It was
-narrative, but used the grind-based mechanics of games such as
-Farmville and Mafia Wars. Because of the grinding, I called it
-Carborundum, which I found I couldn't type at speed, so it became
-Undum. The code has changed out of all recognition since them, as the
-grind-based game moved to Flash. But the name stuck for the Javascript
-framework.
-
-
-## License
-
-The code, documentation, styles, design and images are all distributed
-under the MIT license. This permits you to modify and use them, even
-for commercial use. A copy of the MIT license is found in the LICENSE
-file.
