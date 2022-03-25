@@ -1,4 +1,4 @@
-# Desarrollo Ágil - Práctica 3
+# Desarrollo Ágil - Práctica 3 <a name="inicio"></a>
  - Alumnos: 
     - Luis René Domínguez Fuentes - 77689949C
     - Raúl Fernández Cobo - 49236738V
@@ -7,27 +7,27 @@
  - Marzo de 2022
 
 ## Indice
-* 1 [Descripción](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#1-descripci%C3%B3n)
-  * 1.1 [Introducción](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#11-introducci%C3%B3n)
-  * 1.2 [Argumento](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#12-argumento)
-  * 1.3 [Atributos del Personaje](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#13-atributos-del-personaje)
-  * 1.4 [Lista de situaciones](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#14-lista-de-situaciones)
-* 2 [Trello](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#2-trello)
-  * 2.1 [Historias de usuario](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#21-historias-de-usuario)
+* 1 [Descripción](#descripcion)
+  * 1.1 [Introducción](#introduccion)
+  * 1.2 [Argumento](#argumento)
+  * 1.3 [Atributos del Personaje](#atributos)
+  * 1.4 [Lista de situaciones](#situaciones)
+* 2 [Trello](#trello)
+  * 2.1 [Historias de usuario](#historias)
 
-## 1 Descripción
+## 1 Descripción <a name="descripcion"></a>
 
-### 1.1 Introducción
+### 1.1 Introducción <a name="introduccion"></a>
 
-El objetivo de este proyecto es utilizar la metodología Scrum para crear una aventura conversacional. Para ello emplearemos distintas herramientas, como son Telegram, Trello y GitHub.
+El objetivo de este proyecto es utilizar la metodología Scrum para crear una aventura conversacional. Para ello emplearemos distintas herramientas, como son Telegram, Trello y GitHub.historias
 
-### 1.2 Argumento
+### 1.2 Argumento <a name="argumento"></a>
 
 El Rey Artorias de la familia Dragonborn es el gobernante de una importante ciudad. Él y su esposa Jera Mug están terriblemente preocupados por la salud de su hijo Alduino, futuro heredero al trono. Llamó a todos los sabios de su territorio para encontrar una solución al problema, después de unos meses de búsqueda se encontró que una planta llamada Remolacha que tenía las propiedades curativas para sanar a su hijo. Pero era muy difícil de encontrar por lo que Artorias ha puesto una recompensa a quien vaya al templo de Ver-dulería, donde residen unos monjes expertos en hierbas y luego traer la planta al palacio. El mayor problema es que el hermano menor del rey, el Duque Paul Married quiere que su hermano no obtenga la preciada planta, para cortar su linaje y así ocupar el trono, por eso está poniendo todos los medios para parar a los que busquen la planta.
 
 Tú, como intrépido aventurero, decides aceptar el encargo de su majestad e ir en busca de la famosa Remolacha.
 
-### 1.3 Atributos del Personaje
+### 1.3 Atributos del Personaje <a name="atributos"></a>
 
 Atributos del personaje
 * Fuerza
@@ -42,7 +42,7 @@ En las acciones se harán “tiradas de suerte”, en las que se generará un n�
 
 Por otro lado, los combates dependen de “Fuerza” y “Defensa”. O si el jugador quiere averiguar si le están engañando, entrará en juego la “Sabiduría”.
 
-### 1.4 Lista de situaciones
+### 1.4 Lista de situaciones <a name="situaciones"></a>
 A continuación se muestra un listado inicial de situaciones que se nos han ocurrido. Es posible que varíen a lo largo del desarrollo.
 * Palacio
 * Viaje
@@ -60,10 +60,10 @@ A continuación se muestra un listado inicial de situaciones que se nos han ocur
    * Bueno
    * Malo
 
-## 2 Trello
+## 2 Trello <a name="trello"></a>
 Nuestro [tablero](https://trello.com/b/TORt52NH/practica3) de Trello.
 
-### 2.1 Historias de Usuario
+### 2.1 Historias de Usuario <a name="historias"></a>
 Por último, se muestran las historias de usuario que inicialmente hemos añadido para la primera iteración.
 
 ![trello1](https://user-images.githubusercontent.com/99320995/159535722-0d942cf2-cfaa-4caa-b388-25a84a8f10c0.jpg)
@@ -91,4 +91,4 @@ Por último, se muestran las historias de usuario que inicialmente hemos añadid
 ![trello12 (2)](https://user-images.githubusercontent.com/99320995/159536715-bb5096ff-cd34-4b69-a545-798bb0d0d896.jpg)
 
 
-[Subir](https://github.com/UJA-Desarrollo-Agil/d-agil-2021-2022-practica-3-raul_martin_luis/edit/master/README.md#desarrollo-%C3%A1gil---pr%C3%A1ctica-3)
+[Subir](#inicio)
