@@ -28,6 +28,32 @@ undum.game.slideUpSpeed = 500
 
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
+    templo: new undum.SimpleSituation(
+        "<p>Tras tres largos días de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
+        rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
+        pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.\
+         </p>",
+        {
+            tags: ["topic"],
+            heading: "Showing a Progress Bar",
+            displayOrder: 5,
+            actions: {
+                // I'm going indirect here - the link carries out an
+                // action, which then uses doLink to directly change
+                // the situation.  This isn't the recommended way (I
+                // could have just changed situation in the link), but
+                // it illustrates the use of doLink.
+                "boost-stamina-action": function(character, system, action) {
+                    system.doLink("boost-stamina");
+                }
+            },
+            exit: function(character, system, to) {
+                system.animateQuality(
+                    'stamina', character.qualities.stamina+1
+                );
+            }
+        }
+    ),
     start: new undum.SimpleSituation(
         "<h1>Starting Out with Undum</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
