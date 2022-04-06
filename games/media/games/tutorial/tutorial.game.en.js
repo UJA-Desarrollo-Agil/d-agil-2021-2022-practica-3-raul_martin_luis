@@ -29,9 +29,13 @@ undum.game.slideUpSpeed = 500
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
     templo: new undum.SimpleSituation(
-        "<p>Tras tres largos días de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
+        "<h1>EL TEMPLO</h1>\
+        <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.\
+        - Bienvenido joven viajero, a que se debe su visita?\
+        <a href = 'explicar'>Explicar tu situación</a>\
+        <a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a>\
          </p>",
         {
             tags: ["topic"],
@@ -54,21 +58,24 @@ undum.game.situations = {
             }
         }
     ),
-    start: new undum.SimpleSituation(
-        "<h1>Starting Out with Undum</h1>\
+    explicar: new undum.SimpleSituation(
+        "<h1>EL TEMPLO</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
-        <p>Welcome to the Undum tutorial. Undum is a tool for writing\
-        hypertext interactive fiction. It has some unique features\
-        and a visual design that encourages narrative games.</p>\
-        \
-        <p>Hypertext interactive fiction is the digital equivalent of the\
-        Choose Your Own Adventure (CYOA) books that were popular in the\
-        1980s. The story is told in chunks, and you select from a range\
-        of options to move it forward. Unlike the book form, however, the\
-        digital form gives you far more flexibility to tell rich stories\
-        and introduce more interesting game elements.</p>\
-        \
-        <p class='transient'>Click <a href='hub'>this link to\
+        <p>Tras explicar la situacción con gusto el monje accede a llevarte hacia \
+        donde se encuentra la Remolacha, un lugar difícil de encontrar. A mitad de camino\
+        el monje se detiene y parece no saber el camino a tomar, desconcertado le preguntas: </p>\
+        - ¿Sabe usted por donde ir?\
+        - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
+        El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
+        que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.\
+        - Al fin, aquí está la Remolacha\
+        El monje te entrega la planta.\
+        <a href ='examinar'>Examinar planta</a>\
+        Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
+        en el camino, el monje te está engañando, ¡quizás sea un impostor!/p>\
+        <a href= 'atacarsorpresa'>Decides atacar por sorpresa</a>\
+        <a href= 'capturaromatar'>Decides capturarlo </a>\
+        <a href= 'capturaromatar'>Decides matarlo </a>\
         continue...</a></p>"
     ),
 
@@ -80,7 +87,31 @@ undum.game.situations = {
     // Situation type. This is a neat approach to generate text by
     // looking it up in the HTML document. For static text that makes
     // more sense than writing it longhand.
-    situations: new undum.Situation({
+    atacarsorpresa: new undum.Situation(
+        "<h1>EL TEMPLO</h1>\
+        <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
+        <p>El monje, asustado, se rinde y promete contarte todo lo que sabe. Confiesa que es en realidad un asesino contratado por Felipo para matar a los monjes y\
+        confundir a los vengan en busca de la planta. Todo esto mientras otros hombres queman la única información sobre la planta.\
+        <a href='regresarTemplo'> Decides regresar al templo corriendo</p>\
+        - ¿Sabe usted por donde ir?\
+        - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
+        El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
+        que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.\
+        - Al fin, aquí está la Remolacha\
+        El monje te entrega la planta.\
+        <a href ='examinar'>Examinar planta</a>\
+        Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
+        en el camino, el monje te está engañando, ¡quizás sea un impostor!/p>\
+        <a href= 'atacarsorpresa'>Decides atacar por sorpresa</a>\
+        <a href= 'capturaromatar'>Decides capturarlo </a>\
+        <a href= 'capturaromatar'>Decides matarlo </a>\
+        continue...</a></p>",
+        
+        
+        
+        
+        
+        {
         enter: function(character, system, from) {
             system.write($("#s_situations").html());
         },
