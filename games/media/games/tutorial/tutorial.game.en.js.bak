@@ -30,7 +30,7 @@ undum.game.slideUpSpeed = 500
 undum.game.situations = {
 	
 	inicio: new undum.SimpleSituation(
-		"<h2>Capítulo 1</h2>\
+		"<h2>Capitulo 1</h2>\
 		<br>\
 		<p>Caminas con la mirada perdida, escuchando el sonido de tu respiración,\
 		sintiendo como las gotas de lluvia golpean y empapan la caperuza de tu capa.\
