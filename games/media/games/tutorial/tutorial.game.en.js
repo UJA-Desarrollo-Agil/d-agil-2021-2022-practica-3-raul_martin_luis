@@ -331,7 +331,7 @@ undum.game.situations = {
 		{
 			actions:{
 				"observar":function(character, system, action) {
-					if(character.qualities.sigilo > 2){
+					if(character.qualities.sigilo > 3){
 						system.write($("#no_te_engaña").html());						
 					}else{
 						system.write($("#te_engaña").html());
