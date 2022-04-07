@@ -26,6 +26,7 @@ undum.game.fadeSpeed = 1500
  * option. */
 undum.game.slideUpSpeed = 500
 
+
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
 	
@@ -39,7 +40,329 @@ undum.game.situations = {
 		Tus provisiones empiezan a escasear y estás harto de dormir a la intemperie, y sabes que\
 		donde hay castillos, hay comida y lechos calientes.</p>\
 		<br>\
-		<p class='transient'><a href='hub'>Siguiente Página</a></p>"
+		<p class='transient'><a href='muralla'>Siguiente Página</a></p>"
+	),
+	
+	muralla: new undum.SimpleSituation(
+		"<p>Tardas dos horas de caminata bajo la incesante lluvia en alcanzar las afueras de la ciudad.\
+		Un espeso olor a descomposición, que ni siquiera el viento es capaz de disipar, llega reptando\
+		hasta tus fosas nasales. Alzas la vista y observas una serie de cabezas empaladas sobre unos\
+		letreros carcomidos en los que yace la palabra “hereje”.No es nada nuevo, en muchas otras\
+		ciudades has tenido la suerte de contemplar la misma advertencia macabra que viene a decir “no\
+		queremos gente rebelde en nuestra ciudad, solo borregos que obedezcan sin hacer ruido”. Y como\
+		no, camuflado bajo la excusa de la religión y esa retahíla de salvar el alma de los pecadores.</p>\
+		<br>\
+		<p class='transient'><a href='ciudad'>Siguiente Página</a></p>"
+	),
+	
+	ciudad: new undum.SimpleSituation(
+		"<h2>Capítulo 2</h2>\
+		<br>\
+		<p>No te detienes a contemplar la “obra de Dios” durante mucho tiempo porque el olor empieza a ser\
+		insoportable hasta tal punto de darte arcadas a pesar de tener el estómago vacío. Cruzas el arco\
+		de la entrada y poco a poco la lluvia empieza a amainar. Te quitas la caperuza y miras alrededor:\
+		calles inundadas de barro y estiércol, casas con fachadas grises y visiblemente maltratadas por el\
+		tiempo y, lo más extraño, no ves a nadie. De improvisto, como si de puñetazo se tratase, el hambre\
+		golpea tus entrañas.</p>\
+		<br>\
+		<p>―Joder…una posada― piensas en voz alta ―necesito comer algo.</p>\
+		<br>\
+		<p>Sigues avanzando por la calle más ancha, evitando charcos, hasta que ves un cartel oxidado:\
+		“El Patito Frito”.</p>\
+		<br>\
+		<p class='transient'><a href='posada'>Siguiente Página</a></p>"
+	),
+	
+	posada: new undum.SimpleSituation(
+	"<p>No hay gente, al menos a la vista, porque está muy oscuro, malamente iluminado por unas cuantas lámparas de\
+	aceite que hacen que las penumbras sean aún más intensas. Pero por otro lado lo agradeces, porque si llega a\
+	haber más luz seguramente te sorprendería la cantidad de polvo y grasa acumulada en el simple y tosco inmobiliario.</p>\
+	<br>\
+	<p>―¿¡Hola!?― saludas, para ver si hay alguien.</p>\
+	<br>\
+	<p>―¡Qué sorpresa!― dice una pequeña silueta de voz aguda desde detrás de la barra ― Un cliente. Pasa, pasa. ¿Qué se te ofrece?</p>\
+	<br>\
+	<p>Te acercas y ves a una chica joven, no muy alta, de cabellos cenicientos que lleva un delantal no muy limpio.</p>\
+	<br>\
+	<p class='transient'><a href='./p_comida' class='once'>Pedir comida</a>.</p>\
+	<br>\
+	<p class='transient'><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</p>\
+	<br>\
+	<p class='transient'><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</p>\
+	<br>\
+	<p class='transient'><a href='./p_irse' class='once'>Marcharse</a>.</p>\
+	",
+		{
+			actions: {
+				"p_comida":"<p>―Algo de comer por favor, llevo varios días en el camino.</p>\
+							<br>\
+							<p>―Perdona mi desconfianza pero…―dice estirando la cabeza mientras te mira de arriba abajo con sus\
+							grandes ojos verdes― ¿tienes dinero pa pagar?</p>\
+							<br>\
+							<p>―A decir verdad no, lo siento.</p>\
+							<br>\
+							<p>―Pos no hay comida.―exclama agitando sus grisáceos cabellos― No voy a gastar la escasa\
+							comida que queda a cambio de nada.</p>"
+							,
+				'p_dinero': "<br><p>―¿Hay alguna manera de conseguir dinero rápido por aquí?</p>\
+							<br>\
+							<p>―Que va. ¿Acaso no has visto cómo está la ciudad? El rey nos despoja tos los meses del poco\
+							oro que tenemos. Muchos artesanos y comerciantes se fueron de la ciudad porque apenas tenían pa vivir.</p>\
+							<br>\
+							<p>―Joder…― malcides volviendo los ojos ―¿Entonces no queda nadie?</p>\
+							<br>\
+							<p>―Al principio éramos bastantes, pero vino una extraña enfermedad y poco a poco nuestro número disminuyó.\
+							Los pocos que quedan se refugian en sus casas.</p>\
+							<br>\
+							<p>―En menudo agujero he ido a parar. ¿Y el rey no hace nada para solucionarlo?</p>\
+							<br>\
+							<p>―Nada, de hecho, lo empeora. Desde que su hijo y heredero cayó enfermo, empezó a acusarnos de herejía, de\
+							que habíamos traído el mal a esta tierra y la enfermedad era un castigo divino. Y a todo aquel que se acercaba\
+							a pedir ayuda o a exigir que hiciera algo, terminaba con la testa en una pica.</p>\
+							<br>\
+							<p>―Wow, la cosa mejora por momentos. Será mejor que me vaya de aquí."
+							,
+				'p_nombre':	"<p>―Antes de irme. ¿Cómo te llamas?</p>\
+							<br>\
+							<p>―<b>Falka</b></p>\
+							<br>\
+							<p>―Y dime <b>Falka</b>, ¿por qué no te vas como el resto?</p>\
+							<br>\
+							<p>―Mis padres, que regentaban esta taberna, murieron a causa de la enfermedad. Y tampoco tengo dinero como\
+							para ir a algún sitio. Además una chica como yo, sola vagabundeando por los caminos…</p>\
+							<br>\
+							<p>―Comprendo. No prometo nada, pero haré lo que pueda. Hasta pronto Falka.</p>"
+							,
+				'p_irse':	"<p>―Espera un momento, por favor. Por tus pintas diría que eres una persona valiente y aventurera, de las que han\
+							visto mundo. Se rumorea que el rey ofrece una recompensa por la cura pa salvar al príncipe, por mu avaro que sea.\
+							Deseo que se muera el mu gusano, pero la cura vendría bien a todo el reino.</p>\
+							<br>\
+							<p>―Estupendo. O me muero de hambre por el camino o voy al castillo y con un poco de suerte no me decapitan. Supongo\
+							que no tengo más opción. Gracias pequeña.</p>\
+							<br>\
+							<p class='transient'><a href='calle'>Siguiente Página</a></p>"
+			}
+		}
+
+	),
+	
+	calle: new undum.SimpleSituation(
+		"<p>Te diriges al castillo, cuesta arriba, con pasos lentos pero firmes, porque a pesar de que ha dejado de llover, el desgastado y húmedo\
+		empedrado resbala bastante y la suciedad que los recubre tampoco ayuda.</p>\
+		<br>\
+		<p>Las calles están completamente mudas. Ves a unas pocas personas que asoman curiosas por las ventanas cuando pasas por delante, pero\
+		rápidamente vuelven a esconderse tras un repentino ataque de tos. Hasta que al fin aparecen dos soldados reales.</p>\
+		<br>\
+		<p>―¡Alto! Identifíquese</p>\
+		<br>\
+		<p>A ambos soldados tan solo se les puede llamar “soldados” por sus vestimentas: botas altas, cota de malla, cascos y los colores y\
+		escudos reales. Pero si llega a ser por su físico, no dirías que son soldados, ya que no son altos ni especialmente jóvenes, y a\
+		juzgar por sus redondeadas barrigas, y fuerte olor, apostarías que son amantes del aguardiente.</p>\
+		<br>\
+		<p>―Soy [insertar nombre]― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
+		gustaría prestar mis servicios.</p>\
+		<br>\
+		<p>―Bien, seguidnos</p>\
+		<br>\
+		<p>Los sigues durante poco tiempo hasta que llegáis a un gran foso que separa la ciudad con el castillo. Un puente levadizo conecta\
+		ambos lados. Lo cruzais y llegais al patio principal. En él puedes encontrar una cuadriga de la que se escuchan unos relinchos.\
+		Por otro lado, hay una zona de entrenamiento bastante descuidada, en la que hay un par de viejos maniquíes de paja y varias dianas\
+		torcidas. También hay unas varias escaleras de piedra que dan a la parte superior de la muralla, y otras tantas puertas para acceder al interior.</p>\
+		<br>\
+		<p>Continuais recto por el patio, subis unas escaleras que dan a un gran portón entreabierto. Uno de los soldados lo empuja con esfuerzo\
+		y entrais al castillo.</p>\
+		<br>\
+		<p class='transient'><a href='castillo' class='once'>Siguiente página</a>.</p>"
+	),
+	
+	castillo: new undum.SimpleSituation(
+		"<p>Al entrar te quedas completamente sorprendido por el contraste con todo lo visto hasta ahora. Al llegar a la ciudad jamás te\
+		hubieras imaginado que encontrarías tal cantidad de riqueza y lujo: Candelabros dorados por todos lados iluminando con sus\
+		reflejos la gran sala, tapices y cuadros detalladamente elaborados con escenas épicas de guerra, caza y algún que otro desnudo.\
+		Y en el suelo, una amplia y limpia alfombra roja que conducía hasta el trono. Eso en cuanto a la decoración. A lo referente a la\
+		arquitectura había anchas columnas a los lados llenas de florituras, separadas entre sí por vidrieras de colores. Todo muy ostentoso\
+		e imponente.</p>\
+		<br>\
+		<p>Un empujón te devuelve a la realidad, uno de los soldados te hace un gesto ordenándote que camines. Avanzais hasta una amplia\
+		escalera de mármol, sobre ella se hallan dos magnificentes tronos: el del rey y el de la reina.</p>\
+		<br>\
+		<p>El rey <b>Artorias</b>, un hombre viejo grandullón y barbudo, estaba envuelto en una espesa y abrigada capa, portando cadenas y colgantes\
+		dorados de diversos tipos. Sus ropajes también parecían ser de fabricación laboriosa. Ante él había dispuesta una bandeja con patas\
+		de la que engullía un muslo de pollo y bebía de una copa de vino. Su capacidad de desmenuzar al animal, a pesar de tener los dedos\
+		llenos de anillos, es realmente extraordinaria. Lo que te lleva a pensar que si sigue comiendo así, pronto tendrían que fabricar otro\
+		trono más grande. O trasladar su alcoba a la sala del trono.</p>\
+		<br>\
+		<p>Por otro lado estaba la reina <b>Jera Mug</b>, sentada en su trono más pequeño, suspirando con la mirada perdida. Por su redondeada forma\
+		y ancho cuello, deduces que a ella tampoco le falta comida.</p>\
+		<br>\
+		<p>―¿Qué queréis?― pregunta el rey mientras alza brevemente la vista hacia a ti.</p>\
+		<br>\
+		<p>―Su majestad este…― dice tímidamente uno de los soldados.</p>\
+		<br>\
+		<p>―Me llamo [insertar nombre], alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
+		A mis oídos ha llegado que buscáis la cura para la enfermedad que atormenta a vuestro hijo. Y humildemente os presto mis servicios.</p>\
+		<br>\
+		<p>―Bien, bien…― asiente con la boca llena.</p>\
+		<br>\
+		<p>―Artorias, hermano mío, no debéis escuchar a este… asaltante de caminos.</p>\
+		<br>\
+		<p>Un hombre esbelto con armadura negra, que había pasado desapercibido hasta el momento, irrumpe en la sala. Era el duque <b>Paul Married</b>,\
+		medio hermano del rey. A diferencia de los reyes, él parece estar en buena forma física. Tampoco porta joyas, tan solo un anillo\
+		con la <b>flor de lys</b>.</p>\
+		<br>\
+		<p>―¿Y qué remedio nos queda, Paul?― le contesta el rey alzando la vista del plato ―O enviamos a alguien en busca de una cura o será\
+		el fin de este reino.</p>\
+		<br>\
+		<p>―Pero…</p>\
+		<br>\
+		<p>―¡Pero nada!― exclama el rey enfadado ―Se trata de mi hijo. Y yo soy tu rey, así que a callar y no me repliques.</p>\
+		<br>\
+		<p>El caballero se da la vuelta de una forma muy dramática tirando de un lado de la capa.</p>\
+		<br>\
+		<p>―Vos estais acabando con el reino― farfulla muy bajito sin que nadie le oiga salvo tú.</p>\
+		<br>\
+		<p>Desaparece de la sala tras un portazo. El rey suspira y se gira hacia ti.</p>\
+		<br>\
+		<p>―¿Y bien? ¿Aún estás aquí?― te recrimina con un gesto exagerado.</p>\
+		<br>\
+		<p>―Disculpe su majestad― dices mientras haces una reverencia ― Pero esperaba que me pusierais al tanto de la cura. Y si era posible,\
+		reponer mis víveres para el camino.</p>\
+		<br>\
+		<p>―¿Sabes cuantos aventureros han venido antes de ti? Yo no recompenso por promesas, premio los resultados, así que no esperes que\
+		te dé caviar y cerveza de reserva. ¡Turdis!― grita y señala a uno de los guardias ―Sácalo de aquí y explicale a donde ha de ir en\
+		busca de la cura, y dale un mendrugo pan y, si eso, algo de mantequilla.</p>\
+		<br>\
+		<p class='transient'><a href='cocina' class='once'>Siguiente página</a>.</p>"
+	),
+	
+	cocina: new undum.SimpleSituation(
+		"<p>Turdis te conduce fuera de palacio, y te lleva a la parte de atrás de las cocinas. Allí te ofrece un trozo de pan con un poco de\
+		mantequilla, tal como se le ordenó.</p>\
+		<br>\
+		<p>―Espera aquí forastero, y no toques nada.</p>\
+		<br>\
+		<p>Te encuentras solo en la cocina. Sobre una amplia mesa hay cacharros, diversos cuchillos y verduras, algunas troceadas. En la\
+		pared junto a la puerta hay ristras de tripas de chorizo y salchichón. Escuchas unos pasos que se acercan a la cocina.</p>\
+		<p><a href='./robar_chorizo' class='once'>Intentar robar un chorizo</a>.</p>\
+		<br>\
+		<p>Turdis se dirige hacia a ti con un pergamino que desenrolla en un lado de la mesa.</p>\
+		<br>\
+		<p>―Mira.― ves que se trata de un gran mapa  ― Esto es Dragonborn, que es donde estamos actualmente, y esto otro es el templo de Ver-dulería,\
+		allí es donde unos monjes cultivan la preciada Remolacha. Esta planta tiene sorprendentes propiedades curativas.</p>\
+		<br>\
+		<p>―¿”Verdulería” y “remolacha”?― contestas torciendo la cabeza ―¿Es en serio? ¿Y de paso traigo el pan y media de huevos?</p>\
+		<br>\
+		―¿Tengo cara de estar bromeando?― se revuelve de manera cómica ―¿No escuchaste antes al rey? Muchos se han dejado la vida en este viaje.\
+		<br>\
+		―Está bien, está bien.― vuelves los ojos en blanco y suspiras― Dame el mapa ya, a ver si terminamos con esto pronto.\
+		<br>\
+		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>"		
+		,{
+			actions: {
+				"robar_chorizo":function(character, system, action) {
+									//int dado = system.rnd.randomInt(1,10);//+character.qualities.skill
+									system.setQuality("cuchillo", character.qualities.cuchillo+1);
+									/*
+									var dado = system.rnd.randomInt(1,10);
+									if ((dado+character.qualities.skill) > 5){
+										system.setQuality("stamina", dado);
+										system.write($("#chorizo").html());
+									}else{
+										system.setQuality("stamina", dado);
+										system.write($("#no_chorizo").html());
+									}*/
+				}
+			}
+		}
+	),
+	
+	/*Se supone que la  lista ul debe desaparecer al pinchar en una de las opciones*/
+	camino: new undum.SimpleSituation(
+		"<h2>Capítulo 3</h2>\
+		<p>A la mañana siguiente despiertas renovado. Estás acostado bajo una enramada; las ramas de un árbol bajaban entrelazadas hasta el suelo.\
+		La cama de helechos y musgo era suave y profunda, tan cómoda que te hizo olvidar el berrinche que pillaste al enterarte de que no se te\
+		permitía pasar la noche en la ciudad. “Otra maldita noche a la intemperie” pensaste. Pero no llovió nada el resto del día y el sol brilló\
+		con fuerza. Así que la tierra y matojos se secaron y reblandecieron en su justa medida.</p>\
+		<br>\
+		<p>Ahora, el sol refulgía entre las hojas temblorosas. Te levantas de un salto, agitas tus ropajes para desprenderte de las púas de pino y,\
+		tras unos estiramientos, te pones en marcha. Al cabo de un rato te entra hambre y ves unos arbustos con bayas muy apetecibles.</p>\
+		<br>\
+		<ul class='options'>\
+			<li><a href='./prudente' >Intentar identificar bayas</a></li>\
+			<li><a href='./temerario' >Coger las bayas directamente</a></li>\
+			<li><a href='./hambre' >Pasar de las bayas y seguir tu camino</a></li>\
+		</ul>\
+		",
+		{
+			actions:{
+				"prudente":function(character, system, action) {
+					if(character.qualities.sabiduria > 2){
+						system.setQuality("vida", character.qualities.vida+1);
+						system.write($("#bayas").html());						
+					}else{
+						system.write($("#no_bayas").html());
+					}
+				},
+				
+				"temerario":function(character, system, action) {
+					system.write($("#tragon").html());
+					system.setQuality("vida", character.qualities.vida+1);
+				},
+				
+				"hambre":function(character, system, action) {
+					system.write($("#ayunas").html());
+				}				
+			}
+		}
+	),
+	
+	camino2: new undum.SimpleSituation(
+		"<p>Sigues por el estrecho y retorcido sendero durante varias horas sin novedad alguna. El hecho de llevar las armas\
+		a la vista, piensas, evita problemas, los asaltantes se lo piensan dos veces antes de interponerse en tu camino.</p>\
+		<br>\
+		<p>Al torcer por una curva cerrada del camino, no muy lejos divisas un bulto negro en el camino.\
+		Parece ser una persona que cojea.</p>\
+		<br>\
+		<p>Avanzas lentamente hasta que el anciano maltrecho se percata de tu presencia.</p>\
+		<br>\
+		<p>―¡Hey! Hola viajero.― alza la mano ―¿Una ayuda a un anciano?</p>\
+		<br>\
+		<p><a href='./observar' class='once'>Tirada percepción</a></p>",
+		{
+			actions:{
+				"observar":function(character, system, action) {
+					if(character.qualities.sigilo > 2){
+						system.write($("#no_te_engaña").html());						
+					}else{
+						system.write($("#te_engaña").html());
+						system.setQuality("vida", character.qualities.vida-1);
+					}
+				}
+			}
+		}
+	),
+	
+	asesino1: new undum.SimpleSituation(
+	"",
+		{
+			enter:function(character, system, action) {
+				system.write($("#pelea_asesino").html());
+					if(character.qualities.cuchillo > 0){
+						system.write($("#vives").html());
+						system.setQuality("cuchillo", character.qualities.cuchillo-1);
+						system.setQuality("vida", character.qualities.vida-3);
+						
+						if(character.qualities.sigilo > 2){
+							system.write($("#cartita").html());						
+						}else{
+							system.write($("#no_cartita").html());
+						}	
+						
+					}else{
+						system.write($("#mueres").html());
+					}
+				}
+		}
 	),
 	
     start: new undum.SimpleSituation(
@@ -460,6 +783,34 @@ undum.game.start = "inicio";
  * possess. We don't have to be exhaustive, but if we miss one out then
  * that quality will never show up in the character bar in the UI. */
 undum.game.qualities = {
+	vida: new undum.NumericQuality(
+		"Vida", {priority:"0001", group:'stats'}
+	),
+	
+	fuerza: new undum.NumericQuality(
+		"Fuerza", {priority:"0001", group:'stats'}
+	),
+	
+	agilidad: new undum.NumericQuality(
+		"Agilidad", {priority:"0001", group:'stats'}
+	),
+	
+	defensa: new undum.NumericQuality(
+		"defensa", {priority:"0001", group:'stats'}
+	),
+	
+	sabiduria: new undum.NumericQuality(
+		"Sabiduía", {priority:"0001", group:'stats'}
+	),
+	
+	sigilo: new undum.NumericQuality(
+		"Sigilo", {priority:"0001", group:'stats'}
+	),
+	
+	cuchillo: new undum.NumericQuality(
+        "Cuchillo", {priority:"0002", group:'stats'}
+    )	
+	/*
     skill: new undum.IntegerQuality(
         "Skill", {priority:"0001", group:'stats'}
     ),
@@ -476,7 +827,7 @@ undum.game.qualities = {
     ),
     novice: new undum.OnOffQuality(
         "Novice", {priority:"0002", group:'progress', onDisplay:"&#10003;"}
-    )
+    )*/
 };
 
 // ---------------------------------------------------------------------------
@@ -494,10 +845,11 @@ undum.game.qualityGroups = {
 /* This function gets run before the game begins. It is normally used
  * to configure the character at the start of play. */
 undum.game.init = function(character, system) {
-    character.qualities.skill = 12;
-    character.qualities.stamina = 12;
-    character.qualities.luck = 0;
-    character.qualities.novice = 1;
-    character.qualities.inspiration = 0;
-    system.setCharacterText("<p>You are starting on an exciting journey.</p>");
+	character.qualities.vida = 10;
+    character.qualities.fuerza = 3;
+	character.qualities.agilidad = 3;
+	character.qualities.defensa = 3;
+	character.qualities.sabiduria = 3;
+	character.qualities.sigilo = 3;
+	character.qualities.cuchillo = 0;
 };
