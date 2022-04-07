@@ -58,6 +58,7 @@ undum.game.situations = {
             }
         }
     ),
+    //Situacion en la que explicas al monje
     explicar: new undum.SimpleSituation(
         "<h1>EL TEMPLO</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
@@ -65,6 +66,36 @@ undum.game.situations = {
         donde se encuentra la Remolacha, un lugar difícil de encontrar. A mitad de camino\
         el monje se detiene y parece no saber el camino a tomar, desconcertado le preguntas: </p>\
         - ¿Sabe usted por donde ir?\
+        - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
+        El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
+        que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.\
+        - Al fin, aquí está la preciada Remolacha\
+        El monje te entrega la planta.\
+        <a href ='examinar'>Examinar planta(Hacer tirada)</a>\
+        (Si tienes la sabiduria necesaria )Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
+        en el camino, el monje te está engañando, ¡quizás sea un impostor!\
+        No te queda otra que <a href= 'combatemonje'>atacarle</a> </p>"
+    ),
+    //si no tienes la sabiduria necesaria
+    nosabiduria: new undum.SimpleSituation(
+       " <h1>REGRESO AL CASTILLO</h1>\
+       <p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.\
+       Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta\
+       que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... FIN DEL JUEGO  \ </p>"
+
+
+
+
+    ),
+        //Situación en la que no le explicas al monje y decides pasar
+    noexplicar: new undum.SimpleSituation(
+        "<h1>EL TEMPLO</h1>\
+        <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
+        <p>Decides entrar en el templo sin el consentimiento del monje, \
+        no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
+        saca una larga y afilada espada. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
+        la marca de la flor Lis. Te enzarzas en un duro combate con él, resulta ser un asesino bien entrenado\
+        </p>\
         - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
         El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
         que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.\
@@ -77,6 +108,13 @@ undum.game.situations = {
         <a href= 'capturaromatar'>Decides capturarlo </a>\
         <a href= 'capturaromatar'>Decides matarlo </a>\
         continue...</a></p>"
+    ),
+
+    //Combate con el monje
+    combatemonje: new undum.SimpleSituation(
+        "<h1>COMBATE</h1>\
+        <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
+        <p>Combate con el monje</p>"
     ),
 
     // NB: The 'hub' situation which is the main list of topics, is
