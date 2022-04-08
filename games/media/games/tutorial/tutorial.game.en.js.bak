@@ -331,7 +331,7 @@ undum.game.situations = {
 		{
 			actions:{
 				"observar":function(character, system, action) {
-					if(character.qualities.sigilo > 3){
+					if(character.qualities.sigilo > 2){
 						system.write($("#no_te_engaña").html());						
 					}else{
 						system.write($("#te_engaña").html());
@@ -347,7 +347,7 @@ undum.game.situations = {
 		{
 			enter:function(character, system, action) {
 				system.write($("#pelea_asesino").html());
-					if(character.qualities.cuchillo > 0){
+					if(character.qualities.cuchillo > 1){
 						system.write($("#vives").html());
 						system.setQuality("cuchillo", character.qualities.cuchillo-1);
 						system.setQuality("vida", character.qualities.vida-3);
