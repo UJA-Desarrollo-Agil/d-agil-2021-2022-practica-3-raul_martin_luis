@@ -1,3 +1,4 @@
+
 // ---------------------------------------------------------------------------
 // Edit this file to define your game. It should have at least four
 // sets of content: undum.game.situations, undum.game.start,
@@ -84,13 +85,13 @@ undum.game.situations = {
 	<br>\
 	<p>Te acercas y ves a una chica joven, no muy alta, de cabellos cenicientos que lleva un delantal no muy limpio.</p>\
 	<br>\
-	<p class='transient'><a href='./p_comida' class='once'>Pedir comida</a>.</p>\
+	<ul class='options'>\
+		<li><a href='./p_comida' class='once'>Pedir comida</a>.</li>\
+		<li><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</li>\
+		<li><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</li>\
+		<li><a href='./p_irse' class='once'>Marcharse</a>.</li>\
+	</ul>\
 	<br>\
-	<p class='transient'><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</p>\
-	<br>\
-	<p class='transient'><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</p>\
-	<br>\
-	<p class='transient'><a href='./p_irse' class='once'>Marcharse</a>.</p>\
 	",
 		{
 			actions: {
@@ -245,7 +246,31 @@ undum.game.situations = {
 		pared junto a la puerta hay ristras de tripas de chorizo y salchichón. Escuchas unos pasos que se acercan a la cocina.</p>\
 		<p><a href='./robar_chorizo' class='once'>Intentar robar un chorizo</a>.</p>\
 		<br>\
-		<p>Turdis se dirige hacia a ti con un pergamino que desenrolla en un lado de la mesa.</p>\
+		<p class='transient'><a href='cocina2' class='once'>Siguiente página</a>.</p>\
+		<br>"		
+		,{
+			actions: {
+				"robar_chorizo":function(character, system, action) {
+									//int dado = system.rnd.randomInt(1,10);//+character.qualities.skill
+									system.setQuality("cuchillo", character.qualities.cuchillo+1);
+									
+									var dado = jsRandom.get(1,10);
+									if ((dado+character.qualities.agilidad) > 5){
+										system.setQuality("tirada", dado);
+										system.write($("#chorizo").html());
+									}else{
+										system.setQuality("stamina", dado);
+										system.write($("#no_chorizo").html());
+									}
+									
+									system.write($("#te_regaña").html());
+				}
+			}
+		}
+	),
+	
+	cocina2: new undum.SimpleSituation(
+		"<p>Turdis se dirige hacia a ti con un pergamino que desenrolla en un lado de la mesa.</p>\
 		<br>\
 		<p>―Mira.― ves que se trata de un gran mapa  ― Esto es Dragonborn, que es donde estamos actualmente, y esto otro es el templo de Ver-dulería,\
 		allí es donde unos monjes cultivan la preciada Remolacha. Esta planta tiene sorprendentes propiedades curativas.</p>\
@@ -256,24 +281,7 @@ undum.game.situations = {
 		<br>\
 		―Está bien, está bien.― vuelves los ojos en blanco y suspiras― Dame el mapa ya, a ver si terminamos con esto pronto.\
 		<br>\
-		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>"		
-		,{
-			actions: {
-				"robar_chorizo":function(character, system, action) {
-									//int dado = system.rnd.randomInt(1,10);//+character.qualities.skill
-									system.setQuality("cuchillo", character.qualities.cuchillo+1);
-									/*
-									var dado = system.rnd.randomInt(1,10);
-									if ((dado+character.qualities.skill) > 5){
-										system.setQuality("stamina", dado);
-										system.write($("#chorizo").html());
-									}else{
-										system.setQuality("stamina", dado);
-										system.write($("#no_chorizo").html());
-									}*/
-				}
-			}
-		}
+		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>"
 	),
 	
 	/*Se supone que la  lista ul debe desaparecer al pinchar en una de las opciones*/
@@ -296,12 +304,14 @@ undum.game.situations = {
 		{
 			actions:{
 				"prudente":function(character, system, action) {
-					if(character.qualities.sabiduria > 2){
+					var dado = jsRandom.get(1,10);
+					if ((dado+character.qualities.sabiduria) > 5){
 						system.setQuality("vida", character.qualities.vida+1);
 						system.write($("#bayas").html());						
 					}else{
 						system.write($("#no_bayas").html());
 					}
+					system.setQuality("tirada", dado);
 				},
 				
 				"temerario":function(character, system, action) {
@@ -331,12 +341,14 @@ undum.game.situations = {
 		{
 			actions:{
 				"observar":function(character, system, action) {
-					if(character.qualities.sigilo > 3){
+					var dado = jsRandom.get(1,10);
+					if ((dado+character.qualities.sigilo) > 5){
 						system.write($("#no_te_engaña").html());						
 					}else{
 						system.write($("#te_engaña").html());
 						system.setQuality("vida", character.qualities.vida-1);
 					}
+					system.setQuality("tirada", dado);
 				}
 			}
 		}
@@ -352,11 +364,12 @@ undum.game.situations = {
 						system.setQuality("cuchillo", character.qualities.cuchillo-1);
 						system.setQuality("vida", character.qualities.vida-3);
 						
-						if(character.qualities.sigilo > 2){
+						var dado = jsRandom.get(1,10);
+						if ((dado+character.qualities.sigilo) > 5){
 							system.write($("#cartita").html());						
 						}else{
 							system.write($("#no_cartita").html());
-						}	
+						}
 						
 					}else{
 						system.write($("#mueres").html());
@@ -808,8 +821,12 @@ undum.game.qualities = {
 	),
 	
 	cuchillo: new undum.NumericQuality(
-        "Cuchillo", {priority:"0002", group:'stats'}
-    )	
+        "Cuchillo", {priority:"0003", group:'objetos', onDisplay:"&#10003;"}
+    ),
+	
+	tirada: new undum.NumericQuality(
+        "Tirada", {priority:"0002", group:'dado', onDisplay:"&#10003;"}
+    )
 	/*
     skill: new undum.IntegerQuality(
         "Skill", {priority:"0001", group:'stats'}
@@ -825,6 +842,7 @@ undum.game.qualities = {
     inspiration: new undum.NonZeroIntegerQuality(
         "Inspiration", {priority:"0001", group:'progress'}
     ),
+	
     novice: new undum.OnOffQuality(
         "Novice", {priority:"0002", group:'progress', onDisplay:"&#10003;"}
     )*/
@@ -838,7 +856,8 @@ undum.game.qualities = {
  * non-existent group. */
 undum.game.qualityGroups = {
     stats: new undum.QualityGroup(null, {priority:"0001"}),
-    progress: new undum.QualityGroup('Progress', {priority:"0002"})
+    dado: new undum.QualityGroup('Dado', {priority:"0002"}),
+	objetos: new undum.QualityGroup('Objetos' , {priority:"0003"})
 };
 
 // ---------------------------------------------------------------------------
@@ -852,4 +871,5 @@ undum.game.init = function(character, system) {
 	character.qualities.sabiduria = 3;
 	character.qualities.sigilo = 3;
 	character.qualities.cuchillo = 0;
+	character.qualities.tirada = 0;
 };
