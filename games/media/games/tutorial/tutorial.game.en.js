@@ -36,34 +36,14 @@ undum.game.situations = {
         - Bienvenido joven viajero, a que se debe su visita?\
         <a href = 'explicar'>Explicar tu situación</a>\
         <a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a>\
-         </p>",
-        {
-            tags: ["topic"],
-            heading: "Showing a Progress Bar",
-            displayOrder: 5,
-            actions: {
-                // I'm going indirect here - the link carries out an
-                // action, which then uses doLink to directly change
-                // the situation.  This isn't the recommended way (I
-                // could have just changed situation in the link), but
-                // it illustrates the use of doLink.
-                "boost-stamina-action": function(character, system, action) {
-                    system.doLink("boost-stamina");
-                }
-            },
-            exit: function(character, system, to) {
-                system.animateQuality(
-                    'stamina', character.qualities.stamina+1
-                );
-            }
-        }
+         </p>"
     ),
     //Situacion en la que explicas al monje
     explicar: new undum.SimpleSituation(
         "<h1>EL TEMPLO</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
         <p>Tras explicar la situacción con gusto el monje accede a llevarte hacia \
-        donde se encuentra la Remolacha, un lugar difícil de encontrar. A mitad de camino\
+        donde se encuentra la Remolacha, en un sendero que rodea el templo. A mitad de camino\
         el monje se detiene y parece no saber el camino a tomar, desconcertado le preguntas: </p>\
         - ¿Sabe usted por donde ir?\
         - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
@@ -94,20 +74,7 @@ undum.game.situations = {
         <p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
         saca una larga y afilada espada. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
-        la marca de la flor Lis. Te enzarzas en un duro combate con él, resulta ser un asesino bien entrenado\
-        </p>\
-        - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
-        El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
-        que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.\
-        - Al fin, aquí está la Remolacha\
-        El monje te entrega la planta.\
-        <a href ='examinar'>Examinar planta</a>\
-        Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
-        en el camino, el monje te está engañando, ¡quizás sea un impostor!/p>\
-        <a href= 'atacarsorpresa'>Decides atacar por sorpresa</a>\
-        <a href= 'capturaromatar'>Decides capturarlo </a>\
-        <a href= 'capturaromatar'>Decides matarlo </a>\
-        continue...</a></p>"
+        la marca de la flor Lis. Te enzarzas en un duro <a href = 'combate'>combate</a> con él, resulta ser un asesino bien entrenado"
     ),
 
     //Combate con el monje
@@ -117,93 +84,25 @@ undum.game.situations = {
         <p>Combate con el monje</p>"
     ),
 
-    // NB: The 'hub' situation which is the main list of topics, is
-    // defined wholly in the HTML file, and doesn't have an entry in
-    // the game.situations dictionary in this file.
-
-    // For variety, here we define a situation using the top-level
-    // Situation type. This is a neat approach to generate text by
-    // looking it up in the HTML document. For static text that makes
-    // more sense than writing it longhand.
-    atacarsorpresa: new undum.Situation(
+    aftercombate: new undum.Situation(
         "<h1>EL TEMPLO</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
-        <p>El monje, asustado, se rinde y promete contarte todo lo que sabe. Confiesa que es en realidad un asesino contratado por Felipo para matar a los monjes y\
-        confundir a los vengan en busca de la planta. Todo esto mientras otros hombres queman la única información sobre la planta.\
-        <a href='regresarTemplo'> Decides regresar al templo corriendo</p>\
-        - ¿Sabe usted por donde ir?\
-        - Sí, disculpa, mi memoria ya no es lo que era, es por aquí\
-        El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
-        que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.\
-        - Al fin, aquí está la Remolacha\
-        El monje te entrega la planta.\
-        <a href ='examinar'>Examinar planta</a>\
-        Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
-        en el camino, el monje te está engañando, ¡quizás sea un impostor!/p>\
-        <a href= 'atacarsorpresa'>Decides atacar por sorpresa</a>\
-        <a href= 'capturaromatar'>Decides capturarlo </a>\
-        <a href= 'capturaromatar'>Decides matarlo </a>\
-        continue...</a></p>",
-        
-        
-        
-        
-        
-        {
-        enter: function(character, system, from) {
-            system.write($("#s_situations").html());
-        },
-        tags: ["topic"],
-        optionText: "What Undum Games are Made Of",
-        displayOrder: 1
-    }),
-    todo: new undum.SimpleSituation(
-        "<p>Two things can happen in a situation. The character either\
-        <a href='links'>leaves</a> the situation and enters another one, or\
-        they carry out some <a href='./do-something'>action</a>. Actions may\
-        perform some processing, they may display some results, but\
-        ultimately they put the character back into the same situation\
-        again.</p>\
-        \
-        <p>When you are designing your game, use situations to reflect a\
-        change in what the character can do. So you would change situation if\
-        the character pulls a lever to open a trapdoor, for example. Actions\
-        are intended for situations where the character can examine things\
-        more closely, or maybe top up their magic by drinking a potion.\
-        Things that don't affect the state of the world around them.</p>\
-        \
-        <p>Situations generate content when they are <em>enter</em>ed,\
-        <em>exit</em>ed, and when they receive an <em>act</em>ion (the\
-        italicised words are the names of the three methods that do this).\
-        You can write code to generate content in any way you like, so the\
-        content that is displayed can be totally dynamic: taking into\
-        account the current state of the character.\
-        Content is just plain HTML, so you use regular HTML tags to make\
-        things <strong>bold</strong> or <em>italic</em>, or to include\
-        images. This gives you a lot of flexibility. For example, since Undum\
-        targets HTML5 browsers, you could use the <em>audio</em> or\
-        <em>video</em> tags to include rich media.</p>\
-        \
-        <p class='transient'>Make sure you've carried out the action above,\
-        then <a href='hub'>return to the topic list</a>.</p>",
+        <p>Tras derrotar al asesino, observas una columna de humo proveniente del interior del templo. Se trata de unos hombres que están\
+        quemando toda la información relacionada con la planta. Te apresuras pero para cuando llegas los hombres han huido. La sala resulta ser una biblioteca antigua\
+        con una gran fogata en el centro donde están quemándose <a href= './libros'>los libros</a>. Observas una <a href ='./ventana'>ventana</a> en la parte derecha de la sala. </p>\
+        ",
+
         {
             actions: {
-                'do-something': "<p>You carried out the action, well done.\
-                                 You'll notice that the links for this\
-                                 situation are still active. This means you\
-                                 can click to perform the action again.</p>"
+                'libros': "<p> De entre las llamas rescatas un libro con información de la hierba. Está en mal estado pero consigues rescatar un pequeño mapa que dice llevar a un lugar\
+                donde es posible encontrar la planta. <a href = 'mapa'>Decides seguir el mapa </p>",
+                'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p>" 
             }
-        }
-    ),
-    links: new undum.SimpleSituation(
-        "<p>Between each chunk of new text, Undum inserts a discreet line\
-        in the margin. This allows you to see at a glance everything that\
-        has been output as a result of your last click.\
-        It is particularly useful for small devices, or when\
-        lots of content has appeared. The window also scrolls so the start\
-        of the new content is as near to the top of the window as possible.\
-        This is also designed to help you read more naturally.</p>\
-        \
+    }),
+   
+    ataquefinal: new undum.SimpleSituation(
+        "<p>Al salir de la caverna te encuentras con GAL, el asesino que contrató Felipo para impedirte lograr tu misión. En su rostro contemplas el miedo, como de haber observado tu enfrentamiento con la bestia. </p>\
+        De pronto se da la vuelta y ante tu sorpresa se quita de su sucio dedo un anillo de tres rubíes.\
         <p>If you've been watching carefully, you will have noticed that\
         parts of the text have been disappearing when you move between\
         situations. This isn't a bug! One of the aims of Undum is to give\
