@@ -38,7 +38,12 @@ undum.game.situations = {
         <li><a href = 'explicar'>Explicar tu situación</a></li>\
         <li><a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a></li>\
         </ul>\
-         <br>"
+         <br>",
+         {
+            enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+            }
+         }
     ),
     //Situacion en la que explicas al monje
     explicar: new undum.SimpleSituation(
@@ -60,14 +65,16 @@ undum.game.situations = {
         {
             actions: 
             {
-                "examinar":function(character, system, action){
+                'examinar':function(character, system, action){
+                    system.write("<p>xxx</p>");
                     var dado = jsRandom.get(1,10);
-									if ((dado+character.qualities.sabiduria) > 5){
+                    
+									if ((dado+character.qualities.sabiduria) > 0){
 										system.setQuality("tirada", dado);
-										system.write($("xxx").html());
+										system.write("<p>xxx</p>");
 									}else{
 										system.setQuality("stamina", dado);
-										system.write("xxx");
+										system.write("<p>xxx</p>");
 									}
                 }
             }
@@ -98,8 +105,26 @@ undum.game.situations = {
     combatemonje: new undum.SimpleSituation(
         "<h1>COMBATE</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
-        <p>Combate con el monje\
-        <a href='aftercombate'>Siguiente pagina</a></p>"
+        <p>(pelea_monje)El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. Es musculoso y maloliento asesino desenvaina su larga espada y espera tu ataque.\
+         (vives) Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el \
+         cuchillo que le has lanzado del brazo y te lo lanza rápidamente. Recibes un corte en el brazo pero cuando menos se lo espera su vientre es atravesado por su propia espada empuñada por ti.\
+         (mueres) Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla pero el asesino te derriba de un puñetazo. Acto seguido recoge su espada y la clava en tu pecho. \
+        <a href='aftercombate'>Siguiente pagina</a></p>",
+        {
+			enter:function(character, system, action) {
+				system.write($("#pelea_monje").html());
+                var dado = jsRandom.get(1,10);
+					if(dado + character.qualities.cuchillo > 5){
+						system.write($("#vives").html());
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");
+						system.setQuality("cuchillo", character.qualities.cuchillo-1);
+						system.setQuality("vida", character.qualities.vida-3);
+						
+					}else{
+						system.write($("#mueres").html());
+					}
+				}
+		}
     ),
 
     aftercombate: new undum.SimpleSituation(
@@ -123,7 +148,7 @@ undum.game.situations = {
         De pronto se da la vuelta y ante tu sorpresa se quita de su sucio dedo un anillo de tres rubíes. Es el mismo anillo que lleva Felipo. Es imprescindible conseguirlo, pues es una prueba contra él. \
         GAL lanza el anillo a un lodazal para que se hunda en él y dice : \
         - Jamás conseguiras el anillo\
-        <p>Acto seguido se lanza al ataque. Es tan veloz que no tienes tiempo de reaccionar y y consigue hacerte un corte en el brazo. Desenvainas tu espada mientras observas como el anillo, la única prueba contra\
+        <p>Acto seguido se lanza al ataque. Es tan veloz que no tienes tiempo de reaccionar y y consigue hacerle un corte en el brazo. Desenvainas tu espada mientras observas como el anillo, la única prueba contra\
          Felipo, se hunde en el lodo. El combate es trepidante, es sin duda el mejor de los asesinos contratados por Felipo, y tu te encuentras exhausto tras el combate con la bestia. Decides desequilibrarlo \
         y zambullarte en el lodazal para tratar de coger el anillo pero justo cuando un palmo separa tu dedo de este GAL agarra tu pierna y tira con fuerza. El lodo es denso y espeso y aprovechas que tu enemigo  \
         ha perdido su arma en él para darle una última oportunidad de vivir, con tu espada rozando su cuello. GAL desvía su mirada de la tuya para observar el anillo. Tu te giras para contemplarlo también y en ese despiste\
@@ -139,7 +164,7 @@ undum.game.situations = {
     noperdonar: new undum.SimpleSituation(
         "<p>Al mostrar el anillo Felipo coge a su hermano y le pone una daga en el cuello para intentar escapar con su guardia personal. \
         Sin embargo sus deseos se ven frustrados cuando de una patada de su esposa en los miembros inferiores este cae al suelo y comienza a llorar. Mas tarde es encerrado por traidor.\
-        El Duque Agnar te da las gracias por tu labor y tu merecida recompensa. FIN  </p>",
+        El Duque Agnar te da las gracias por tu labor y te entrega tu merecida recompensa.<p><b>FIN</b></p>",
         {
             actions: {
                 "one-time-action": "<p>As I said, one time actions are\
@@ -150,236 +175,12 @@ undum.game.situations = {
             }
         }
     ),
-    qualities: new undum.SimpleSituation(
-        "<p>Let's talk about the character.\
-        The character is described by a series of <em>qualities</em>. These\
-        are numeric values that can describe anything from natural abilities\
-        to how much of a resource the character controls. Qualities are\
-        shown in the box on the right of the text.</p>\
-        \
-        <p>The qualities there are those you started the game with. When you\
-        <a href='quality-types'>go to the next situation</a>, keep your\
-        eyes on the character panel. You'll notice I'll give you a boost to\
-        your stamina quality. This process is animated and highlighted to\
-        draw your attention to it. You could also get a boost of skill\
-        by carrying out <a href='./skill-boost'>this action</a> as many\
-        times as you like.</p>",
-        {
-            heading: "Qualities and the Character",
-            tags: ["topic"],
-            displayOrder: 4,
-            actions: {
-                "skill-boost": function(character, system, action) {
-                    system.setQuality("skill", character.qualities.skill+1);
-                }
-            },
-            exit: function(character, system, to) {
-                system.setQuality("stamina", character.qualities.stamina+1);
-            }
-        }
+    perdonar: new undum.SimpleSituation(
+        "<p>El Duque Agnar te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
+        que aún desconfía de ti, ordena que te maten nada mas salir del castillo. Allí, sus guardias te pillan desprevenido\
+        y consiguen derrotarte sin mucho esfuerzo.</p> <p><b>FIN DEL JUEGO</b></p>"
     ),
-    "quality-types": new undum.SimpleSituation(
-        "<p>Not all the qualities in the character panel are displayed as\
-        numeric. Internally they are all numeric, but different qualities\
-        get to choose how to display themselves. So 'Luck', for example, is\
-        displayed as words (based on the FUDGE RPG's adjective scale),\
-        and 'Novice' is using just a check-mark.</p>\
-        \
-        <p>To see how Luck changes, try using this\
-        <a href='./luck-boost'>luck-boosting action</a> or this\
-        <a href='./luck-reduce'>luck-reducing action</a>. Notice that\
-        luck uses a numeric bonus when it runs out of words. There are a range\
-        of different display types provided with Undum, and you can easily\
-        add your own too.</p>\
-        \
-        <p>When you <a href='character-text'>leave this situation</a>,\
-        I'll set 'Novice' to zero. Watch\
-        the character panel, and you'll see that Novice decides it doesn't\
-        need to be displayed any more and will be removed. You will also see\
-        that when the last\
-        quality in a group is removed ('Novice' is in the 'Progress' group),\
-        then the group heading is also removed. You can tell Undum what\
-        group each quality belongs to, and what order they should be listed.\
-        <p>",
-        {
-            actions: {
-                "luck-boost": function(character, system, action) {
-                    system.setQuality("luck", character.qualities.luck+1);
-                },
-                "luck-reduce": function(character, system, action) {
-                    system.setQuality("luck", character.qualities.luck-1);
-                }
-            },
-            exit: function(character, system, to) {
-                system.setQuality("novice", 0);
-            }
-        }
-    ),
-    "character-text": new undum.SimpleSituation(
-        "<h1>Character Text</h1>\
-        <p>Above the list of qualities is a short piece of text, called\
-        the character-text. This describes the character in some way. It\
-        can be set by any action or when entering or leaving a situation.\
-        It is just regular HTML content, as for all text in Undum. It can\
-        also contain Undum links, so this is another place you can put\
-        actions that the character can carry out over a long period of time.\
-        </p>\
-        <p class='transient'>Let's go back to the\
-        <a href='hub'>topic list</a>. As you do, I'll change the\
-        character text. Notice that it is highlighted, just the same as\
-        when a quality is altered.</p>",
-        {
-            exit: function(character, system, to) {
-                system.setCharacterText(
-                    "<p>We're nearing the end of the road.</p>"
-                );
-            }
-        }
-    ),
-    progress: new undum.SimpleSituation(
-        "<p>Sometimes you want to make the change in a quality into a more\
-        significant event. You can do this by animating the change in\
-        quality. If you <a href='./boost-stamina-action'>boost your\
-        stamina</a>, you will see the stamina change in the normal\
-        way in the character panel. But you will also see a progress\
-        bar appear and animate below.</p>",
-        {
-            tags: ["topic"],
-            heading: "Showing a Progress Bar",
-            displayOrder: 5,
-            actions: {
-                // I'm going indirect here - the link carries out an
-                // action, which then uses doLink to directly change
-                // the situation.  This isn't the recommended way (I
-                // could have just changed situation in the link), but
-                // it illustrates the use of doLink.
-                "boost-stamina-action": function(character, system, action) {
-                    system.doLink("boost-stamina");
-                }
-            },
-            exit: function(character, system, to) {
-                system.animateQuality(
-                    'stamina', character.qualities.stamina+1
-                );
-            }
-        }
-    ),
-    "boost-stamina": new undum.SimpleSituation(
-        "<p>\
-        <img src='media/games/tutorial/woodcut3.png' class='float_right'>\
-        The progress bar is also useful in situations where the\
-        character block is displaying just the whole number of a quality,\
-        whereas some action changes a fraction. If the quality is displaying\
-        the character's level, for example, you might want to show a progress\
-        bar to indicate how near the character is to levelling up.</p>\
-        \
-        <p>After a few seconds, the progress bar disappears, to keep the\
-        focus on the text. Undum isn't designed for games where a lot of\
-        statistic management is needed. If you want a change to be part\
-        of the permanent record of the game, then write it in text.</p>\
-        \
-        <p>Let's <a href='hub'>return to the topic list.</a></p>"
-        ),
-    // Again, we'll retrieve the text we want from the HTML file.
-    "saving": new undum.Situation({
-        enter: function(character, system, from) {
-            system.write($("#s_saving").html());
-        },
-        tags: ["topic"],
-        displayOrder: 6,
-        optionText: "Saving and Loading"
-    }),
-
-    "implicit-boost": new undum.SimpleSituation(
-        "<p>Your luck has been boosted<span class='transient'>, check the\
-        list of options to see if they have changed</span>.</p>",
-        {
-            tags: ["example"],
-            enter: function(character, system, from) {
-                system.animateQuality("luck", character.qualities.luck+1)
-                system.doLink('example-choices');
-            },
-            optionText: "Boost Your Luck",
-            displayOrder: 1,
-            canView: function(character, system, host) {
-                return character.qualities.luck < 4;
-            }
-        }
-    ),
-    "implicit-drop": new undum.SimpleSituation(
-        "<p>Your luck has been reduced<span class='transient'>, check the\
-        list of options to see if they have changed</span>.</p>",
-        {
-            tags: ["example"],
-            enter: function(character, system, from) {
-                system.animateQuality("luck", character.qualities.luck-1)
-                system.doLink('example-choices');
-            },
-            optionText: "Reduce Your Luck",
-            displayOrder: 2,
-            canView: function(character, system, host) {
-                return character.qualities.luck > -4;
-            }
-        }
-    ),
-    "high-luck-only": new undum.SimpleSituation(
-        "<p>Your luck is higher than 'fair'. The link to this \
-        situation would not\
-        have appeared if it were lower.</p>",
-        {
-            tags: ["example"],
-            enter: function(character, system, from) {
-                system.doLink('example-choices');
-            },
-            optionText: "High Luck Option",
-            displayOrder: 3,
-            canView: function(character, system, host) {
-                return character.qualities.luck > 0;
-            }
-        }
-    ),
-    "low-luck-only": new undum.SimpleSituation(
-        "<p>Your luck is lower than 'fair'. The link to this situation \
-        appears whether\
-        it is low or high, but can only be chosen if it is low. It does this\
-        by defining a <em>canChoose</em> method.</p>",
-        {
-            tags: ["example"],
-            enter: function(character, system, from) {
-                system.doLink('example-choices');
-            },
-            optionText: "Low Luck Option (requires low luck to be clickable)",
-            displayOrder: 3,
-            canChoose: function(character, system, host) {
-                return character.qualities.luck < 0;
-            }
-        }
-    ),
-
-    "last": new undum.SimpleSituation(
-        "<h1>Where to Go Now</h1>\
-        <p>So that's it. We've covered all of Undum. This situation is the\
-        end, because it has no further links. The 'The End' message is\
-        just in the HTML output of this situation, it isn't anything special\
-        to Undum</p>\
-        \
-        <p>I've added an\
-        inspiration quality to your character list. Its time for you to\
-        crack open the game file and write your own story.</p>\
-        <h1>The End</h1>",
-        {
-            tags: ["topic"],
-            optionText: "Finish the Tutorial",
-            displayOrder: 8,
-            enter: function(character, system, from) {
-                system.setQuality("inspiration", 1);
-                system.setCharacterText(
-                    "<p>You feel all inspired, why not have a go?</p>"
-                );
-            }
-        }
-    )
-};
+    }
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
@@ -420,6 +221,9 @@ undum.game.qualities = {
 	
 	tirada: new undum.NumericQuality(
         "Tirada", {priority:"0002", group:'dado', onDisplay:"&#10003;"}
+    ),
+    progreso: new undum.NumericQuality(
+        "", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
     )
 	/*
     skill: new undum.IntegerQuality(
@@ -450,7 +254,8 @@ undum.game.qualities = {
 undum.game.qualityGroups = {
     stats: new undum.QualityGroup(null, {priority:"0001"}),
     dado: new undum.QualityGroup('Dado', {priority:"0002"}),
-	objetos: new undum.QualityGroup('Objetos' , {priority:"0003"})
+	objetos: new undum.QualityGroup('Objetos' , {priority:"0003"}),
+    progreso: new undum.QualityGroup('Progreso', {priority:"0004"})
 };
 
 // ---------------------------------------------------------------------------
@@ -465,4 +270,5 @@ undum.game.init = function(character, system) {
 	character.qualities.sigilo = 3;
 	character.qualities.cuchillo = 0;
 	character.qualities.tirada = 0;
+    character.qualities.progreso = 0;
 };
