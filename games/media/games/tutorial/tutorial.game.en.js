@@ -376,7 +376,203 @@ undum.game.situations = {
 					}
 				}
 		}
-	),
+    ),
+
+    post_templo: new undum.SimpleSituation(
+        "<p>Te pones a caminar y después de un buen rato de trayecto encuentras\
+        un pinar que proporciona una sombra perfecta para descansar del calor\
+        de la caminata, por lo que decides tumbarte a tomar aire.</p>\
+        <br>\
+        <p>Tumbado a la sombra de los pinos empiezas a pensar en lo ocurrido\
+        ―Lo que me faltaba, un monje asesino en el templo. Era demasiado raro que\
+        encontrar la dichosa cura fuese tan complicado... ¡Si tan solo bastase con\
+        hablar con un &quotmonjezucho&quot de nada para obtenerla nadie habría perdido\
+        la vida en esta misión!―</p>\
+        <p>Ante el evidente fracaso, te pones a pensar en cuál debería ser tu\
+        próximo movimiento para continuar tu misión ―Demonios... En fin, veamos qué\
+        puedo hacer ahora― y recuerdas haber podido salvar de las llamas los restos de\
+        unos <a href='./papeles' class='once'>papeles</a> en la biblioteca del templo.</p>",
+        {
+            actions: {
+                "papeles": "<p>Decides examinar los papeles por si estos pudieran arrojar\
+                            un poco de luz y ¡voilá! Los papeles indican un lugar donde es\
+                            posible encontrar la Remolacha y un pequeño mapa que lleva a una\
+                            caverna, así que decides poner rumbo a la misma ―A ver si esta vez\
+                            tengo un poquito más de suerte...― piensas en voz alta.</p>\
+                            <br>\
+                            <p class='transient'><a href='rumbo_caverna'>Rumbo a la caverna</a>.</p>'"
+            }
+        }
+
+    ),
+
+    rumbo_caverna: new undum.SimpleSituation(
+        "<h2>Entrada a la caverna.</h2>\
+        <p>Pasas dos largos días caminando a través de colinas y terrenos escarpados varios.\
+        Aunque la mayoría de lugares que has cruzado serían dignos de grandes escenas de lucha\
+        y mortales e inesperadas trampas, la fortuna ha estado de tu parte y al fin, sin que haya\
+        habido contratiempo ninguno, ves a lo lejos, entre un montón de árboles, la boca de la caverna.</p>\
+        <br>\
+        <p>Una vez ahí ves que la caverna tiene el ancho de dos hombres, espacio suficiente para que\
+        alguien intente atacarte desde el interior de la misma, por lo que debes mantenerte alerta.\
+        Sin embargo, no tienes otra alternativa, por lo que te pones en marcha para\
+        <a href='./entrar_caverna' class='once'>entrar a la caverna</a>.</p>",
+        {
+            actions: {
+                "entrar_caverna": "<p>Poco a poco te vas adentrando en el largo túnel y notas como,\
+                                    a cada paso que das, la luz de fuera da paso a la oscuridad del\
+                                    interior y el ambiente se hace más y más húmedo y cargado, tanto\
+                                    que cuesta respirar.</p>\
+                                    <br>\
+                                    <p>―¡Dios! Llevo 10 minutos caminando por este condenado pasillo,\
+                                    quién me manda a mí aceptar la misión... ¿Dónde estará esa maldita\
+                                    planta?― piensas ―¿Y qué es este olor? Creo que preferiría morir\
+                                    de asfixia...―</p>\
+                                    <br>\
+                                    <p>De repente, al dar un paso con firmeza, notas cómo el terreno\
+                                    pasa a tener una gran inclinación, sin embargo, es demasiado resbaladizo,\
+                                    a causa de la humedad y algún tipo de sustancia que desprende\
+                                    ese fétido hedor, y no eres capaz de estabilizarte para evitar\
+                                    <a href='gran_caverna'>la caída</a>.</p>"
+            }
+        }
+    ),
+
+    gran_caverna: new undum.SimpleSituation(
+        "<h2>La gran caverna.</h2>\
+        <p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
+        Además, toda la colonia de murciélagos que había durmiendo en el interior de la caverna se ha\
+        despertado a causa de tu estruendosa caída y, asustados, han salido volando directos hacia tí\
+        enganchándose en tu ropa y rasgándola un poco.</p>\
+        <br>\
+        <p>―¡Me cago en! ¡Genial, ahora estoy cubierto de guano de murciélago!― te quejas, mientras\
+        levantas la mirada y observas el lugar en el que estás ―¡Nada me apetecía más que-! Pero\
+        qué demonios... ¿Dónde estoy?―</p>\
+        <br>\
+        <p>El pequeño túnel por el que estuviste caminando resultó ser nada más que la entrada a una\
+        inmensa caverna repleta de estalactitas y estalagmitas, algunas de ellas unidas por el paso\
+        del tiempo formando enormes columnas de roca. En la parte alta de la caverna ves una serie de\
+        pequeñas grietas por las que entran escasos y tímidos rayos de sol y, tras unos segundos,\
+        la vista se te hace a esos bajos niveles de luz.</p>\
+        <br>\
+        <p>―Bien, es más que obvio que no puedo volver por donde ha venido, así que no me queda más\
+        opción que explorar la caverna― dices mientras te incorporas y te sacudes la ropa para\
+        intentar limpiarla un poco.</p>\
+        <br>\
+        <p>Tras explorar un poco encuentras una bifurcación</p>\
+        <ul class='options'>\
+            <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
+            <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
+        </ul>"
+    ),
+
+    vuelta_gc: new undum.SimpleSituation(
+        "<p>Decides volver a la sala principal de la caverna, quizás otro camino te depare una mejor suerte.</p>\
+        <ul class='options'>\
+            <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
+            <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
+        </ul>"
+    ),
+
+    oeste_gc: new undum.SimpleSituation(
+        "<h2>El foso</h2>\
+        <p> Pones rumbo hacia lo que supones, es el Oeste.Tras una pequeña caminata llegas a otra sala\
+        de la caverna en la que puedes ves cómo desciende un foso. No logras ver el final, así que coges\
+        una piedra del suelo, la dejas caer foso abajo y te pones a contar.</p>\
+        <br>\
+        <p>―Veamos, uno... dos... tres... Mmmm... De acuerdo, son unos once metros― aproximas.</p>\
+        <p>Observas a tu alrededor y ves un gancho de acero clavado en una de las paredes de la sala,\
+        parece que se puede bajar usando una <a href='./cuerda' class='once'>cuerda</a>. También puedes\
+        <a href='vuelta_gc' class='once'>volver a la zona anterior</a> y probar suerte por el otro\
+        camino.</p>",
+        {
+            actions: {
+                "cuerda": function (character, system, action) {
+                    system.setQuality("cuerda", 1);
+                    system.write("<p>―Parece que no soy la única persona que pasa por la caverna... Con algo de\
+                    suerte alguien se habrá dejado por aquí alguna cuerda para bajar...―</p>\
+                    <p>Decides examinar un poco la zona y, tal y cómo esperabas, encuentras\
+                    una larga cuerda empolvada en el suelo pegada a una de las paredes de la sala.\
+                    Ahora podrás enganchar la cuerda al gancho de acero e\
+                    <a href='bajada_foso' class='once'>intentar bajar por el foso</p>\"")
+                },
+                    
+                
+            }
+        }
+    ),
+
+    bajada_foso: new undum.SimpleSituation(
+        "<p>Coges la cuerda que había en el suelo, le haces un buen nudo en uno de los extremos, lo enganchas\
+        con firmeza en el gancho de la pared y comienzasa descender cuidadósamente por el foso.</p>\
+        <p>Con cada paso que das hacia abajo puedes notar cómo, extráñamente, se eleva la temperatura\
+        cada vez más. Continúas el descenso cuando te percatas de un extraño\
+        <a href='agujero_foso' class='once'>agujero en la pared</a>.</p>\
+        <br>\
+        <a href='sala_huesos1' class='once'>Continuar la bajada</a>",
+    ),
+
+    agujero_foso: new undum.SimpleSituation(
+        "<p>El agujero de la pared te llama especialmente la atención, te ersulta demasiado raro que, en una\
+        pared tan lisa, haya esa imperfección.―Quizás sea otro intento por parte de otro aventurero de\
+        poner otro gancho en la pared para asegurar más la bajada― piensas.</p>\
+        <br>\
+        <p>Sin embargo, mientras estás absorto en tus pensamientos, empiezas a notar cómo la pared\
+        comienza a vibrar ligeramente. Te propones bajar cuanto antes para evitar sorpresas, pero antes de\
+        poder dar otro paso, un chorro de vapor sale del agujero dándote en los brazos y el torso y\
+        lanzándote hacia abajo en caída libre.</p>\
+        <br>\
+        <p><a href='vapor_foso' class='once'>Continuar descenso</a>.</p>"
+    ),
+
+    vapor_foso: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+                var dado1 = jsRandom.get(1, 4);
+                var dado2 = jsRandom.get(1, 6);
+                dado2 += jsRandom.get(1, 6);
+                if ((dado1 + dado2) < character.qualities.vida) {
+                    system.setQuality("vida", character.qualities.vida - (dado1 + dado2));
+                    system.write($("#sobrevives_caida").html());
+                } else {
+                    system.write($("#muerte_caida").html());
+                }
+            }
+        }
+    ),
+
+    sala_huesos: new undum.SimpleSituation(
+        "<h2>La sala de los huesos</h2>\
+        <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
+        inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
+        <br>\
+        <p>―Parece que las caídas desde ahí arriba son bastante habituales― dices.</p>\
+        <p>Sabiendo eso, quizás no sería una mala idea <a href='./montaña_huesos'>examinar la montaña</a> por\
+        si algún desafortunado viajero hubiese encontrado ahí el final y sus pertenencias siguieran en buen\
+        estado.</p>\
+        <br>\
+        <p>Tras inspeccionar la zona, solo parece haber una salida.</p>\
+        <br>\
+        <p><a href='sala_lago'>Avanzar hacia la salida de la sala</a>.</p>",
+        {
+            actions: {
+                "montaña_huesos": "<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
+                                   no son pocos los exploradores y aventureros que han acabado su travesía aquí\
+                                   agrandando la montaña.</p>\
+                                   <br>\
+                                   <p>Después de mirar bien y de llenarte de polvo de hueso, encuentras unas cuantas\
+                                   monedas, una espada corta, un saco con algo de comida en mal estado, una daga\
+                                   arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
+                                   de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
+                                   otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
+                                   que se trata de una poción sanadora.</p>",
+                enter: function (character, system, action) {
+
+                }
+            }
+        }
+    ),
 	
     start: new undum.SimpleSituation(
         "<h1>Starting Out with Undum</h1>\
@@ -789,7 +985,8 @@ undum.game.situations = {
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
-undum.game.start = "inicio";
+//undum.game.start = "inicio";
+undum.game.start = "post_templo";
 
 // ---------------------------------------------------------------------------
 /* Here we define all the qualities that our characters could
@@ -822,6 +1019,10 @@ undum.game.qualities = {
 	
 	cuchillo: new undum.NumericQuality(
         "Cuchillo", {priority:"0003", group:'objetos', onDisplay:"&#10003;"}
+    ),
+
+    cuerda: new undum.OnOffQuality(
+        "Cuerda", {priority: "0004", group: 'objetos', onDisplay:"&#10003;"}
     ),
 	
 	tirada: new undum.NumericQuality(
@@ -870,6 +1071,7 @@ undum.game.init = function(character, system) {
 	character.qualities.defensa = 3;
 	character.qualities.sabiduria = 3;
 	character.qualities.sigilo = 3;
-	character.qualities.cuchillo = 0;
+    character.qualities.cuchillo = 0;
+    character.qualities.cuerda = 0;
 	character.qualities.tirada = 0;
 };
