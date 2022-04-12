@@ -377,7 +377,9 @@ undum.game.situations = {
 					}
 				}
 		}
-	),
+    ),
+
+
 	
    templo: new undum.SimpleSituation(
         "<h1>EL TEMPLO</h1>\
@@ -480,10 +482,528 @@ undum.game.situations = {
             actions: 
             {
                 'libros': "<p> De entre las llamas rescatas un libro con información de la hierba. Está en mal estado pero consigues rescatar un pequeño mapa que dice llevar a un lugar\
-                donde es posible encontrar la planta. <a href = 'mapa'>Decides seguir el mapa </p>",
+                donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p>",
                 'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p>" 
             }
         }
+    ),
+
+        post_templo: new undum.SimpleSituation(
+        "<p>Te pones a caminar y después de un buen rato de trayecto encuentras\
+        un pinar que proporciona una sombra perfecta para descansar del calor\
+        de la caminata, por lo que decides tumbarte a tomar aire.</p>\
+        <br>\
+        <p>Tumbado a la sombra de los pinos empiezas a pensar en lo ocurrido\
+        ―Lo que me faltaba, un monje asesino en el templo. Era demasiado raro que\
+        encontrar la dichosa cura fuese tan complicado... ¡Si tan solo bastase con\
+        hablar con un &quotmonjezucho&quot de nada para obtenerla nadie habría perdido\
+        la vida en esta misión!―</p>\
+        <p>Ante el evidente fracaso, te pones a pensar en cuál debería ser tu\
+        próximo movimiento para continuar tu misión ―Demonios... En fin, veamos qué\
+        puedo hacer ahora― y recuerdas haber podido salvar de las llamas los restos de\
+        unos <a href='./papeles' class='once'>papeles</a> en la biblioteca del templo.</p>",
+        {
+            actions: {
+                "papeles": "<p>Decides examinar los papeles por si estos pudieran arrojar\
+                            un poco de luz y ¡voilá! Los papeles indican un lugar donde es\
+                            posible encontrar la Remolacha y un pequeño mapa que lleva a una\
+                            caverna, así que decides poner rumbo a la misma ―A ver si esta vez\
+                            tengo un poquito más de suerte...― piensas en voz alta.</p>\
+                            <br>\
+                            <p class='transient'><a href='rumbo_caverna'>Rumbo a la caverna</a>.</p>'"
+            }
+        }
+
+    ),
+
+    rumbo_caverna: new undum.SimpleSituation(
+        "<h2>Entrada a la caverna.</h2>\
+        <p>Pasas dos largos días caminando a través de colinas y terrenos escarpados varios.\
+        Aunque la mayoría de lugares que has cruzado serían dignos de grandes escenas de lucha\
+        y mortales e inesperadas trampas, la fortuna ha estado de tu parte y al fin, sin que haya\
+        habido contratiempo ninguno, ves a lo lejos, entre un montón de árboles, la boca de la caverna.</p>\
+        <br>\
+        <p>Una vez ahí ves que la caverna tiene el ancho de dos hombres, espacio suficiente para que\
+        alguien intente atacarte desde el interior de la misma, por lo que debes mantenerte alerta.\
+        Sin embargo, no tienes otra alternativa, por lo que te pones en marcha para\
+        <a href='./entrar_caverna' class='once'>entrar a la caverna</a>.</p>",
+        {
+            actions: {
+                "entrar_caverna": "<p>Poco a poco te vas adentrando en el largo túnel y notas como,\
+                                    a cada paso que das, la luz de fuera da paso a la oscuridad del\
+                                    interior y el ambiente se hace más y más húmedo y cargado, tanto\
+                                    que cuesta respirar.</p>\
+                                    <br>\
+                                    <p>―¡Dios! Llevo 10 minutos caminando por este condenado pasillo,\
+                                    quién me manda a mí aceptar la misión... ¿Dónde estará esa maldita\
+                                    planta?― piensas ―¿Y qué es este olor? Creo que preferiría morir\
+                                    de asfixia...―</p>\
+                                    <br>\
+                                    <p>De repente, al dar un paso con firmeza, notas cómo el terreno\
+                                    pasa a tener una gran inclinación, sin embargo, es demasiado resbaladizo,\
+                                    a causa de la humedad y algún tipo de sustancia que desprende\
+                                    ese fétido hedor, y no eres capaz de estabilizarte para evitar\
+                                    <a href='gran_caverna'>la caída</a>.</p>"
+            }
+        }
+    ),
+
+    gran_caverna: new undum.SimpleSituation(
+        "<h2>La gran caverna.</h2>\
+        <p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
+        Además, toda la colonia de murciélagos que había durmiendo en el interior de la caverna se ha\
+        despertado a causa de tu estruendosa caída y, asustados, han salido volando directos hacia tí\
+        enganchándose en tu ropa y rasgándola un poco.</p>\
+        <br>\
+        <p>―¡Me cago en! ¡Genial, ahora estoy cubierto de guano de murciélago!― te quejas, mientras\
+        levantas la mirada y observas el lugar en el que estás ―¡Nada me apetecía más que-! Pero\
+        qué demonios... ¿Dónde estoy?―</p>\
+        <br>\
+        <p>El pequeño túnel por el que estuviste caminando resultó ser nada más que la entrada a una\
+        inmensa caverna repleta de estalactitas y estalagmitas, algunas de ellas unidas por el paso\
+        del tiempo formando enormes columnas de roca. En la parte alta de la caverna ves una serie de\
+        pequeñas grietas por las que entran escasos y tímidos rayos de sol y, tras unos segundos,\
+        la vista se te hace a esos bajos niveles de luz.</p>\
+        <br>\
+        <p>―Bien, es más que obvio que no puedo volver por donde ha venido, así que no me queda más\
+        opción que explorar la caverna― dices mientras te incorporas y te sacudes la ropa para\
+        intentar limpiarla un poco.</p>\
+        <br>\
+        <p>Tras explorar un poco encuentras una bifurcación</p>\
+        <ul class='options'>\
+            <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
+            <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
+        </ul>"
+    ),
+
+    vuelta_gc: new undum.SimpleSituation(
+        "<p>Decides volver a la sala principal de la caverna, quizás otro camino te depare una mejor suerte.</p>\
+        <ul class='options'>\
+            <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
+            <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
+        </ul>"
+    ),
+
+    oeste_gc: new undum.SimpleSituation(
+        "<h2>El foso</h2>\
+        <p> Pones rumbo hacia lo que supones, es el Oeste.Tras una pequeña caminata llegas a otra sala\
+        de la caverna en la que puedes ves cómo desciende un foso. No logras ver el final, así que coges\
+        una piedra del suelo, la dejas caer foso abajo y te pones a contar.</p>\
+        <br>\
+        <p>―Veamos, uno... dos... tres... Mmmm... De acuerdo, son unos once metros― aproximas.</p>\
+        <p>Observas a tu alrededor y ves un gancho de acero clavado en una de las paredes de la sala,\
+        parece que se puede bajar usando una <a href='./cuerda' class='once'>cuerda</a>. También puedes\
+        <a href='vuelta_gc' class='once'>volver a la zona anterior</a> y probar suerte por el otro\
+        camino.</p>",
+        {
+            actions: {
+                "cuerda": function (character, system, action) {
+                    system.setQuality("cuerda", 1);
+                    system.write("<p>―Parece que no soy la única persona que pasa por la caverna... Con algo de\
+                    suerte alguien se habrá dejado por aquí alguna cuerda para bajar...―</p>\
+                    <p>Decides examinar un poco la zona y, tal y cómo esperabas, encuentras\
+                    una larga cuerda empolvada en el suelo pegada a una de las paredes de la sala.\
+                    Ahora podrás enganchar la cuerda al gancho de acero e\
+                    <a href='bajada_foso' class='once'>intentar bajar por el foso</p>")
+                },
+                    
+                
+            }
+        }
+    ),
+
+    bajada_foso: new undum.SimpleSituation(
+        "<p>Coges la cuerda que había en el suelo, le haces un buen nudo en uno de los extremos, lo enganchas\
+        con firmeza en el gancho de la pared y comienzasa descender cuidadósamente por el foso.</p>\
+        <p>Con cada paso que das hacia abajo puedes notar cómo, extráñamente, se eleva la temperatura\
+        cada vez más. Continúas el descenso cuando te percatas de un extraño\
+        <a href='agujero_foso' class='once'>agujero en la pared</a>.</p>\
+        <br>\
+        <p><a href='sala_huesos' class='once'>Continuar la bajada</a>.</p>",
+        {
+            enter: function (character, system, from) {
+                system.setQuality("cuerda", 0);
+            }
+        }
+    ),
+
+    agujero_foso: new undum.SimpleSituation(
+        "<p>El agujero de la pared te llama especialmente la atención, te ersulta demasiado raro que, en una\
+        pared tan lisa, haya esa imperfección.―Quizás sea otro intento por parte de otro aventurero de\
+        poner otro gancho en la pared para asegurar más la bajada― piensas.</p>\
+        <br>\
+        <p>Sin embargo, mientras estás absorto en tus pensamientos, empiezas a notar cómo la pared\
+        comienza a vibrar ligeramente. Te propones bajar cuanto antes para evitar sorpresas, pero antes de\
+        poder dar otro paso, un chorro de vapor sale del agujero dándote en los brazos y el torso y\
+        lanzándote hacia abajo en caída libre.</p>\
+        <br>\
+        <p><a href='vapor_foso' class='once'>Continuar descenso</a>.</p>"
+    ),
+
+    vapor_foso: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+                var dado1 = jsRandom.get(1, 4);
+                var dado2 = jsRandom.get(1, 6);
+                dado2 += jsRandom.get(1, 6);
+                if ((dado1 + dado2) < character.qualities.vida) {
+                    system.setQuality("vida", character.qualities.vida - (dado1 + dado2));
+                    system.write($("#sobrevives_caida").html());
+                } else {
+                    system.write($("#muerte_caida").html());
+                }
+            }
+        }
+    ),
+
+    sala_huesos: new undum.SimpleSituation(
+        "<h2>La sala de los huesos</h2>\
+        <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
+        inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
+        <br>\
+        <p>―Parece que las caídas desde ahí arriba son bastante habituales― dices.</p>\
+        <p>Sabiendo eso, quizás no sería una mala idea\
+        <a href='./montana_huesos' class='once'>examinar la montaña</a> por\
+        si algún desafortunado viajero hubiese encontrado ahí el final y sus pertenencias siguieran en buen\
+        estado.</p>\
+        <br>\
+        <p>Tras inspeccionar la zona, solo parece haber una salida.</p>\
+        <br>\
+        <p><a href='sala_lago'>Avanzar hacia la salida de la sala</a>.</p>",
+        {
+            actions: {
+                "montana_huesos": function (character, system, from) {
+                    if (character.qualities.monedas_oro == 0) {
+                        system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
+                                       no son pocos los exploradores y aventureros que han acabado su travesía aquí\
+                                       agrandando la montaña.</p>\
+                                       <br>\
+                                       <p>Después de mirar bien y de llenarte de polvo de hueso, encuentras unas cuantas\
+                                       monedas, una espada corta, un saco con algo de comida en mal estado, una daga\
+                                       arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
+                                       de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
+                                       otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
+                                       que se trata de una poción sanadora.</p>")
+                        system.setQuality("monedas_oro", 200);
+                        system.setQuality("monedas_pl", 300);
+                        system.setQuality("espada_corta", 1);
+                        system.setQuality("daga_arr", 1);
+                        system.setQuality("pocion_roja", 1);
+                        system.setQuality("pocion_azul", 1);
+                        system.setQuality("comida_mal", 1);
+                    }
+                }
+            }
+        }
+    ),
+
+    vuelta_salahuesos: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, from) {
+                system.write("<h2>La sala de los huesos</h2>\
+                            <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
+                            inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
+                            <br>\
+                            <p>―Parece que las caídas desde ahí arriba son bastante habituales― dices.</p>\
+                            <br>\
+                            <p>Tras inspeccionar la zona, solo parece haber una salida.</p>\
+                            <br>\
+                            <p><a href='sala_lago'>Avanzar hacia la salida de la sala</a>.</p>");
+                if (character.qualities.monedas_oro == 0) {
+                    system.write("<p>Quizás no sería una mala idea\
+                    <a href='examina_montana' class='once'>examinar la montaña</a> por\
+                    si algún desafortunado viajero hubiese encontrado ahí el final y sus pertenencias siguieran en buen\
+                    estado.</p>");
+                }
+            }
+        }
+    ),
+
+    examina_montana: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, from) {
+                system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
+                                       no son pocos los exploradores y aventureros que han acabado su travesía aquí\
+                                       agrandando la montaña.</p>\
+                                       <br>\
+                                       <p>Después de mirar bien y de llenarte de polvo de hueso, encuentras unas cuantas\
+                                       monedas, una espada corta, un saco con algo de comida en mal estado, una daga\
+                                       arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
+                                       de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
+                                       otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
+                                       que se trata de una poción sanadora.</p>")
+                system.setQuality("monedas_oro", 200);
+                system.setQuality("monedas_pl", 300);
+                system.setQuality("espada_corta", 1);
+                system.setQuality("daga_arr", 1);
+                system.setQuality("pocion_roja", 1);
+                system.setQuality("pocion_azul", 1);
+                system.setQuality("comida_mal", 1);
+                system.write("<p><a href='sala_lago'>Avanzar hacia la salida de la sala</a>.</p>");
+            }
+        }
+    ),
+
+    este_gc: new undum.SimpleSituation(
+        "<h2>La riada</h2>\
+        <p>Pones rumbo hacia lo que, supones, es el Este. Conforme avanzas, el camino se va haciendo más y más\
+        pequeño y angosto, hasta que solo cabe una persona. Además, el túnel va haciendo un ligero zig-zag.</p>\
+        <br>\
+        <p>Continúas andando y, de repente, empiezas a escuchar en tus pisadas el ruido del agua salpicando.</p>\
+        <br>\
+        <p>―Agua... Es posible que este túnel se haya forma por la erosión que provoca la misma―</p>\
+        <p>Tienes dos opciones: continuar para\
+        <a href='sigues_riada' class='once'>ver de dónde viene el agua</a> o\
+        <a href='vuelta_gc' class='once'>volver a la zona anterior</a> para probar suerte por el otro camino.</p>"
+    ),
+
+    vuelta_riada: new undum.SimpleSituation(
+        "<h2>La riada</h2>\
+        <p>Te adentras en un túnel al Sur del lago. Nada más poner un pie en él notas como un poco de agua ha salpicado con tu\
+        pisada y como en el ambiente hay mucha humedad, es posible que este túnel se haya formado por la acción de la erosión\
+        del agua.</p>\
+        <br>\
+        <p>Avanzas un poco más y descubres que tenías razón, en el techo del túnel se puede ver otro túnel vertical por el que cae\
+        el agua y se aprecia fácilmente cómo esta tiene cada vez un nivel y fuerza mayor.\
+        Sin embargo, hay algo que no termina de encajar, por mucho que el agua en ese punto sea más fuerte, no\
+        crees que sea lo suficiente como para haber creado un túnel de esas dimensiones.</p>\
+        <br>\
+        <p>Sigues examinando la zona, cuando te percatas de que\
+        <a href='./sube_agua' class='once'>el nivel del agua en tus pies es mayor</a> al que\
+        había hace unos segundos y el ruido que hace esta al caer también es mayor.</p>",
+        {
+            actions: {
+                "sube_agua": "<p>No ha pasado ni un minuto desde que te diste cuenta y el agua, que hace un\
+                                momento estaba al nivel de tus pies, ha llegado ya a la altura de tu pantorrilla.</p>\
+                                <br>\
+                                <p>―Debería hacer algo, el agua está subiendo demasiado rápido― piensas.</p>\
+                                <br>\
+                                <p>Puedes <a href='sala_lago' class='once'>correr</a> hacia atrás y volver\
+                                a la sala del lago, intentar <a href='techo' class='once'>subirte al techo</a>\
+                                o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
+            }
+        }
+    ),
+
+    sigues_riada: new undum.SimpleSituation(
+        "<p>Decides seguir caminando para comprobar si estabas en lo cierto, todo apunta a que sí, ya que\
+        cada vez hay más agua en el suelo y además, se empieza a oír un ruido al fondo del pasillo como si de\
+        una tromba de agua se tratase.</p>\
+        <br>\
+        <p>Tras caminar un poco más confirmas tu teoría. En el techo del túnel se puede ver otro túnel\
+        vertical por el que cae el agua y se aprecia fácilmente cómo esta tiene cada vez un nivel y fuerza mayor.\
+        Sin embargo, hay algo que no termina de encajar, por mucho que el agua en ese punto sea más fuerte, no\
+        crees que sea lo suficiente como para haber creado un túnel de esas dimensiones.</p>\
+        <br>\
+        <p>Sigues examinando la zona, cuando te percatas de que\
+        <a href='./sube_agua' class='once'>el nivel del agua en tus pies es mayor</a> al que\
+        había hace unos segundos y el ruido que hace esta al caer también es mayor.</p>",
+        {
+            actions: {
+                "sube_agua": "<p>No ha pasado ni un minuto desde que te diste cuenta y el agua, que hace un\
+                                momento estaba al nivel de tus pies, ha llegado ya a la altura de tu pantorrilla.</p>\
+                                <br>\
+                                <p>―Debería hacer algo, el agua está subiendo demasiado rápido― piensas.</p>\
+                                <br>\
+                                <p>Puedes <a href='sala_lago' class='once'>correr</a> hacia adelante y ver\
+                                dónde acaba el túnel, intentar <a href='techo' class='once'>subirte al techo</a>\
+                                o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
+            }
+        }
+    ),
+
+    techo: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+                system.write("<p>Echas un vistazo rápido a la sala y encuentras unos ganchos en el techo, así que\
+                                 decides intentar agarrarte a ellos, con la esperanza de que el agua no termine\
+                                 llenando la sala.</p>\
+                              <br>")
+                var dado = jsRandom.get(1, 10);
+                if ((dado + character.qualities.agilidad) > 6) {
+                    system.write("<p>Logras engancharte a ellos gracias a tu agilidad.</p>\
+                                  <br>\
+                                  <p>Tras unos instantes empieza a bajar el nivel del agua, has tenido suerte, aunque\
+                                    cuando empezaste a notar el agua llegarte al pecho pensaste que sería tu fin.</p>\
+                                  <br>\
+                                  <p>Finalmente bajas de nuevo al suelo, decidido a\
+                                  <a href='sala_lago' class='once'>continuar</a>.</p>")
+                } else {
+                    system.write("<p>Agarras los ganchos con firmeza y, cuando dejas caer tu peso, ambos se desencajan\
+                                    la pared.</p>\
+                                   <br>")
+                    if (character.qualities.pocion_azul == 1) {
+                        system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
+                                        tarde como para correr, y tus intentos de nadar a contra corriente no están dando\
+                                        resultado. En pleno momento de desesperación, una idea golpea tu mente: La poción\
+                                        azul. No conoces sus efectos, pero a estas alturas acabarás muerto por\
+                                        asfixia igualmente</p>\
+                                      <br>\
+                                      <p>Antes de que el agua llegue por encima de tu cabeza, destapas la poción\
+                                        y te la tomas de un trago. A pesar de su llamativo aspecto, tiene un sabor\
+                                        muy amargo.</p>\
+                                      <p>―Es el fin― piensas, cuando el agua va a terminar por llenar la sala.\
+                                        Tomas una última bocanada de aire y cierras los ojos. ―Aquí acaba mi misión―</p>\
+                                      <br>\
+                                      <p>Sin embargo, la muerte tendrá que esperar un poco más antes de venir a por tí,\
+                                        esa poción ha resultado ser una que permite respirar bajo el agua. Con esa\
+                                        facilidad, te pones a nadar hacia la salida del túnel.</p>\
+                                      <br>\
+                                      <p>Poco a poco vas avanzando por el túnel y el nivel del agua va bajando gracias a\
+                                        a las grietas de las paredes, que permiten que el agua escape por ellas.</p>\
+                                      <p>―Un golpe de suerte― piensas, mientras te diriges a la \
+                                        <a href='sala_lago' class='once'>siguiente sala</a>.</p>")
+                        system.setQuality("pocion_azul", 0);
+                    } else {
+                        system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
+                                        tarde como para correr, y tus intentos de nadar a contra corriente no están dando\
+                                        resultado.</p>\
+                                      <br>\
+                                      <p>Eventualmente terminas cansándote y dejas de nadar. La fuerte corriente te arrastra\
+                                        empujándote contra los afilados bordes de las paredes del túnel y provocándote cortes\
+                                        por todo el cuerpo.</p>\
+                                      <br>")
+                        var dado2 = jsRandom.get(1, 4);
+                        dado2 += jsRandom.get(1, 4);
+                        dado2 += jsRandom.get(1, 4);
+                        dado2 += jsRandom.get(1, 4);
+                        if (dado2 >= character.qualities.vida) {
+                            system.write($("#muerte_riada").html());
+                        } else {
+                            system.write($("#sobrevives_riada").html());
+                        }
+                    }
+                }
+            }
+        }
+    ),
+
+    dejarte_llevar: new undum.SimpleSituation(
+        "<p>Decides esperar a que haya un poco más de agua y puedas dejarte llevar por la corriente. Un rato más\
+        tarde descubres que no ha sido mala idea, ya que el agua te ha ayudado a avanzar tranquilamente por el túnel\
+        como si de un tobogán acuático se tratara.</p>\
+        <br>\
+        <p>Finalmente, acabas llegando a una <a href='sala_lago' class='once'>nueva sala</a>.</p>"
+    ),
+
+    sala_lago: new undum.SimpleSituation(
+        "<h2>El lago</h2>\
+        <p>Llegas a una sala más amplia, aunque la mitad de todo este espacio está ocupado por un lago de aguas\
+        nada apetecibles. Su tono verdoso y turbio no te da muchas ganas de\
+        <a href='meterte_lago' class='once'>darte un chapuzón</a> y, además,\
+        tampoco sabes cuán profundo será o qué puede estar esperando ahí abajo.</p>\
+        <br>\
+        <p>Observas un poco la sala y ves que tiene dos salidas</p>\
+        <br>\
+        <ul class='options'>\
+            <li><a href='vuelta_salahuesos' class='once'>Salida Oeste</a></li>\
+            <li><a href='vuelta_riada' class='once'>Salida Sur</a></li>\
+        </ul>"
+    ),
+
+    meterte_lago: new undum.SimpleSituation(
+        "<p>Decides que la única alternativa que te queda es introducirte en el lago por si existiese la\
+        posibilidad de que haya algún hueco en las paredes o en el fondo y que te pueda conducir a otra\
+        zona de la caverna.</p>\
+        <br>\
+        <p>No parece haber nada a simple vista, tendrás que\
+        <a href='sumergirte' class='once'>sumergirte en el agua</a> un poco para explorar más a fondo.</p>"
+    ),
+
+    sumergirte: new undum.SimpleSituation(
+        "<p>Empiezas a examinar pegado a las paredes y finalmente en una de ellas parece haber un hueco\
+        de unos dos metros, podrías <a href='./entrar_hueco' class='once'>intentar entrar</a> o\
+        <a href='./explora_lago' class='once'>seguir explorando el lago</a>.</p>",
+        {
+            actions: {
+                "entrar_hueco": "<p>Pruebas a entrar por el hueco en la pared, cabe un cuerpo sin problema,\
+                                así que tomas una gran bocanada de aire y te pones a nadar por él, parece\
+                                que el hueco sí conduce a alguna\
+                                <a href='guarida_monstruo' class='once'>otra sala</a>.</p>",
+                "explora_lago": "<p>Das unas cuantas vueltas al lago, incluso has buceado hasta el fondo,\
+                                pero no encuentras ninguna pista más.</p>"
+            }
+        }
+    ),
+
+    guarida_monstruo: new undum.SimpleSituation(
+        "<h2>La guarida del monstruo</h2>\
+        <p>El hueco de la pared resultaba dar a un túnel acuático, algo más largo de lo que esperabas.\
+        Finalmente sales del agua y, desesperado, tomas una gran bocanada de aire; momentos antes de salir\
+        notabas un gran dolor en el pecho y cómo tu cuerpo suplicaba por algo de aire</p>\
+        <br>\
+        <p>Echas un vistazo rápido a la nueva sala, es quizás la que tiene unas dimensiones mayores de entre\
+        todas las anteriores que viste. Al fondo se puede ver cómo las rocas forman una subida hasta llegar\
+        a una pequeña grieta por la que entra la luz; aunque es lo suficientemente grande como para que quepa\
+        una persona. A uno de los lados se ve un enorme hueco totalmente a oscuras.</p>\
+        <br>\
+        <p>Las paredes de la caverna están llenas de arbustos y en una de ellas reluce en un rojo intenso una\
+        planta.</p>\
+        <br>\
+        <p>―¡Esa tiene que ser la Remolacha! De acuerdo, esta es mi oportunidad para salir de esta condenada\
+        caverna y completar mi misión― piensas.</p>\
+        <br>\
+        <p>Sin embargo, cuando te adentras un poco más en la sala, escuchas un estruendoso ruido que hace que\
+        se te erice el vello y se te tense el cuello.</p>\
+        <br>\
+        <p>Sin previo aviso, un enorme monstruo sale del hueco de al lado de la salida mientras ruge furiosamente.\
+        Se trata de una mantícora, jamás pensaste que te cruzarías con una, menos aún de ese colosal tamaño.</p>\
+        <br>\
+        <p>La mantícora bloquea tu paso a la salida y, peor aún, dudas que te deje coger la Remolacha\
+        tranquilamente si se lo pides por favor; tendrás que\
+        <a href='manticora' class='once'>enfrentarte a ella</a>.</p>"
+    ),
+
+    manticora: new undum.SimpleSituation(
+        "<p>La feroz mantícora, una quimera con cabeza y cuerpo de león, cuernos, alas y la cola de un escorpión,\
+        con la que es capaz de envenenar a sus enemigos.</p>\
+        <br>\
+        <p>Sea como sea tienes que <a href='./pelear' class='once'>pelear</a> y derrotarla para poder salir de la caverna con vida y con la tan preciada Remolacha.</p>",
+        {
+            actions: {
+                "pelear": function (character, system, action) {
+                    if (character.qualities.espada_corta == 1) {
+                        system.write("<p><a href='combate_manticora' class='once'>Comienza el combate</a></p>")
+                    }
+                }
+            }
+        }
+    ),
+
+    combate_manticora: new undum.SimpleSituation(
+        "<ul class='options'>\
+            <li><a href='./espadacorta' class='once'>Usar espada corta</a>.</li>\
+        </ul>",
+        {
+            actions: {
+                "espadacorta": function (character, system, action) {
+                    var vidaManticora = 18;
+                    var danioEspadacorta = 15;
+                    system.write("<p>Tomas la espada corta que encontraste en la montaña de huesos y corres para lanzarle al monstruo un tajo certero.</p>");
+                    system.setQuality("espada_corta", 0);
+                    if ((danioEspadacorta + character.qualities.fuerza) >= vidaManticora) {
+                        system.write($("#vences_manticora").html());
+                    }
+                }
+            }
+        }
+    ),
+
+    recoge_remolacha: new undum.SimpleSituation(
+        "<p>Tras haber derrotado a la mantícora, te diriges a donde se desprende ese brillo rojo intenso para\
+        recoger la cura que te mandaron buscar.</p>\
+        <br>\
+        <p>―Por fin podré salir de aquí y recibir mi recompensa― exclamas</p>\
+        <p>Arrancas la remolacha del suelo y comienzas a subir por las rocas hacia la grieta de la pared. A\
+        medida que te acercas, notas cómo el aire que respiras es más puro y cómo tus ojos te suplican que \
+        avances despacio para poder acostumbrarse de nuevo a la luz después de tanto tiempo en penumbra.</p>\
+        <br>\
+        <p>Es hora de poner <a href='ataquefinal' class='once'>rumbo al castillo</a> de los Dragonborn de\
+        nuevo.</p>"
     ),
    
     ataquefinal: new undum.SimpleSituation(
@@ -529,7 +1049,6 @@ undum.game.situations = {
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
-
 undum.game.start = "inicio";
 
 // ---------------------------------------------------------------------------
@@ -564,7 +1083,39 @@ undum.game.qualities = {
 	cuchillo: new undum.NumericQuality(
         "Cuchillo", {priority:"0003", group:'objetos', onDisplay:"&#10003;"}
     ),
-	
+
+    cuerda: new undum.OnOffQuality(
+        "Cuerda", { priority: "0003", group: 'objetos'}
+    ),
+
+    monedas_oro: new undum.NumericQuality(
+        "Monedas de oro", {priority: "0003", group: 'objetos', onDisplay:"&#10003;"}
+    ),
+
+	monedas_pl: new undum.NumericQuality(
+        "Monedas de plata", {priority: "0003", group: 'objetos', onDisplay:"&#10003;"}
+    ),
+
+    espada_corta: new undum.OnOffQuality(
+        "Espada corta", { priority: "0003", group: 'objetos'}
+    ),
+
+    daga_arr: new undum.OnOffQuality(
+        "Daga arrojadiza", { priority: "0003", group: 'objetos'}
+    ),
+
+    comida_mal: new undum.OnOffQuality(
+        "Comida en mal estado", { priority: "0003", group: 'objetos'}
+    ),
+
+    pocion_azul: new undum.OnOffQuality(
+        "Poción azul", { priority: "0003", group: 'objetos'}
+    ),
+
+    pocion_roja: new undum.OnOffQuality(
+        "Poción roja", { priority: "0003", group: 'objetos'}
+    ),
+
 	tirada: new undum.NumericQuality(
         "Tirada", {priority:"0002", group:'dado', onDisplay:"&#10003;"}
     ),
@@ -598,7 +1149,15 @@ undum.game.init = function(character, system) {
 	character.qualities.defensa = 3;
 	character.qualities.sabiduria = 3;
 	character.qualities.sigilo = 3;
-	character.qualities.cuchillo = 0;
+    character.qualities.monedas_oro = 0;
+    character.qualities.monedas_pl = 0;
+    character.qualities.cuerda = 0;
+    character.qualities.cuchillo = 0;
+    character.qualities.espada_corta = 0;
+    character.qualities.daga_arr = 0;
+    character.qualities.comida_mal = 0;
+    character.qualities.pocion_azul = 0;
+    character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
 
