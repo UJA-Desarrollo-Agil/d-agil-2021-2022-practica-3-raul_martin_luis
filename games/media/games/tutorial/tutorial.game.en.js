@@ -42,7 +42,11 @@ undum.game.situations = {
 		Tus provisiones empiezan a escasear y estás harto de dormir a la intemperie, y sabes que\
 		donde hay castillos, hay comida y lechos calientes.</p>\
 		<br>\
-		<p class='transient'><a href='muralla'>Siguiente Página</a></p>"
+		<p class='transient'><a href='muralla'>Siguiente Página</a></p>",{
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso.value=0);   
+        }
+    }
 	),
 	
 	muralla: new undum.SimpleSituation(
@@ -54,7 +58,11 @@ undum.game.situations = {
 		queremos gente rebelde en nuestra ciudad, solo borregos que obedezcan sin hacer ruido”. Y como\
 		no, camuflado bajo la excusa de la religión y esa retahíla de salvar el alma de los pecadores.</p>\
 		<br>\
-		<p class='transient'><a href='ciudad'>Siguiente Página</a></p>"
+		<p class='transient'><a href='ciudad'>Siguiente Página</a></p>",{
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);   
+        }
+    }
 	),
 	
 	ciudad: new undum.SimpleSituation(
@@ -72,7 +80,11 @@ undum.game.situations = {
 		<p>Sigues avanzando por la calle más ancha, evitando charcos, hasta que ves un cartel oxidado:\
 		“El Patito Frito”.</p>\
 		<br>\
-		<p class='transient'><a href='posada'>Siguiente Página</a></p>"
+		<p class='transient'><a href='posada'>Siguiente Página</a></p>",{
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);   
+        }
+    }
 	),
 	
 	posada: new undum.SimpleSituation(
@@ -95,6 +107,7 @@ undum.game.situations = {
 	<br>\
 	",
 		{
+            
 			actions: {
 				"p_comida":"<p>―Algo de comer por favor, llevo varios días en el camino.</p>\
 							<br>\
@@ -143,8 +156,11 @@ undum.game.situations = {
 							que no tengo más opción. Gracias pequeña.</p>\
 							<br>\
 							<p class='transient'><a href='calle'>Siguiente Página</a></p>"
-			}
+			},
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
 		}
+    }
 
 	),
 	
@@ -174,7 +190,11 @@ undum.game.situations = {
 		<p>Continuais recto por el patio, subis unas escaleras que dan a un gran portón entreabierto. Uno de los soldados lo empuja con esfuerzo\
 		y entrais al castillo.</p>\
 		<br>\
-		<p class='transient'><a href='castillo' class='once'>Siguiente página</a>.</p>"
+		<p class='transient'><a href='castillo' class='once'>Siguiente página</a>.</p>",{
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+        }
+    }
 	),
 	
 	castillo: new undum.SimpleSituation(
@@ -234,7 +254,11 @@ undum.game.situations = {
 		te dé caviar y cerveza de reserva. ¡Turdis!― grita y señala a uno de los guardias ―Sácalo de aquí y explicale a donde ha de ir en\
 		busca de la cura, y dale un mendrugo pan y, si eso, algo de mantequilla.</p>\
 		<br>\
-		<p class='transient'><a href='cocina' class='once'>Siguiente página</a>.</p>"
+		<p class='transient'><a href='cocina' class='once'>Siguiente página</a>.</p>",{
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+        }
+    }
 	),
 	
 	cocina: new undum.SimpleSituation(
@@ -266,7 +290,9 @@ undum.game.situations = {
 									
 									system.write($("#te_regaña").html());
 				}
-			}
+			},
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);}
 		}
 	),
 	
@@ -282,7 +308,10 @@ undum.game.situations = {
 		<br>\
 		―Está bien, está bien.― vuelves los ojos en blanco y suspiras― Dame el mapa ya, a ver si terminamos con esto pronto.\
 		<br>\
-		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>"
+		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>",{
+        enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);}
+        }
 	),
 	
 	/*Se supone que la  lista ul debe desaparecer al pinchar en una de las opciones*/
@@ -323,7 +352,10 @@ undum.game.situations = {
 				"hambre":function(character, system, action) {
 					system.write($("#ayunas").html());
 				}				
-			}
+			},
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+            }
 		}
 	),
 	
@@ -351,7 +383,9 @@ undum.game.situations = {
 					}
 					system.setQuality("tirada", dado);
 				}
-			}
+			},
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);}
 		}
 	),
 	
@@ -359,6 +393,7 @@ undum.game.situations = {
 	"",
 		{
 			enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
 				system.write($("#pelea_asesino").html());
 					if(character.qualities.cuchillo > 0){
 						system.write($("#vives").html());
@@ -428,7 +463,10 @@ undum.game.situations = {
 										system.write("<p><a href='nosabiduria'>Continuar</a></p>");
 									}
                 }
-            }
+            },enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
 
 
 
@@ -439,7 +477,11 @@ undum.game.situations = {
        " <h1>REGRESO AL CASTILLO</h1>\
        <p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.\
        Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta\
-       que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p><p><b>FIN DEL JUEGO</b></p>"
+       que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p><p><b>FIN DEL JUEGO</b></p>",
+       {enter:function(character, system, action) {
+        system.setQuality("progreso", character.qualities.progreso+1);
+
+        }}
 
     ),
         //Situación en la que no le explicas al monje y decides pasar
@@ -449,7 +491,11 @@ undum.game.situations = {
         <p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
         saca una larga y afilada espada. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
-        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>"
+        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
+        enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
 
     //Combate con el monje(falta escribirlo)
@@ -458,6 +504,7 @@ undum.game.situations = {
         {
 			enter:function(character, system, action) {
 				system.write($("#pelea_monje").html());
+                system.setQuality("progreso", character.qualities.progreso+1);
                 var dado = jsRandom.get(1,10);
 					if(dado + character.qualities.cuchillo > 3){
 						system.write($("#vives_monje").html());
@@ -484,7 +531,10 @@ undum.game.situations = {
                 'libros': "<p> De entre las llamas rescatas un libro con información de la hierba. Está en mal estado pero consigues rescatar un pequeño mapa que dice llevar a un lugar\
                 donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p>",
                 'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p>" 
-            }
+            },enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -511,7 +561,11 @@ undum.game.situations = {
                             tengo un poquito más de suerte...― piensas en voz alta.</p>\
                             <br>\
                             <p class='transient'><a href='rumbo_caverna'>Rumbo a la caverna</a>.</p>'"
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
 
     ),
@@ -544,7 +598,11 @@ undum.game.situations = {
                                     a causa de la humedad y algún tipo de sustancia que desprende\
                                     ese fétido hedor, y no eres capaz de estabilizarte para evitar\
                                     <a href='gran_caverna'>la caída</a>.</p>"
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -573,7 +631,13 @@ undum.game.situations = {
         <ul class='options'>\
             <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
             <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
-        </ul>"
+        </ul>",{
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
+        }
+        
     ),
 
     vuelta_gc: new undum.SimpleSituation(
@@ -581,7 +645,11 @@ undum.game.situations = {
         <ul class='options'>\
             <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
             <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
-        </ul>"
+        </ul>",
+        {enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
 
     oeste_gc: new undum.SimpleSituation(
@@ -606,7 +674,10 @@ undum.game.situations = {
                     Ahora podrás enganchar la cuerda al gancho de acero e\
                     <a href='bajada_foso' class='once'>intentar bajar por el foso</p>")
                 },
-                    
+                enter:function(character, system, action) {
+                    system.setQuality("progreso", character.qualities.progreso+1);
+        
+                    }
                 
             }
         }
@@ -623,6 +694,7 @@ undum.game.situations = {
         {
             enter: function (character, system, from) {
                 system.setQuality("cuerda", 0);
+                system.setQuality("progreso", character.qualities.progreso+1);
             }
         }
     ),
@@ -637,13 +709,19 @@ undum.game.situations = {
         poder dar otro paso, un chorro de vapor sale del agujero dándote en los brazos y el torso y\
         lanzándote hacia abajo en caída libre.</p>\
         <br>\
-        <p><a href='vapor_foso' class='once'>Continuar descenso</a>.</p>"
+        <p><a href='vapor_foso' class='once'>Continuar descenso</a>.</p>",
+        {
+            enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
 
     vapor_foso: new undum.SimpleSituation(
         "",
         {
             enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
                 var dado1 = jsRandom.get(1, 4);
                 var dado2 = jsRandom.get(1, 6);
                 dado2 += jsRandom.get(1, 6);
@@ -694,7 +772,11 @@ undum.game.situations = {
                         system.setQuality("comida_mal", 1);
                     }
                 }
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -702,6 +784,7 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
+                system.setQuality("progreso", character.qualities.progreso+1);
                 system.write("<h2>La sala de los huesos</h2>\
                             <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
                             inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
@@ -725,6 +808,7 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
+                system.setQuality("progreso", character.qualities.progreso+1);
                 system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
                                        no son pocos los exploradores y aventureros que han acabado su travesía aquí\
                                        agrandando la montaña.</p>\
@@ -757,7 +841,13 @@ undum.game.situations = {
         <p>―Agua... Es posible que este túnel se haya forma por la erosión que provoca la misma―</p>\
         <p>Tienes dos opciones: continuar para\
         <a href='sigues_riada' class='once'>ver de dónde viene el agua</a> o\
-        <a href='vuelta_gc' class='once'>volver a la zona anterior</a> para probar suerte por el otro camino.</p>"
+        <a href='vuelta_gc' class='once'>volver a la zona anterior</a> para probar suerte por el otro camino.</p>",
+        {
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
+        }
     ),
 
     vuelta_riada: new undum.SimpleSituation(
@@ -784,7 +874,11 @@ undum.game.situations = {
                                 <p>Puedes <a href='sala_lago' class='once'>correr</a> hacia atrás y volver\
                                 a la sala del lago, intentar <a href='techo' class='once'>subirte al techo</a>\
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -811,7 +905,11 @@ undum.game.situations = {
                                 <p>Puedes <a href='sala_lago' class='once'>correr</a> hacia adelante y ver\
                                 dónde acaba el túnel, intentar <a href='techo' class='once'>subirte al techo</a>\
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -819,6 +917,7 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
                 system.write("<p>Echas un vistazo rápido a la sala y encuentras unos ganchos en el techo, así que\
                                  decides intentar agarrarte a ellos, con la esperanza de que el agua no termine\
                                  llenando la sala.</p>\
@@ -887,7 +986,11 @@ undum.game.situations = {
         tarde descubres que no ha sido mala idea, ya que el agua te ha ayudado a avanzar tranquilamente por el túnel\
         como si de un tobogán acuático se tratara.</p>\
         <br>\
-        <p>Finalmente, acabas llegando a una <a href='sala_lago' class='once'>nueva sala</a>.</p>"
+        <p>Finalmente, acabas llegando a una <a href='sala_lago' class='once'>nueva sala</a>.</p>",
+        {     enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
 
     sala_lago: new undum.SimpleSituation(
@@ -902,7 +1005,13 @@ undum.game.situations = {
         <ul class='options'>\
             <li><a href='vuelta_salahuesos' class='once'>Salida Oeste</a></li>\
             <li><a href='vuelta_riada' class='once'>Salida Sur</a></li>\
-        </ul>"
+        </ul>",
+        {
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
+        }
     ),
 
     meterte_lago: new undum.SimpleSituation(
@@ -911,7 +1020,11 @@ undum.game.situations = {
         zona de la caverna.</p>\
         <br>\
         <p>No parece haber nada a simple vista, tendrás que\
-        <a href='sumergirte' class='once'>sumergirte en el agua</a> un poco para explorar más a fondo.</p>"
+        <a href='sumergirte' class='once'>sumergirte en el agua</a> un poco para explorar más a fondo.</p>",
+        {     enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
 
     sumergirte: new undum.SimpleSituation(
@@ -926,7 +1039,11 @@ undum.game.situations = {
                                 <a href='guarida_monstruo' class='once'>otra sala</a>.</p>",
                 "explora_lago": "<p>Das unas cuantas vueltas al lago, incluso has buceado hasta el fondo,\
                                 pero no encuentras ninguna pista más.</p>"
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -955,7 +1072,11 @@ undum.game.situations = {
         <br>\
         <p>La mantícora bloquea tu paso a la salida y, peor aún, dudas que te deje coger la Remolacha\
         tranquilamente si se lo pides por favor; tendrás que\
-        <a href='manticora' class='once'>enfrentarte a ella</a>.</p>"
+        <a href='manticora' class='once'>enfrentarte a ella</a>.</p>",
+        {     enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
 
     manticora: new undum.SimpleSituation(
@@ -970,7 +1091,10 @@ undum.game.situations = {
                         system.write("<p><a href='combate_manticora' class='once'>Comienza el combate</a></p>")
                     }
                 }
-            }
+            },     enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -989,7 +1113,11 @@ undum.game.situations = {
                         system.write($("#vences_manticora").html());
                     }
                 }
-            }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
+    
+                }
         }
     ),
 
@@ -1003,7 +1131,11 @@ undum.game.situations = {
         avances despacio para poder acostumbrarse de nuevo a la luz después de tanto tiempo en penumbra.</p>\
         <br>\
         <p>Es hora de poner <a href='ataquefinal' class='once'>rumbo al castillo</a> de los Dragonborn de\
-        nuevo.</p>"
+        nuevo.</p>",
+        {     enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
    
     ataquefinal: new undum.SimpleSituation(
@@ -1018,6 +1150,10 @@ undum.game.situations = {
         aprovecha para coger su espada y blandirla contra ti. Consigues esquivarla y esta vez no concedes ninguna oportunidad. Le das muerte a tu enemigo. Rápidamente sumerges bien tu brazo en el lodo para sacar el anillo.</p>\
         <br>\
 		<p class='transient'><a href='vueltacastillo'>Siguiente Página</a></p>",
+        {     enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
     vueltacastillo: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
@@ -1026,7 +1162,11 @@ undum.game.situations = {
         <li><a href= 'noperdonar'>Decides mostrar el anillo para acusar a Felipo de intentar matarte</a></li>\
         <li><a href='perdonar'>Decides perdonarlo y guardar el anillo para venderlo por una gran cantidad de dinero</a></li>\
         </ul>\
-         <br>"
+         <br>",
+         {     enter:function(character, system, action) {
+            system.setQuality("progreso", character.qualities.progreso+1);
+
+            }}
     ),
     noperdonar: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
@@ -1035,7 +1175,7 @@ undum.game.situations = {
         El Duque Agnar te da las gracias por tu labor y te entrega tu merecida recompensa.<p><b>FIN</b></p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+100);
+                system.setQuality("progreso", character.qualities.progreso+1);
                 }
         }
     ),
