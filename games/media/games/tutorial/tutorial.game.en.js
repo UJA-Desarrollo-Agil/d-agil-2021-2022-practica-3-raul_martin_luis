@@ -384,7 +384,7 @@ undum.game.situations = {
         <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.</p>\
-        <p class = 'dialogo'>― Bienvenido joven viajero, a que se debe su visita?</p>\
+        <p class = 'dialogo'>― Bienvenido joven viajero, ¿A que se debe su visita?</p>\
         <ul class='options'>\
         <li><a href = 'explicar'>Explicar tu situación</a></li>\
         <li><a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a></li>\
