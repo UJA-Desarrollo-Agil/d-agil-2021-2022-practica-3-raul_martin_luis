@@ -165,18 +165,7 @@
           Let's <a href='todo'>move on again</a>.
         </p>
       </div>
-	<div id="pelea_monje" class="situation">
-    <h1>COMBATE</h1>
-		<p>El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. El musculoso y maloliento asesino desenvaina su larga espada y espera tu ataque.</p>
-      </div>
-      <div id="vives_monje" class="situation">
-        <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el
-          cuchillo que le has lanzado del brazo y te lo lanza rápidamente. Recibes un corte en el brazo pero cuando menos se lo espera su vientre es atravesado por su propia espada empuñada por ti.</p>
-          </div>
-          <div id="mueres_monje" class="situation">
-            <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla pero el asesino te derriba de un puñetazo. Acto seguido recoge su espada y la clava en tu pecho.</p>
-            <p><b>FIN DEL JUEGO</b></p>
-              </div>
+
       <div id="s_saving">
         <h1>Saving and Loading</h1>
         <p>The only piece of the UI we haven't talked about is the
@@ -332,7 +321,7 @@
 	  
 	  <div id="vives" class="situation">
 		<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada, 
-		al hombro para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca y se hace
+		para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca y se hace
 		con el cuchillo que robaste. Amagas para atacar con la derecha. Él se prepara para rechazar y dar el golpe final. Realizas un rápido 
 		y doloroso giro del codo izquierdo y el cuchillo vuela hasta su cuello. El asesino de cuatro labios cae de rodillas, se le escapa un 
 		grito sordo y escupe sangre. Ya no es un profesional.</p>
@@ -349,51 +338,13 @@
 			de lis</b> roto: “Dentro de dos días aparecerá un joven por el camino que tú ya sabes. Liquídalo, traeme una prueba de que 
 			está muerto y te recompensaré.” No está firmada.</p>
 		<br>
-		<p class='transient'><a href='templo' class='once'>Siguiente página</a>.</p>
+		<p class='transient'><a href='' class='once'>Siguiente página</a>.</p>
       </div>
 	  
 	  <div id="no_cartita" class="situation">
 		<p>No ves nada extraño.</p>
 		<br>
-		<p class='transient'><a href='templo' class='once'>Siguiente página</a>.</p>
-      </div>
-      <div id="sobrevives_caida" class="situation">
-          <p>Has sobrevivido a la caída, por suerte, sin embargo el vapor te ha producido quemaduras por los brazos y el pecho y,
-          aunque sigues vivo, esa caída ha dolido bastante.</p>
-          <br>
-          <p>Cuando al fin te recuperas del shock de la caída te percatas de algo, no has caído en el suelo, sino sobre una 
-          montaña de huesos.</p>
-          <br>
-          <p class='transient'><a href='sala_huesos'>Siguiente página</a>.</p>
-      </div>
-      <div id="muerte_caida" class="situation">
-          <p>Terminas cayendo en una enorme montaña de huesos, no pareces haber sido la única persona que haya caído ahí, por desgracia, el vapor 
-          desprendido del agujero de la pared te ha provocado fuertes quemaduras por los brazos y el pecho y, además, ha hecho que caigas desde una
-          altura demasiado alta. Tu cuerpo no ha sido capaz de soportarlo, has muerto.</p>
-          <br>
-          <p>Ahora tu cuerpo pasará a aumentar esa enorme colección de huesos haciendo que la montaña sea un poco más alta.</p>
-          <br>
-          <p><b>FIN DEL JUEGO</b></p>
-      </div>
-      <div id="muerte_riada" class="situation">
-          <p>Arrastrado por la riada, uno de los golpes que recibes, fruto del empuje del agua hacia las paredes, es justo en la cabeza
-          abriéndote una enorme brecha que provoca que te desangres.</p>
-          <br>
-          <p>Aquí acaba tu aventura.</p>
-          <br>
-          <p><b>FIN DEL JUEGO</b></p>
-      </div>
-      <div id="sobrevives_riada" class="situation">
-          <p>Esos golpes y cortes duelen bastante, pero al menos has sobrevivido. La fuerza del agua hizo que avanzases a toda velocidad
-          por el túnel y llegases al final con vida, aunque te desmayaste por el camino.</p>
-          <br>
-          <p class="transient">Tu aventura continúa, te despiertas dolorido en una <a href='sala_lago'>nueva sala</a>.</p>
-      </div>
-      <div id="vences_manticora" class="situation">
-          <p>Finalmente le asestas un golpe mortal a la letal mantícora, esta lanza un devastador bramido y cae al suelo haciéndolo retumbar.
-             Estás exhausto y cubierto en sangre, pero has salido victorioso.</p>
-          <br>
-          <p class="transient">Por fin podrás salir de la cueva, no sin antes recoger <a href="recoge_remolacha">aquello que venías buscando</a>.</p>
+		<p class='transient'><a href='' class='once'>Siguiente página</a>.</p>
       </div>
     </div>
 
