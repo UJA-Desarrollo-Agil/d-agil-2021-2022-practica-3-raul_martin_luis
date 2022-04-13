@@ -464,7 +464,7 @@ undum.game.situations = {
 									if ((dado+character.qualities.sabiduria) > 5){
 										system.write($("#acusar_monje").html());
 									}else{
-										system.write("<p><a href='nosabiduria'>Continuar</a></p>");
+										system.write($("#nosabiduria").html());
 									}
                 }
             },enter:function(character, system, action) {
@@ -475,6 +475,7 @@ undum.game.situations = {
     ),
 	
     //si no tienes la sabiduria necesaria
+	/*
     nosabiduria: new undum.SimpleSituation(
        "<p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.\
        Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta\
@@ -483,14 +484,13 @@ undum.game.situations = {
        {enter:function(character, system, action) {
         system.setQuality("progreso", character.qualities.progreso+1);
         }}
-    ),
+    ),*/
 	
     //Situación en la que no le explicas al monje y decides pasar
     noexplicar: new undum.SimpleSituation(
-        "<img src='media/games/tutorial/woodcut1.png' class='float_right'>\
-        <p>Decides entrar en el templo sin el consentimiento del monje, \
+        "<p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
-        saca una larga y afilada espada. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
+        saca una larga y afilada daga. Al moverse bruscamente, un colgante asoma de su hábito. Lleva \
         la marca de la <b>flor de Lis</b>.</p>\
 		<br>\
 		<p>Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
@@ -506,12 +506,13 @@ undum.game.situations = {
 			enter:function(character, system, action) {
 				system.write($("#pelea_monje").html());
                 system.setQuality("progreso", character.qualities.progreso+1);
-                var dado = jsRandom.get(1,10);
-					if(dado + character.qualities.cuchillo > 3){
+                
+				var dado = jsRandom.get(1,10);
+					if((dado + character.qualities.fuerza) > 5){
 						system.write($("#vives_monje").html());
-                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");
-						system.setQuality("cuchillo", character.qualities.cuchillo-1);
-						system.setQuality("vida", character.qualities.vida-3);
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");	//-SERÁ UNA PELEA A MUERTE CON CUCHILLOS
+						//system.setQuality("cuchillo", character.qualities.cuchillo-1);	//-¿DUELO A MUERTE CON CUCHILLOS?
+						system.setQuality("vida", character.qualities.vida-3);				//-NO SÉ QUÉ ES ESO... CREO QUE VAN A PELEAR CON CUCHILLOS
 						
 					}else{
 						system.write($("#mueres_monje").html());
@@ -524,13 +525,14 @@ undum.game.situations = {
         "<p>Tras derrotar al asesino, observas una columna de humo proveniente del interior del templo. Se trata de unos hombres que están\
         quemando toda la información relacionada con la planta. Te apresuras pero para cuando llegas los hombres han huido. La sala resulta ser una biblioteca antigua\
         con una gran fogata en el centro donde están quemándose <a href= './libros' class  ='once'>los libros</a>. Observas una <a href ='./ventana' class  ='once'>ventana</a> en la parte derecha de la sala. </p>\
-        ",
+        <br>\
+		",
         {
             actions: 
             {
                 'libros': "<p> De entre las llamas rescatas un libro con información de la hierba. Está en mal estado pero consigues rescatar un pequeño mapa que dice llevar a un lugar\
-                donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p>",
-                'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p>" 
+                donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p><br>",
+                'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p><br>" 
             },enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+1);
     
@@ -548,10 +550,11 @@ undum.game.situations = {
         encontrar la dichosa cura fuese tan facil... ¡Si tan solo bastase con\
         hablar con un &quotmonjezucho&quot de nada para obtenerla nadie habría perdido\
         la vida en esta misión!―</p>\
+		<br>\
         <p>Ante el evidente fracaso, te pones a pensar en cuál debería ser tu\
         próximo movimiento para continuar tu misión ―Demonios... En fin, veamos qué\
         puedo hacer ahora― y recuerdas haber podido salvar de las llamas los restos de\
-        unos <a href='./papeles' class='once'>papeles</a> en la biblioteca del templo.</p>",
+        unos <a href='./papeles' class='once'>papeles</a> en la biblioteca del templo.</p><br>",
         {
             actions: {
                 "papeles": "<p>Decides examinar los papeles por si estos pudieran arrojar\
@@ -564,7 +567,6 @@ undum.game.situations = {
             },
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+1);
-    
                 }
         }
     ),
@@ -606,8 +608,7 @@ undum.game.situations = {
     ),
 
     gran_caverna: new undum.SimpleSituation(
-        "<h2>La gran caverna.</h2>\
-        <p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
+        "<p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
         Además, toda la colonia de murciélagos que había durmiendo en el interior de la caverna se ha\
         despertado a causa de tu estruendosa caída y, asustados, han salido volando directos hacia tí\
         enganchándose en tu ropa y rasgándola un poco.</p>\
@@ -658,10 +659,11 @@ undum.game.situations = {
         una piedra del suelo, la dejas caer foso abajo y te pones a contar.</p>\
         <br>\
         <p>―Veamos, uno... dos... tres... Mmmm... De acuerdo, son unos once metros― aproximas.</p>\
+		<br>\
         <p>Observas a tu alrededor y ves un gancho de acero clavado en una de las paredes de la sala,\
         parece que se puede bajar usando una <a href='./cuerda' class='once'>cuerda</a>. También puedes\
         <a href='vuelta_gc' class='once'>volver a la zona anterior</a> y probar suerte por el otro\
-        camino.</p>",
+        camino.</p><br>",
         {
             actions: {
                 "cuerda": function (character, system, action) {
@@ -685,6 +687,7 @@ undum.game.situations = {
     bajada_foso: new undum.SimpleSituation(
         "<p>Coges la cuerda que había en el suelo, le haces un buen nudo en uno de los extremos, lo enganchas\
         con firmeza en el gancho de la pared y comienzasa descender cuidadósamente por el foso.</p>\
+		<br>\
         <p>Con cada paso que das hacia abajo puedes notar cómo, extráñamente, se eleva la temperatura\
         cada vez más. Continúas el descenso cuando te percatas de un extraño\
         <a href='agujero_foso' class='once'>agujero en la pared</a>.</p>\
@@ -761,7 +764,7 @@ undum.game.situations = {
                                        arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
                                        de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
                                        otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
-                                       que se trata de una poción sanadora.</p>")
+                                       que se trata de una poción sanadora.</p><br>")
                         system.setQuality("monedas_oro", 200);
                         system.setQuality("monedas_pl", 300);
                         system.setQuality("espada_corta", 1);
@@ -797,7 +800,7 @@ undum.game.situations = {
                     system.write("<p>Quizás no sería una mala idea\
                     <a href='examina_montana' class='once'>examinar la montaña</a> por\
                     si algún desafortunado viajero hubiese encontrado ahí el final y sus pertenencias siguieran en buen\
-                    estado.</p>");
+                    estado.</p><br>");
                 }
             }
         }
@@ -817,7 +820,7 @@ undum.game.situations = {
                                        arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
                                        de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
                                        otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
-                                       que se trata de una poción sanadora.</p>")
+                                       que se trata de una poción sanadora.</p><br>")
                 system.setQuality("monedas_oro", 200);
                 system.setQuality("monedas_pl", 300);
                 system.setQuality("espada_corta", 1);

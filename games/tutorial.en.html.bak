@@ -165,18 +165,6 @@
           Let's <a href='todo'>move on again</a>.
         </p>
       </div>
-	<div id="pelea_monje" class="situation">
-    <h1>COMBATE</h1>
-		<p>El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. El musculoso y maloliento asesino desenvaina su larga espada y espera tu ataque.</p>
-      </div>
-      <div id="vives_monje" class="situation">
-        <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el
-          cuchillo que le has lanzado del brazo y te lo lanza rápidamente. Recibes un corte en el brazo pero cuando menos se lo espera su vientre es atravesado por su propia espada empuñada por ti.</p>
-          </div>
-          <div id="mueres_monje" class="situation">
-            <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla pero el asesino te derriba de un puñetazo. Acto seguido recoge su espada y la clava en tu pecho.</p>
-            <p><b>FIN DEL JUEGO</b></p>
-              </div>
       <div id="s_saving">
         <h1>Saving and Loading</h1>
         <p>The only piece of the UI we haven't talked about is the
@@ -395,6 +383,41 @@
           <br>
           <p class="transient">Por fin podrás salir de la cueva, no sin antes recoger <a href="recoge_remolacha">aquello que venías buscando</a>.</p>
       </div>
+	  
+	  <div id="acusar_monje" class="situation">
+		<p>Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces
+          en el camino. El monje te está engañando.</p>
+		<br>
+		<p>―Así que la famosa Remolacha, por la que tantos se juegan el pellejo, ha resultado ser una vulgar planta.― dices con sarcasmo y desilusión.</p>
+		<br>
+		<p>―Vaya, vaya― el monje empieza a sacar una daga larga de una manga ―Así que tenemos a un graciosillo experto en botánica.</p>
+		<br>
+		<p>¿A quién llamas "graciosillo"? Eh, tontito― te preparas para el inminente <a href='combatemonje'>combate</a>.</p>
+		<br>
+	  </div>
+	  
+	  <div id="nosabiduria" class="situation">
+		<p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.
+		Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta
+		que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p>
+	   <br><p><b>FIN DEL JUEGO</b></p>
+	  </div>
+	  
+		<div id="pelea_monje" class="situation">
+			<p>El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. El musculoso y maloliente asesino desenvaina (OTRA VEZ) su larga daga y espera tu ataque.</p>
+			<br>
+		</div>
+      
+		<div id="vives_monje" class="situation">
+			<p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el
+			cuchillo e intenta atacarte rápidamente. Recibes un corte en el brazo, pero cuando menos se lo espera atraviesas su vientre con su propia daga.</p>
+			<br>
+		</div>
+          
+		<div id="mueres_monje" class="situation">
+            <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla pero el asesino te derriba de un puñetazo. Acto seguido recoge su espada y la clava en tu pecho.</p>
+            <p><b>FIN DEL JUEGO</b></p>
+        </div>
     </div>
 
     <!-- Load the libraries we depend on -->
