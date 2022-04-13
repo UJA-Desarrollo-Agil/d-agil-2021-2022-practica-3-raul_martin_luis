@@ -489,8 +489,7 @@ undum.game.situations = {
         "<h1>EL TEMPLO</h1>\
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
         <p>Decides entrar en el templo sin el consentimiento del monje, \
-        no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
-        saca una larga y afilada espada. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
+        no te fías ni un pelo de él. Este se ve reacio a dejarte entrar y cuando vas a pasar a su lado te da un violento empujón. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
         la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
         enter:function(character, system, action) {
             system.setQuality("progreso", character.qualities.progreso+1);
