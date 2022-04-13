@@ -33,8 +33,7 @@ undum.game.situations = {
 
 	
 	inicio: new undum.SimpleSituation(
-		"<h2>Capítulo 1</h2>\
-		<br>\
+		"<h1>Capítulo 1</h1>\
 		<p>Caminas con la mirada perdida, escuchando el sonido de tu respiración,\
 		sintiendo como las gotas de lluvia golpean y empapan la caperuza de tu capa.\
 		De repente un rayo dibuja en el oscuro firmamento la silueta de una ciudad con castillo.\
@@ -66,8 +65,7 @@ undum.game.situations = {
 	),
 	
 	ciudad: new undum.SimpleSituation(
-		"<h2>Capítulo 2</h2>\
-		<br>\
+		"<h1>Capítulo 2</h1>\
 		<p>No te detienes a contemplar la “obra de Dios” durante mucho tiempo porque el olor empieza a ser\
 		insoportable hasta tal punto de darte arcadas a pesar de tener el estómago vacío. Cruzas el arco\
 		de la entrada y poco a poco la lluvia empieza a amainar. Te quitas la caperuza y miras alrededor:\
@@ -277,14 +275,17 @@ undum.game.situations = {
 			actions: {
 				"robar_chorizo":function(character, system, action) {
 									//int dado = system.rnd.randomInt(1,10);//+character.qualities.skill
-									system.setQuality("cuchillo", character.qualities.cuchillo+1);
+									if(character.qualities.cuchillo < 1){
+										system.setQuality("cuchillo", 1);
+									}
 									
 									var dado = jsRandom.get(1,10);
 									if ((dado+character.qualities.agilidad) > 5){
 										system.setQuality("tirada", dado);
 										system.write($("#chorizo").html());
+										system.setQuality("vida", character.qualities.vida+2);
 									}else{
-										system.setQuality("stamina", dado);
+										system.setQuality("tirada", dado);
 										system.write($("#no_chorizo").html());
 									}
 									
@@ -304,9 +305,9 @@ undum.game.situations = {
 		<br>\
 		<p>―¿”Verdulería” y “remolacha”?― contestas torciendo la cabeza ―¿Es en serio? ¿Y de paso traigo el pan y media de huevos?</p>\
 		<br>\
-		―¿Tengo cara de estar bromeando?― se revuelve de manera cómica ―¿No escuchaste antes al rey? Muchos se han dejado la vida en este viaje.\
+		<p>―¿Tengo cara de estar bromeando?― se revuelve de manera cómica ―¿No escuchaste antes al rey? Muchos se han dejado la vida en este viaje.</p>\
 		<br>\
-		―Está bien, está bien.― vuelves los ojos en blanco y suspiras― Dame el mapa ya, a ver si terminamos con esto pronto.\
+		<p>―Está bien, está bien.― vuelves los ojos en blanco y suspiras― Dame el mapa ya, a ver si terminamos con esto pronto.</p>\
 		<br>\
 		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>",{
         enter:function(character, system, action) {
@@ -316,7 +317,7 @@ undum.game.situations = {
 	
 	/*Se supone que la  lista ul debe desaparecer al pinchar en una de las opciones*/
 	camino: new undum.SimpleSituation(
-		"<h2>Capítulo 3</h2>\
+		"<h1>Capítulo 3</h1>\
 		<p>A la mañana siguiente despiertas renovado. Estás acostado bajo una enramada; las ramas de un árbol bajaban entrelazadas hasta el suelo.\
 		La cama de helechos y musgo era suave y profunda, tan cómoda que te hizo olvidar el berrinche que pillaste al enterarte de que no se te\
 		permitía pasar la noche en la ciudad. “Otra maldita noche a la intemperie” pensaste. Pero no llovió nada el resto del día y el sol brilló\
@@ -326,22 +327,23 @@ undum.game.situations = {
 		tras unos estiramientos, te pones en marcha. Al cabo de un rato te entra hambre y ves unos arbustos con bayas muy apetecibles.</p>\
 		<br>\
 		<ul class='options'>\
-			<li><a href='./prudente' >Intentar identificar bayas</a></li>\
-			<li><a href='./temerario' >Coger las bayas directamente</a></li>\
-			<li><a href='./hambre' >Pasar de las bayas y seguir tu camino</a></li>\
+			<li><a href='./prudente' class='once'>Intentar identificar bayas</a></li>\
+			<li><a href='./temerario' class='once'>Coger las bayas directamente</a></li>\
+			<li><a href='./hambre' class='once'>Pasar de las bayas y seguir tu camino</a></li>\
 		</ul>\
 		",
 		{
 			actions:{
 				"prudente":function(character, system, action) {
 					var dado = jsRandom.get(1,10);
+					system.setQuality("tirada", dado);
+					
 					if ((dado+character.qualities.sabiduria) > 5){
 						system.setQuality("vida", character.qualities.vida+1);
 						system.write($("#bayas").html());						
 					}else{
 						system.write($("#no_bayas").html());
 					}
-					system.setQuality("tirada", dado);
 				},
 				
 				"temerario":function(character, system, action) {
@@ -375,13 +377,14 @@ undum.game.situations = {
 			actions:{
 				"observar":function(character, system, action) {
 					var dado = jsRandom.get(1,10);
+					system.setQuality("tirada", dado);
+					
 					if ((dado+character.qualities.sigilo) > 5){
 						system.write($("#no_te_engaña").html());						
 					}else{
 						system.write($("#te_engaña").html());
 						system.setQuality("vida", character.qualities.vida-1);
-					}
-					system.setQuality("tirada", dado);
+					}					
 				}
 			},
             enter:function(character, system, action) {
@@ -397,7 +400,7 @@ undum.game.situations = {
 				system.write($("#pelea_asesino").html());
 					if(character.qualities.cuchillo > 0){
 						system.write($("#vives").html());
-						system.setQuality("cuchillo", character.qualities.cuchillo-1);
+						system.setQuality("cuchillo", 0);
 						system.setQuality("vida", character.qualities.vida-3);
 						
 						var dado = jsRandom.get(1,10);
@@ -413,18 +416,17 @@ undum.game.situations = {
 				}
 		}
     ),
-
-
 	
    templo: new undum.SimpleSituation(
-        "<h1>EL TEMPLO</h1>\
+        "<h1>CAITULO 4</h1>\
         <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.</p>\
-        <p class = 'dialogo'>― Bienvenido joven viajero, ¿A que se debe su visita?</p>\
+        <p>―Bienvenido joven viajero, ¿A que se debe su visita?</p>\
+		<br>\
         <ul class='options'>\
-        <li><a href = 'explicar'>Explicar tu situación</a></li>\
-        <li><a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a></li>\
+			<li><a href = 'explicar'>Explicar tu situación</a></li>\
+			<li><a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a></li>\
         </ul>\
          <br>",
          {
@@ -436,30 +438,32 @@ undum.game.situations = {
     ),
     //Situacion en la que explicas al monje
     explicar: new undum.SimpleSituation(
-        "<h1>SENDERO</h1>\
-        <p>Tras explicar la situacción con gusto el monje accede a llevarte hacia \
+        "<p>Tras explicar la situacción con gusto el monje accede a llevarte hacia \
         donde se encuentra la Remolacha, en un sendero que rodea el templo. A mitad de camino\
         el monje se detiene y parece no saber el camino a tomar, desconcertado le preguntas:</p>\
-        <p class = 'dialogo'>― ¿Sabe usted por donde ir?</p>\
-        <p class = 'dialogo'>― Sí, disculpa, mi memoria ya no es lo que era, es por aquí. ―Responde el monje</p>\
+		<br>\
+        <p>― ¿Sabe usted por donde ir?</p>\
+		<br>\
+        <p>― Sí, disculpa, mi memoria ya no es la que era, es por aquí. ―Responde el monje</p>\
+		<br>\
         <p>El camino es algo laberíntico, y trás un rato detrás del monje empiezas a sospechar\
         que estáis caminando en círculos. De pronto el monje se agacha y arranca una hierba.</p>\
-        <p class = 'dialogo'>― Al fin, aquí está la planta que buscas!</p>\
-       <p> El monje te entrega la planta.\
-        <a href ='./examinar' class='once'>Examinar planta(Tirada de percepción)</a></p>",
+		<br>\
+        <p>― Al fin, ¡aquí está la planta que buscas!</p>\
+		<br>\
+		<p> El monje te entrega la planta.\
+		<br>\
+        <a href ='./examinar' class='once'>Examinar planta(Tirada de percepción)</a></p>\
+		<br>",
         {
             actions: 
             {
                 'examinar':function(character, system, action){
                     var dado = jsRandom.get(1,10);
-                    
+                    system.setQuality("tirada", dado);
 									if ((dado+character.qualities.sabiduria) > 5){
-										system.setQuality("tirada", dado);
-										system.write("<p>Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
-                                            en el camino, el monje te está engañando, ¡quizás sea un impostor!\
-                                            No te queda otra que <a href = 'combatemonje'> atacarle </a> </p>");
+										system.write($("#acusar_monje").html());
 									}else{
-										system.setQuality("stamina", dado);
 										system.write("<p><a href='nosabiduria'>Continuar</a></p>");
 									}
                 }
@@ -467,34 +471,31 @@ undum.game.situations = {
                 system.setQuality("progreso", character.qualities.progreso+1);
     
                 }
-
-
-
         }
     ),
+	
     //si no tienes la sabiduria necesaria
     nosabiduria: new undum.SimpleSituation(
-       " <h1>REGRESO AL CASTILLO</h1>\
-       <p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.\
+       "<p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.\
        Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta\
-       que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p><p><b>FIN DEL JUEGO</b></p>",
+       que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p>\
+	   <br><p><b>FIN DEL JUEGO</b></p>",
        {enter:function(character, system, action) {
         system.setQuality("progreso", character.qualities.progreso+1);
-
         }}
-
     ),
-        //Situación en la que no le explicas al monje y decides pasar
+	
+    //Situación en la que no le explicas al monje y decides pasar
     noexplicar: new undum.SimpleSituation(
-        "<h1>EL TEMPLO</h1>\
-        <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
+        "<img src='media/games/tutorial/woodcut1.png' class='float_right'>\
         <p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
         saca una larga y afilada espada. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
-        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
+        la marca de la <b>flor de Lis</b>.</p>\
+		<br>\
+		<p>Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
         enter:function(character, system, action) {
             system.setQuality("progreso", character.qualities.progreso+1);
-
             }}
     ),
 
@@ -520,8 +521,7 @@ undum.game.situations = {
     ),
 
     aftercombate: new undum.SimpleSituation(
-        "<h1>EL TEMPLO</h1>\
-        <p>Tras derrotar al asesino, observas una columna de humo proveniente del interior del templo. Se trata de unos hombres que están\
+        "<p>Tras derrotar al asesino, observas una columna de humo proveniente del interior del templo. Se trata de unos hombres que están\
         quemando toda la información relacionada con la planta. Te apresuras pero para cuando llegas los hombres han huido. La sala resulta ser una biblioteca antigua\
         con una gran fogata en el centro donde están quemándose <a href= './libros' class  ='once'>los libros</a>. Observas una <a href ='./ventana' class  ='once'>ventana</a> en la parte derecha de la sala. </p>\
         ",
@@ -545,7 +545,7 @@ undum.game.situations = {
         <br>\
         <p>Tumbado a la sombra de los pinos empiezas a pensar en lo ocurrido\
         ―Lo que me faltaba, un monje asesino en el templo. Era demasiado raro que\
-        encontrar la dichosa cura fuese tan complicado... ¡Si tan solo bastase con\
+        encontrar la dichosa cura fuese tan facil... ¡Si tan solo bastase con\
         hablar con un &quotmonjezucho&quot de nada para obtenerla nadie habría perdido\
         la vida en esta misión!―</p>\
         <p>Ante el evidente fracaso, te pones a pensar en cuál debería ser tu\
@@ -567,11 +567,10 @@ undum.game.situations = {
     
                 }
         }
-
     ),
 
     rumbo_caverna: new undum.SimpleSituation(
-        "<h2>Entrada a la caverna.</h2>\
+        "<h1>CAPÍTULO 5</h1>\
         <p>Pasas dos largos días caminando a través de colinas y terrenos escarpados varios.\
         Aunque la mayoría de lugares que has cruzado serían dignos de grandes escenas de lucha\
         y mortales e inesperadas trampas, la fortuna ha estado de tu parte y al fin, sin que haya\
@@ -1220,7 +1219,7 @@ undum.game.qualities = {
 		"Sigilo", {priority:"0001", group:'stats'}
 	),
 	
-	cuchillo: new undum.NumericQuality(
+	cuchillo: new undum.OnOffQuality(
         "Cuchillo", {priority:"0003", group:'objetos', onDisplay:"&#10003;"}
     ),
 
