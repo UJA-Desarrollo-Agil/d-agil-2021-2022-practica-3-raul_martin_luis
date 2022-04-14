@@ -490,7 +490,7 @@ undum.game.situations = {
     noexplicar: new undum.SimpleSituation(
         "<p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejarte entrar y cuando vas a pasar a su lado te da un violento empujón. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
-        la marca de la flor Lis.</p>\
+        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>\
 		<br>\
 		<p>Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
         enter:function(character, system, action) {
