@@ -489,9 +489,8 @@ undum.game.situations = {
     //Situación en la que no le explicas al monje y decides pasar
     noexplicar: new undum.SimpleSituation(
         "<p>Decides entrar en el templo sin el consentimiento del monje, \
-        no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
-        saca una larga y afilada daga. Al moverse bruscamente, un colgante asoma de su hábito. Lleva \
-        la marca de la <b>flor de Lis</b>.</p>\
+        no te fías ni un pelo de él. Este se ve reacio a dejarte entrar y cuando vas a pasar a su lado te da un violento empujón. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
+        la marca de la flor Lis.</p>\
 		<br>\
 		<p>Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
         enter:function(character, system, action) {
