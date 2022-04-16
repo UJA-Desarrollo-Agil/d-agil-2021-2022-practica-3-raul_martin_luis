@@ -730,11 +730,10 @@ undum.game.situations = {
         {
             enter: function (character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+1);
-                var dado1 = jsRandom.get(1, 4);
-                var dado2 = jsRandom.get(1, 6);
-                dado2 += jsRandom.get(1, 6);
-                if ((dado1 + dado2) < character.qualities.vida) {
-                    system.setQuality("vida", character.qualities.vida - (dado1 + dado2));
+                var dado1 = jsRandom.get(1, 10);
+                system.setQuality("tirada", dado1);
+                if (dado1 < character.qualities.vida) {
+                    system.setQuality("vida", character.qualities.vida - dado1);
                     system.write($("#sobrevives_caida").html());
                 } else {
                     system.write($("#muerte_caida").html());
@@ -927,6 +926,7 @@ undum.game.situations = {
                                  llenando la sala.</p>\
                               <br>")
                 var dado = jsRandom.get(1, 10);
+                system.setQuality("tirada", dado);
                 if ((dado + character.qualities.agilidad) > 6) {
                     system.write("<p>Logras engancharte a ellos gracias a tu agilidad.</p>\
                                   <br>\
@@ -970,10 +970,8 @@ undum.game.situations = {
                                         empujándote contra los afilados bordes de las paredes del túnel y provocándote cortes\
                                         por todo el cuerpo.</p>\
                                       <br>")
-                        var dado2 = jsRandom.get(1, 4);
-                        dado2 += jsRandom.get(1, 4);
-                        dado2 += jsRandom.get(1, 4);
-                        dado2 += jsRandom.get(1, 4);
+                        var dado2 = jsRandom.get(1, 10);
+                        system.setQuality("tirada", dado2);
                         if (dado2 >= character.qualities.vida) {
                             system.write($("#muerte_riada").html());
                         } else {
@@ -1175,6 +1173,7 @@ undum.game.situations = {
                                     para lanzarle al monstruo un tajo certero.</p>");
                 system.setQuality("espada_corta", 0);
                 var dado = jsRandom.get(1, 6);
+                system.setQuality("tirada", dado);
                 if (dado >= 3) {
                     system.write($("#vences_manticora").html());
                 } else {
@@ -1192,6 +1191,7 @@ undum.game.situations = {
                                     distancia puede ser una buena idea, pero tiene que acertar en el objetivo.</p>");
                 system.setQuality("daga_arr", 0);
                 var dado = jsRandom.get(1, 6);
+                system.setQuality("tirada", dado);
                 if (dado >= 4) {
                     system.write($("#vences_manticora").html());
                 } else {
