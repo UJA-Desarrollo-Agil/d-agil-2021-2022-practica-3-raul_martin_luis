@@ -717,26 +717,22 @@ undum.game.situations = {
         poder dar otro paso, un chorro de vapor sale del agujero dándote en los brazos y el torso y\
         lanzándote hacia abajo en caída libre.</p>\
         <br>\
-        <p><a href='vapor_foso' class='once'>Continuar descenso</a>.</p>",
+        <p><a href='./vapor_foso' class='once'>Continuar descenso</a>.</p>",
         {
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+1);
-            }
-        }
-    ),
-
-    vapor_foso: new undum.SimpleSituation(
-        "",
-        {
-            enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-                var dado1 = jsRandom.get(1, 10);
-                system.setQuality("tirada", dado1);
-                if (dado1 < character.qualities.vida) {
-                    system.setQuality("vida", character.qualities.vida - dado1);
-                    system.write($("#sobrevives_caida").html());
-                } else {
-                    system.write($("#muerte_caida").html());
+            },
+            actions: {
+                "vapor_foso": function (character, system, action) {
+                    system.setQuality("progreso", character.qualities.progreso + 1);
+                    var dado1 = jsRandom.get(1, 10);
+                    system.setQuality("tirada", dado1);
+                    if (dado1 < character.qualities.vida) {
+                        system.setQuality("vida", character.qualities.vida - dado1);
+                        system.write($("#sobrevives_caida").html());
+                    } else {
+                        system.write($("#muerte_caida").html());
+                    }
                 }
             }
         }
