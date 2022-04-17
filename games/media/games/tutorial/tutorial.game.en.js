@@ -533,26 +533,7 @@ undum.game.situations = {
         }
     ),
 
-    //Combate con el monje(falta escribirlo)
-    combatemonje: new undum.SimpleSituation(
-        "",
-        {
-			enter:function(character, system, action) {
-				system.write($("#pelea_monje").html());
-                system.setQuality("progreso", character.qualities.progreso+1);
-                var dado = jsRandom.get(1,10);
-					if(dado + character.qualities.cuchillo > 3){
-						system.write($("#vives_monje").html());
-                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");
-						system.setQuality("cuchillo", character.qualities.cuchillo-1);
-						system.setQuality("vida", character.qualities.vida-3);
-						
-					}else{
-						system.write($("#mueres_monje").html());
-					}
-				}
-		}
-    ),
+
 
     aftercombate: new undum.SimpleSituation(
         "<h1>EL TEMPLO</h1>\
