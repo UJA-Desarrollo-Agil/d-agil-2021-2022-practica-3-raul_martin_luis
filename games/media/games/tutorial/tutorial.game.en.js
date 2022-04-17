@@ -478,12 +478,13 @@ undum.game.situations = {
                 'combate_monje':function(character,system,action){
                     system.write($("#pelea_monje").html());
                 system.setQuality("progreso", character.qualities.progreso+1);
-                var dado = jsRandom.get(1,10);
-					if(dado + character.qualities.cuchillo > 3){
+                
+				var dado = jsRandom.get(1,10);
+					if((dado + character.qualities.fuerza) > 5){
 						system.write($("#vives_monje").html());
-                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");
-						system.setQuality("cuchillo", character.qualities.cuchillo-1);
-						system.setQuality("vida", character.qualities.vida-3);
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");	//-SERÁ UNA PELEA A MUERTE CON CUCHILLOS
+						//system.setQuality("cuchillo", character.qualities.cuchillo-1);	//-¿DUELO A MUERTE CON CUCHILLOS?
+						system.setQuality("vida", character.qualities.vida-3);				//-NO SÉ QUÉ ES ESO... CREO QUE VAN A PELEAR CON CUCHILLOS
 						
 					}else{
 						system.write($("#mueres_monje").html());
@@ -512,10 +513,27 @@ undum.game.situations = {
     noexplicar: new undum.SimpleSituation(
         "<p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejarte entrar y cuando vas a pasar a su lado te da un violento empujón. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
-        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>\
+        la marca de la flor Lis. La misma que llevaba Felipo.</p>\
 		<br>\
 		<p>Te enzarzas en un duro <a href='./combate_monje'>combate</a> con él.</p>",
         {
+            actions:{
+                'combate_monje':function(character,system,action){
+                    system.write($("#pelea_monje").html());
+                system.setQuality("progreso", character.qualities.progreso+1);
+                
+				var dado = jsRandom.get(1,10);
+					if((dado + character.qualities.fuerza) > 5){
+						system.write($("#vives_monje").html());
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");	//-SERÁ UNA PELEA A MUERTE CON CUCHILLOS
+						//system.setQuality("cuchillo", character.qualities.cuchillo-1);	//-¿DUELO A MUERTE CON CUCHILLOS?
+						system.setQuality("vida", character.qualities.vida-3);				//-NO SÉ QUÉ ES ESO... CREO QUE VAN A PELEAR CON CUCHILLOS
+						
+					}else{
+						system.write($("#mueres_monje").html());
+					}
+                }
+            },
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+1);
             }
