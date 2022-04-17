@@ -421,7 +421,7 @@ undum.game.situations = {
         <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.</p>\
-        <p class = 'dialogo'>― Bienvenido joven viajero, ¿A que se debe su visita?</p>\
+        <p class = 'dialogo'>― Bienvenido joven viajero, ¿A qué se debe su visita?</p>\
         <ul class='options'>\
         <li><a href = 'explicar'>Explicar tu situación</a></li>\
         <li><a href ='noexplicar'>Desconfiar del monje y no explicar tu situación</a></li>\
@@ -457,11 +457,25 @@ undum.game.situations = {
 										system.setQuality("tirada", dado);
 										system.write("<p>Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces\
                                             en el camino, el monje te está engañando, ¡quizás sea un impostor!\
-                                            No te queda otra que <a href = 'combatemonje'> atacarle </a> </p>");
+                                            No te queda otra que <a href = './combate_monje'> atacarle </a> </p>");
 									}else{
 										system.setQuality("stamina", dado);
 										system.write("<p><a href='nosabiduria'>Continuar</a></p>");
 									}
+                },
+                'combate_monje':function(character,system,action){
+                    system.write($("#pelea_monje").html());
+                system.setQuality("progreso", character.qualities.progreso+1);
+                var dado = jsRandom.get(1,10);
+					if(dado + character.qualities.cuchillo > 3){
+						system.write($("#vives_monje").html());
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");
+						system.setQuality("cuchillo", character.qualities.cuchillo-1);
+						system.setQuality("vida", character.qualities.vida-3);
+						
+					}else{
+						system.write($("#mueres_monje").html());
+					}
                 }
             },enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+1);
@@ -478,10 +492,12 @@ undum.game.situations = {
        <p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.\
        Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta\
        que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p><p><b>FIN DEL JUEGO</b></p>",
-       {enter:function(character, system, action) {
-        system.setQuality("progreso", character.qualities.progreso+1);
+       {
+           enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+1);
 
-        }}
+            }  
+        }
 
     ),
         //Situación en la que no le explicas al monje y decides pasar
@@ -490,11 +506,31 @@ undum.game.situations = {
         <img src='media/games/tutorial/woodcut1.png' class='float_right'>\
         <p>Decides entrar en el templo sin el consentimiento del monje, \
         no te fías ni un pelo de él. Este se ve reacio a dejarte entrar y cuando vas a pasar a su lado te da un violento empujón. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
-        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
+        la marca de la flor Lis. La misma que llevaba Felipo. Te enzarzas en un duro <a href='./combate_monje'>combate</a> con él.</p>",
+        
+        {
+            actions:{
+                'combate_monje':function(character,system,action){
+                    system.write($("#pelea_monje").html());
+                system.setQuality("progreso", character.qualities.progreso+1);
+                var dado = jsRandom.get(1,10);
+					if(dado + character.qualities.cuchillo > 3){
+						system.write($("#vives_monje").html());
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");
+						system.setQuality("cuchillo", character.qualities.cuchillo-1);
+						system.setQuality("vida", character.qualities.vida-3);
+						
+					}else{
+						system.write($("#mueres_monje").html());
+					}
+                },
+
         enter:function(character, system, action) {
             system.setQuality("progreso", character.qualities.progreso+1);
 
-            }}
+                    }       
+                }
+        }
     ),
 
     //Combate con el monje(falta escribirlo)
