@@ -61,7 +61,7 @@ undum.game.situations = {
 		<p class='transient'><a href='ciudad'>Siguiente Página</a></p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);   
+                system.setQuality("progreso", character.qualities.progreso+3);   
             }
         }
 	),
@@ -83,7 +83,7 @@ undum.game.situations = {
 		<p class='transient'><a href='posada'>Siguiente Página</a></p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);   
+                system.setQuality("progreso", character.qualities.progreso+3);   
             }
         }
 	),
@@ -159,7 +159,7 @@ undum.game.situations = {
 							<p class='transient'><a href='calle'>Siguiente Página</a></p>"
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
 		    }
     }
 
@@ -194,7 +194,7 @@ undum.game.situations = {
 		<p class='transient'><a href='castillo' class='once'>Siguiente página</a>.</p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
 	),
@@ -259,7 +259,7 @@ undum.game.situations = {
 		<p class='transient'><a href='cocina' class='once'>Siguiente página</a>.</p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
 	),
@@ -298,7 +298,7 @@ undum.game.situations = {
 				}
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso + 1);
+                system.setQuality("progreso", character.qualities.progreso + 3);
             }
 		}
 	),
@@ -318,7 +318,7 @@ undum.game.situations = {
 		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso + 1);
+                system.setQuality("progreso", character.qualities.progreso + 3);
             }
         }
 	),
@@ -364,7 +364,7 @@ undum.game.situations = {
 				}				
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
 		}
 	),
@@ -396,7 +396,7 @@ undum.game.situations = {
 				}
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso + 1);
+                system.setQuality("progreso", character.qualities.progreso + 3);
             }
 		}
 	),
@@ -405,7 +405,7 @@ undum.game.situations = {
 	"",
 		{
 			enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
 				system.write($("#pelea_asesino").html());
 					if(character.qualities.cuchillo > 0){
 						system.write($("#vives").html());
@@ -427,7 +427,7 @@ undum.game.situations = {
     ),
 	
    templo: new undum.SimpleSituation(
-        "<h1>CAITULO 4</h1>\
+        "<h1>CAPITULO 4</h1>\
         <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.</p>\
@@ -440,7 +440,7 @@ undum.game.situations = {
          <br>",
          {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
          }
     ),
@@ -477,7 +477,7 @@ undum.game.situations = {
                 },
                 'combate_monje':function(character,system,action){
                     system.write($("#pelea_monje").html());
-                system.setQuality("progreso", character.qualities.progreso+1);
+                //system.setQuality("progreso", character.qualities.progreso+3);
                 
 				var dado = jsRandom.get(1,10);
 					if((dado + character.qualities.fuerza) > 5){
@@ -492,7 +492,7 @@ undum.game.situations = {
                 }
             },
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -520,7 +520,7 @@ undum.game.situations = {
             actions:{
                 'combate_monje':function(character,system,action){
                     system.write($("#pelea_monje").html());
-                system.setQuality("progreso", character.qualities.progreso+1);
+               // system.setQuality("progreso", character.qualities.progreso+3);
                 
 				var dado = jsRandom.get(1,10);
 					if((dado + character.qualities.fuerza) > 5){
@@ -535,7 +535,7 @@ undum.game.situations = {
                 }
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -553,7 +553,7 @@ undum.game.situations = {
                 donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p><br>",
                 'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p><br>" 
             },enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -584,7 +584,7 @@ undum.game.situations = {
                             <p class='transient'><a href='rumbo_caverna'>Rumbo a la caverna</a>.</p>'"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -619,7 +619,7 @@ undum.game.situations = {
                                     <a href='gran_caverna'>la caída</a>.</p>"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -651,7 +651,7 @@ undum.game.situations = {
         </ul>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
         
@@ -665,7 +665,7 @@ undum.game.situations = {
         </ul>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -694,7 +694,7 @@ undum.game.situations = {
                     <a href='bajada_foso' class='once'>intentar bajar por el foso</p>")
                 },
                 enter:function(character, system, action) {
-                    system.setQuality("progreso", character.qualities.progreso+1);
+                    system.setQuality("progreso", character.qualities.progreso+3);
                 }
             }
         }
@@ -712,7 +712,7 @@ undum.game.situations = {
         {
             enter: function (character, system, from) {
                 system.setQuality("cuerda", 0);
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -730,7 +730,7 @@ undum.game.situations = {
         <p><a href='./vapor_foso' class='once'>Continuar descenso</a>.</p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             },
             actions: {
                 "vapor_foso": function (character, system, action) {
@@ -765,6 +765,7 @@ undum.game.situations = {
         {
             actions: {
                 "montana_huesos": function (character, system, from) {
+                   
                     if (character.qualities.monedas_oro == 0) {
                         system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
                                        no son pocos los exploradores y aventureros que han acabado su travesía aquí\
@@ -776,6 +777,7 @@ undum.game.situations = {
                                        de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
                                        otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
                                        que se trata de una poción sanadora.</p><br>")
+                        system.setQuality("progreso", character.qualities.progreso+3);
                         system.setQuality("monedas_oro", 200);
                         system.setQuality("monedas_pl", 300);
                         system.setQuality("espada_corta", 1);
@@ -787,7 +789,7 @@ undum.game.situations = {
                 }
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+               // system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -796,7 +798,7 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
                 system.write("<h2>La sala de los huesos</h2>\
                             <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
                             inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
@@ -820,7 +822,7 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
                 system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
                                        no son pocos los exploradores y aventureros que han acabado su travesía aquí\
                                        agrandando la montaña.</p>\
@@ -856,7 +858,7 @@ undum.game.situations = {
         <a href='vuelta_gc' class='once'>volver a la zona anterior</a> para probar suerte por el otro camino.</p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+               // system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -887,7 +889,7 @@ undum.game.situations = {
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                //system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -917,7 +919,7 @@ undum.game.situations = {
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -930,7 +932,7 @@ undum.game.situations = {
         <p><a href='./continua_techo' class='once'>Siguiente página</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso + 1);
+                system.setQuality("progreso", character.qualities.progreso + 3);
             },
             actions: {
                 "continua_techo": function (character, system, action) {
@@ -1001,7 +1003,7 @@ undum.game.situations = {
         <p>Finalmente, acabas llegando a una <a href='sala_lago' class='once'>nueva sala</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1021,7 +1023,7 @@ undum.game.situations = {
         </ul>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1035,7 +1037,7 @@ undum.game.situations = {
         <a href='sumergirte' class='once'>sumergirte en el agua</a> un poco para explorar más a fondo.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1044,7 +1046,7 @@ undum.game.situations = {
         "",
         {
             enter: function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso + 1);
+                system.setQuality("progreso", character.qualities.progreso + 3);
                 if (character.qualities.monedas_oro != 0) {
                     system.write("<p>Empiezas a examinar pegado a las paredes y finalmente en una de ellas parece\
                                 haber un hueco de unos dos metros, podrías\
@@ -1096,7 +1098,7 @@ undum.game.situations = {
         <a href='manticora' class='once'>enfrentarte a ella</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1118,7 +1120,7 @@ undum.game.situations = {
                 },
             },
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1170,7 +1172,7 @@ undum.game.situations = {
         </ul>",
         {
             enter: function(character, system, from){
-                system.setQuality("progreso", character.qualities.progreso + 1);
+                system.setQuality("progreso", character.qualities.progreso + 3);
             },
         }
     ),
@@ -1224,7 +1226,7 @@ undum.game.situations = {
         nuevo.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1242,7 +1244,7 @@ undum.game.situations = {
         <br>\
 		<p class='transient'><a href='vueltacastillo'>Siguiente Página</a></p>",
         {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
+            system.setQuality("progreso", character.qualities.progreso+3);
 
             }}
     ),
@@ -1256,7 +1258,7 @@ undum.game.situations = {
          <br>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1267,7 +1269,7 @@ undum.game.situations = {
         El Duque Agnar te da las gracias por tu labor y te entrega tu merecida recompensa.<p><b>FIN</b></p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
