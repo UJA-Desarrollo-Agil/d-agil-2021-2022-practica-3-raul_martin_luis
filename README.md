@@ -14,7 +14,7 @@
   * 1.4 [Lista de situaciones](#situaciones)
 * 2 [Trello](#trello)
   * 2.1 [Historias de usuario](#historias)
-* 3 [FLujo HIstoria](#flujo)
+* 3 [Flujo Historia](#flujo)
 
 ## 1 Descripción <a name="descripcion"></a>
 
@@ -94,5 +94,12 @@ Por último, se muestran las historias de usuario que inicialmente hemos añadid
 ## 3 Flujo de la historia <a name="flujo"></a>
 ### 3.1 Introducción e inicio historia (Luis)
 ![Flujo_Historia](https://user-images.githubusercontent.com/99320995/163836123-e2ef9109-1a8d-4fbb-8fe5-00383e984fab.jpeg)
+### 3.2 Continuación historia. Templo (Raúl)
+![Copia de Flujo_Historia](https://user-images.githubusercontent.com/67553838/163837059-61336455-0afb-4341-9002-522cd1669907.jpeg)
+### 3.3 Continuación historia. Caverna(Martín)
+### 3.4 Continuación historia y fin (Raúl)
+![FinalHistoria](https://user-images.githubusercontent.com/67553838/163837614-8da38dce-7318-4ce3-b17b-2c3b5b564c57.jpeg)
+
+
 
 [Subir](#inicio)
