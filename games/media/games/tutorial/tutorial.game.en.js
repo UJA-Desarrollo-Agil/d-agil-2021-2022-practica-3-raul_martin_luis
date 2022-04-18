@@ -1178,36 +1178,46 @@ undum.game.situations = {
     ),
 
     espadacorta: new undum.SimpleSituation(
-        "",
+        "<p>Tomas la espada corta que encontraste en la montaña de huesos y corres\
+         para lanzarle al monstruo un tajo certero.</p>\
+        <br>\
+        <p><a href='continuar_espada' class='once'>Continuar combate</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.write("<p>Tomas la espada corta que encontraste en la montaña de huesos y corres\
-                                    para lanzarle al monstruo un tajo certero.</p>");
                 system.setQuality("espada_corta", 0);
-                var dado = jsRandom.get(1, 6);
-                system.setQuality("tirada", dado);
-                if (dado >= 3) {
-                    system.write($("#vences_manticora").html());
-                } else {
-                    system.write($("#mueres_manticora").html());
+            },
+            actions: {
+                "continuar_espada": function (character, system, action) {
+                    var dado = jsRandom.get(1, 6);
+                    system.setQuality("tirada", dado);
+                    if (dado >= 3) {
+                        system.write($("#vences_manticora").html());
+                    } else {
+                        system.write($("#mueres_manticora").html());
+                    }
                 }
             }
         }
     ),
 
     daga_arrojadiza: new undum.SimpleSituation(
-        "",
+        "<p>Coges la daga arrojadiza que encontraste entre los huesos, un ataque a\
+         distancia puede ser una buena idea, pero tiene que acertar en el objetivo.</p>\
+        <br>\
+        <p><a href='continuar_daga' class='once'>Continuar combate</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.write("<p>Coges la daga arrojadiza que encontraste entre los huesos, un ataque a\
-                                    distancia puede ser una buena idea, pero tiene que acertar en el objetivo.</p>");
                 system.setQuality("daga_arr", 0);
-                var dado = jsRandom.get(1, 6);
-                system.setQuality("tirada", dado);
-                if (dado >= 4) {
-                    system.write($("#vences_manticora").html());
-                } else {
-                    system.write($("#mueres_manticora").html());
+            },
+            actions: {
+                "continuar_daga": function (character, system, action) {
+                    var dado = jsRandom.get(1, 6);
+                    system.setQuality("tirada", dado);
+                    if (dado >= 4) {
+                        system.write($("#vences_manticora").html());
+                    } else {
+                        system.write($("#mueres_manticora").html());
+                    }
                 }
             }
         }
