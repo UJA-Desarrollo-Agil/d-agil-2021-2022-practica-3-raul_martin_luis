@@ -99,9 +99,9 @@ Por último, se muestran las historias de usuario que inicialmente hemos añadid
 ### 3.2 Continuación historia. Templo (Raúl)
 ![Copia de Flujo_Historia](https://user-images.githubusercontent.com/67553838/163837059-61336455-0afb-4341-9002-522cd1669907.jpeg)
 ### 3.3 Continuación historia. Caverna(Martín)
+![Diagrama de flujo 3](https://user-images.githubusercontent.com/99320929/163862741-a8730e65-13cc-4d66-ae89-1dca89796179.png)
 ### 3.4 Continuación historia y fin (Raúl)
 ![FinalHistoria](https://user-images.githubusercontent.com/67553838/163837614-8da38dce-7318-4ce3-b17b-2c3b5b564c57.jpeg)
-
 ## 4 Sprint Review <a name="review"></a>
 Hemos completado todas las historias de usuario que propusimos para este sprint. A continuación se muestra una tabla con observaciones sobre algunas de ellas.
 
