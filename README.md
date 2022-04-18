@@ -15,6 +15,8 @@
 * 2 [Trello](#trello)
   * 2.1 [Historias de usuario](#historias)
 * 3 [Flujo Historia](#flujo)
+* 4 [Sprint Review](#review)
+* 5 [Sprint Retrospective](#retrospective)
 
 ## 1 Descripción <a name="descripcion"></a>
 
@@ -100,6 +102,19 @@ Por último, se muestran las historias de usuario que inicialmente hemos añadid
 ### 3.4 Continuación historia y fin (Raúl)
 ![FinalHistoria](https://user-images.githubusercontent.com/67553838/163837614-8da38dce-7318-4ce3-b17b-2c3b5b564c57.jpeg)
 
+## 4 Sprint Review <a name="review"></a>
+Hemos completado todas las historias de usuario que propusimos para este sprint. A continuación se muestra una tabla con observaciones sobre algunas de ellas.
+
+![sprint_review](https://user-images.githubusercontent.com/67553838/163848492-b23e00ff-c62f-45fe-a465-85bcb2363196.png)
+
+## 5 Sprint Retrospective <a name="retrospective"></a>
+Las conclusiones a las que hemos llegado en la Sprint Retrospective son las siguientes: 
+
+En esta reunión hemos concluido que la dificultad de escribir una historia por partes entre varias personas y de manera no simultánea, es mucho mayor que hacerlo como proyecto individual. Se complica el hacer que la historia sea coherente cuando no sabes que está escribiendo la otra persona, ni la forma de redactarlo. Y también tener en cuenta la situación del personaje a la hora de retomar la historia de otro compañero. Al final, al juntar las historias, hemos dedicado tiempo para revisar la historia completa y rectificar ciertas partes para que esta sea coherente. Para solucionar este problema creemos que es conveniente abordar la creación de la historia en reuniones conjuntas y luego pasarla a Undum de manera individual.
+
+También hemos coincidido en que la herramienta Telegram, vinculada con Trello y GitHub, es muy útil y facilita mucho la comunicación ya que en todo momento conocíamos el estado del proyecto.
+
+La herramienta Trello también nos ha resultado de mucha utilidad ya que, al tratarse de un proyecto algo más grande de lo habitual, poder dividirlo en distintas tareas y saber en qué estado estaba cada una, nos permitía saber qué era lo próximo que necesitábamos hacer para completar el sprint.
 
 
 [Subir](#inicio)
