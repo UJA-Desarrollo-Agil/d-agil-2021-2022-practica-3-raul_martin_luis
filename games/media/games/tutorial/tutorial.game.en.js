@@ -913,30 +913,33 @@ undum.game.situations = {
     ),
 
     techo: new undum.SimpleSituation(
-        "",
+        "<p>Echas un vistazo rápido a la sala y encuentras unos ganchos en el techo, así que\
+        decides intentar agarrarte a ellos, con la esperanza de que el agua no termine\
+        llenando la sala.</p>\
+        <br>\
+        <p><a href='./continua_techo' class='once'>Siguiente página</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-                system.write("<p>Echas un vistazo rápido a la sala y encuentras unos ganchos en el techo, así que\
-                                 decides intentar agarrarte a ellos, con la esperanza de que el agua no termine\
-                                 llenando la sala.</p>\
-                              <br>")
-                var dado = jsRandom.get(1, 10);
-                system.setQuality("tirada", dado);
-                if ((dado + character.qualities.agilidad) > 6) {
-                    system.write("<p>Logras engancharte a ellos gracias a tu agilidad.</p>\
+                system.setQuality("progreso", character.qualities.progreso + 1);
+            },
+            actions: {
+                "continua_techo": function (character, system, action) {
+                    var dado = jsRandom.get(1, 10);
+                    system.setQuality("tirada", dado);
+                    if ((dado + character.qualities.agilidad) > 8) {
+                        system.write("<p>Logras engancharte a ellos gracias a tu agilidad.</p>\
                                   <br>\
                                   <p>Tras unos instantes empieza a bajar el nivel del agua, has tenido suerte, aunque\
                                     cuando empezaste a notar el agua llegarte al pecho pensaste que sería tu fin.</p>\
                                   <br>\
                                   <p>Finalmente bajas de nuevo al suelo, decidido a\
                                   <a href='sala_lago' class='once'>continuar</a>.</p>")
-                } else {
-                    system.write("<p>Agarras los ganchos con firmeza y, cuando dejas caer tu peso, ambos se desencajan\
+                    } else {
+                        system.write("<p>Agarras los ganchos con firmeza y, cuando dejas caer tu peso, ambos se desencajan\
                                     la pared.</p>\
                                    <br>")
-                    if (character.qualities.pocion_azul == 1) {
-                        system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
+                        if (character.qualities.pocion_azul == 1) {
+                            system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
                                         tarde como para correr, y tus intentos de nadar a contra corriente no están dando\
                                         resultado. En pleno momento de desesperación, una idea golpea tu mente: La poción\
                                         azul. No conoces sus efectos, pero a estas alturas acabarás muerto por\
@@ -956,9 +959,9 @@ undum.game.situations = {
                                         a las grietas de las paredes, que permiten que el agua escape por ellas.</p>\
                                       <p>―Un golpe de suerte― piensas, mientras te diriges a la \
                                         <a href='sala_lago' class='once'>siguiente sala</a>.</p>")
-                        system.setQuality("pocion_azul", 0);
-                    } else {
-                        system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
+                            system.setQuality("pocion_azul", 0);
+                        } else {
+                            system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
                                         tarde como para correr, y tus intentos de nadar a contra corriente no están dando\
                                         resultado.</p>\
                                       <br>\
@@ -966,12 +969,13 @@ undum.game.situations = {
                                         empujándote contra los afilados bordes de las paredes del túnel y provocándote cortes\
                                         por todo el cuerpo.</p>\
                                       <br>")
-                        var dado2 = jsRandom.get(1, 10);
-                        system.setQuality("tirada", dado2);
-                        if (dado2 >= character.qualities.vida) {
-                            system.write($("#muerte_riada").html());
-                        } else {
-                            system.write($("#sobrevives_riada").html());
+                            var dado2 = jsRandom.get(1, 10);
+                            system.setQuality("tirada", dado2);
+                            if (dado2 >= character.qualities.vida) {
+                                system.write($("#muerte_riada").html());
+                            } else {
+                                system.write($("#sobrevives_riada").html());
+                            }
                         }
                     }
                 }
