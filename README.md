@@ -14,6 +14,7 @@
   * 1.4 [Lista de situaciones](#situaciones)
 * 2 [Trello](#trello)
   * 2.1 [Historias de usuario](#historias)
+* 3 [FLujo HIstoria](#flujo)
 
 ## 1 Descripción <a name="descripcion"></a>
 
@@ -90,5 +91,8 @@ Por último, se muestran las historias de usuario que inicialmente hemos añadid
 
 ![trello12 (2)](https://user-images.githubusercontent.com/99320995/159536715-bb5096ff-cd34-4b69-a545-798bb0d0d896.jpg)
 
+## 3 Flujo de la historia <a name="flujo"></a>
+### 3.1 Introducción e inicio historia (Luis)
+![Flujo_Historia](https://user-images.githubusercontent.com/99320995/163836123-e2ef9109-1a8d-4fbb-8fe5-00383e984fab.jpeg)
 
 [Subir](#inicio)
