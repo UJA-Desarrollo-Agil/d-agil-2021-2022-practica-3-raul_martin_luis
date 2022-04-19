@@ -84,9 +84,9 @@
 
             <!-- Game Title: edit this -->
             <h1>Beta Vulgaris</h1>
-            <h3>Luis René Domínguez Fuentes</h3>
-			<h3>Raúl Fernández Cobo</h3>
-			<h3>Martín Ángel Martín Caño</h3>
+            <h2>Luis René Domínguez Fuentes</h2>
+			<h2>Raúl Fernández Cobo</h2>
+			<h2>Martín Ángel Martín Caño</h2>
             <!-- End of Game Title -->
 
             <noscript><p class="noscript_message">This game requires 
