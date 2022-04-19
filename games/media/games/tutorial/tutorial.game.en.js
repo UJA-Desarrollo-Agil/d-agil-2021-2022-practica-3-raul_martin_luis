@@ -664,9 +664,6 @@ undum.game.situations = {
             <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
         </ul>",
         {
-            enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+3);
-            }
         }
     ),
 
@@ -787,9 +784,6 @@ undum.game.situations = {
                         system.setQuality("comida_mal", 1);
                     }
                 }
-            },
-            enter:function(character, system, action) {
-               // system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -798,7 +792,6 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
-                system.setQuality("progreso", character.qualities.progreso+3);
                 system.write("<h2>La sala de los huesos</h2>\
                             <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
                             inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
@@ -887,9 +880,6 @@ undum.game.situations = {
                                 <p>Puedes <a href='sala_lago' class='once'>correr</a> hacia atrás y volver\
                                 a la sala del lago, intentar <a href='techo' class='once'>subirte al techo</a>\
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
-            },
-            enter:function(character, system, action) {
-                //system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -1046,8 +1036,8 @@ undum.game.situations = {
         "",
         {
             enter: function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso + 3);
                 if (character.qualities.monedas_oro != 0) {
+                    system.setQuality("progreso", character.qualities.progreso + 3);
                     system.write("<p>Empiezas a examinar pegado a las paredes y finalmente en una de ellas parece\
                                 haber un hueco de unos dos metros, podrías\
                                 <a href='./entrar_hueco' class='once'>intentar entrar</a> o\
@@ -1057,6 +1047,7 @@ undum.game.situations = {
                                 haber un hueco de unos dos metros, podrías intentar entrar, aunque quizás sería\
                                 buena idea <a href='sala_lago' class='once'>volver atrás</a> por si hubiera algo que pudiera\
                                 ser de utilidad.</p>");
+                    system.setQuality("progreso", character.qualities.progreso - 3);
                 }
             },
             actions: {
