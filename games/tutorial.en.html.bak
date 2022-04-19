@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <!-- Game Title: edit this -->
-    <title>Undum</title>
+    <title>Beta Vulgaris</title>
     <!-- End of Game Title -->
 
     <!-- Remove this if you don't use the Tangerine font in your
@@ -56,10 +56,9 @@
           <!-- Game Background: edit this -->
           <h1>Undum</h1>
           <p>
-            Undum is a pure client-side game framework for narrative
-            interactive fiction. It is designed for HTML&#x200A;5 and
-            CSS&#x200A;3. You can read more and download the source
-            code <a href="http://github.com/idmillington/undum">here</a>.
+            El príncipe de Dragonborn ha caido enfermo. Su padre, el rey Artorias, ofrece una recompensa
+			a aquel que le traiga una cura. Muchos lo han intentado y perecido en el camino. Como valiente aventurero
+			que eres, aceptas el reto y te embarcas en la peligrosa empresa afrontando los peligros del camino.
           </p>
           <!-- End of Game Background -->
 
@@ -84,9 +83,10 @@
           <div class="label">
 
             <!-- Game Title: edit this -->
-            <h1>The Undum Tutorial <span class='fancy'>&amp;</span><br>
-              Interactive Example</h1>
-            <h2>by I D Millington</h2>
+            <h1>Beta Vulgaris</h1>
+            <h2>Luis René Domínguez Fuentes</h2>
+			<h2>Raúl Fernández Cobo</h2>
+			<h2>Martín Ángel Martín Caño</h2>
             <!-- End of Game Title -->
 
             <noscript><p class="noscript_message">This game requires 
@@ -383,6 +383,13 @@
           <br>
           <p class="transient">Por fin podrás salir de la cueva, no sin antes recoger <a href="recoge_remolacha">aquello que venías buscando</a>.</p>
       </div>
+      <div id="mueres_manticora" class="situation">
+          <p>Te lanzas decidido a por la mantícora, sin embargo, para vencer a un monstruo de semejantes dimensiones no solo hace falta decisión.</p>
+          <br>
+          <p>Mientras tú te acercabas a ella, la mantícora dio un rápido giro, golpeándote con su cola venenosa. Aquí acaba tu aventura.</p>
+          <br>
+          <p><b>FIN DEL JUEGO.</b></p>
+      </div>
 	  
 	  <div id="acusar_monje" class="situation">
 		<p>Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces
@@ -392,7 +399,7 @@
 		<br>
 		<p>―Vaya, vaya― el monje empieza a sacar una daga larga de una manga ―Así que tenemos a un graciosillo experto en botánica.</p>
 		<br>
-		<p>¿A quién llamas "graciosillo"? Eh, tontito― te preparas para el inminente <a href='combatemonje'>combate</a>.</p>
+		<p>¿A quién llamas "graciosillo"? Eh, tontito― te preparas para el inminente <a href='./combate_monje'>combate</a>.</p>
 		<br>
 	  </div>
 	  
@@ -404,12 +411,12 @@
 	  </div>
 	  
 		<div id="pelea_monje" class="situation">
-			<p>El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. El musculoso y maloliente asesino desenvaina (OTRA VEZ) su larga daga y espera tu ataque.</p>
+			<p>El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. El musculoso y maloliente asesino sostiene su reluciente daga y espera tu ataque.</p>
 			<br>
 		</div>
       
 		<div id="vives_monje" class="situation">
-			<p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el
+			<p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este suelte su arma. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el
 			cuchillo e intenta atacarte rápidamente. Recibes un corte en el brazo, pero cuando menos se lo espera atraviesas su vientre con su propia daga.</p>
 			<br>
 		</div>
