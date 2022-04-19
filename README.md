@@ -14,6 +14,7 @@
   * 1.4 [Lista de situaciones](#situaciones)
 * 2 [Trello](#trello)
   * 2.1 [Historias de usuario](#historias)
+  * 2.2 [Historias primer sprint](#sprint1)
 * 3 [Flujo Historia](#flujo)
 * 4 [Sprint Review](#review)
 * 5 [Sprint Retrospective](#retrospective)
@@ -92,6 +93,16 @@ Por último, se muestran las historias de usuario que inicialmente hemos añadid
 ![trello11 (1)](https://user-images.githubusercontent.com/99320995/159536692-4ab95b36-0e53-4e89-8681-9183e5b28f50.jpg)
 
 ![trello12 (2)](https://user-images.githubusercontent.com/99320995/159536715-bb5096ff-cd34-4b69-a545-798bb0d0d896.jpg)
+
+### 2.2 Historias primer sprint <a name="sprint1"></a>
+Para el primer sprint hemos seleccionado las historias: 1, 2, 3, 4, 8, 11 y 13. Porque son consideradas como innegociables, de ahí que tengan 20 de valor. Queríamos asegurarnos de que estuvieran hechas y en caso de que hubiera algún tipo de dificultad que imposibilitase su realización en el primer stprint, poder tener el segundo sprint para terminarlas. Por suerte no ha sido así y hemos hecho todas ellas.
+
+Las historias que reescribimos en el Refinement fueron las dos primeras. Las modificamos para que tuvueran la lista de partes que debía hacer cada miembro.
+
+![h1](https://user-images.githubusercontent.com/99320995/164040289-c0cf6dc0-06f6-41fa-bcc0-9abfd7c24dcd.png)
+
+![h2](https://user-images.githubusercontent.com/99320995/164040310-5e8cc135-0e82-4097-82b4-cbe4993517db.png)
+
 
 ## 3 Flujo de la historia <a name="flujo"></a>
 ### 3.1 Introducción e inicio historia (Luis)
