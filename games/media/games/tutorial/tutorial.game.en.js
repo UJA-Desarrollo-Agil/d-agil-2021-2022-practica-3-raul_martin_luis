@@ -30,7 +30,7 @@ var nombre;
 nombre = prompt(
     "Antes de comenzar, por favor, ingrese un nombre para su personaje "
   );
-  if(nombre == null){
+  if(nombre == ''){
       nombre = "Caballero";
   }
 
