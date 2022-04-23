@@ -26,7 +26,13 @@ undum.game.fadeSpeed = 1500
 /* A variable that changes the slide up speed after clicking on an
  * option. */
 undum.game.slideUpSpeed = 500
-
+var nombre;
+nombre = prompt(
+    "Antes de comenzar, por favor, ingrese un nombre para su personaje "
+  );
+  if(nombre == null){
+      nombre = "Caballero";
+  }
 
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
@@ -178,7 +184,7 @@ undum.game.situations = {
 		escudos reales. Pero si llega a ser por su físico, no dirías que son soldados, ya que no son altos ni especialmente jóvenes, y a\
 		juzgar por sus redondeadas barrigas, y fuerte olor, apostarías que son amantes del aguardiente.</p>\
 		<br>\
-		<p>―Soy [insertar nombre]― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
+		<p>―Soy "+ nombre + " ― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
 		gustaría prestar mis servicios.</p>\
 		<br>\
 		<p>―Bien, seguidnos</p>\
@@ -223,7 +229,7 @@ undum.game.situations = {
 		<br>\
 		<p>―Su majestad este…― dice tímidamente uno de los soldados.</p>\
 		<br>\
-		<p>―Me llamo [insertar nombre], alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
+		<p>―Me llamo " + nombre + " , alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
 		A mis oídos ha llegado que buscáis la cura para la enfermedad que atormenta a vuestro hijo. Y humildemente os presto mis servicios.</p>\
 		<br>\
 		<p>―Bien, bien…― asiente con la boca llena.</p>\
@@ -1357,7 +1363,10 @@ undum.game.qualities = {
     progreso: new undum.NumericQuality(
         "%", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
 
-    )
+    ),
+    name: new undum.OnOffQuality(
+        "Nombre: "+"<b>" + nombre + "</b>",{priority:"0000", group:'stats'}
+    ),
 	
 };
 
@@ -1395,5 +1404,6 @@ undum.game.init = function(character, system) {
     character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
+    system.setQuality("name",true);
 
 };
