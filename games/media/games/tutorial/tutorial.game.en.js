@@ -1257,7 +1257,7 @@ undum.game.situations = {
     ),
     vueltacastillo: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>Regresas al castillo por fin para entregarle la hierba al Duque y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
+        <p>Regresas al castillo por fin para entregarle la hierba al rey Astorias y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
         <ul class='options'>\
         <li><a href= 'noperdonar'>Decides mostrar el anillo para acusar a Felipo de intentar matarte</a></li>\
         <li><a href='perdonar'>Decides perdonarlo y guardar el anillo para venderlo por una gran cantidad de dinero</a></li>\
@@ -1282,7 +1282,7 @@ undum.game.situations = {
     ),
     perdonar: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>El Duque Agnar te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
+        <p>El rey Astorias te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
         que aún desconfía de ti, ordena que te maten nada mas salir del castillo. Allí, sus guardias te pillan desprevenido\
         y consiguen derrotarte sin mucho esfuerzo.</p> <p><b>FIN DEL JUEGO</b></p>"
     ),
