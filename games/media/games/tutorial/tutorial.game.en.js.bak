@@ -85,13 +85,13 @@ undum.game.situations = {
 	<br>\
 	<p>Te acercas y ves a una chica joven, no muy alta, de cabellos cenicientos que lleva un delantal no muy limpio.</p>\
 	<br>\
-	<p class='transient'><a href='./p_comida' class='once'>Pedir comida</a>.</p>\
+	<ul class='options'>\
+		<li><a href='./p_comida' class='once'>Pedir comida</a>.</li>\
+		<li><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</li>\
+		<li><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</li>\
+		<li><a href='./p_irse' class='once'>Marcharse</a>.</li>\
+	</ul>\
 	<br>\
-	<p class='transient'><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</p>\
-	<br>\
-	<p class='transient'><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</p>\
-	<br>\
-	<p class='transient'><a href='./p_irse' class='once'>Marcharse</a>.</p>\
 	",
 		{
 			actions: {
