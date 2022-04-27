@@ -207,6 +207,12 @@ img.float_left {
     margin: 0 auto;
     display: none; /* Shown by Javascript */
 }
+.dialogo {
+	font-style: italic;
+	padding-left: 2em;
+	padding-top: 1.2em;
+	padding-bottom: 1.2em;
+}
 .tools {
     padding: 0.6em;
     width: 8.9em;

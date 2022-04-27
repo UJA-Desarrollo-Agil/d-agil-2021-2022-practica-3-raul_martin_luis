@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <!-- Game Title: edit this -->
-    <title>Undum</title>
+    <title>Beta Vulgaris</title>
     <!-- End of Game Title -->
 
     <!-- Remove this if you don't use the Tangerine font in your
@@ -56,10 +56,9 @@
           <!-- Game Background: edit this -->
           <h1>Undum</h1>
           <p>
-            Undum is a pure client-side game framework for narrative
-            interactive fiction. It is designed for HTML&#x200A;5 and
-            CSS&#x200A;3. You can read more and download the source
-            code <a href="http://github.com/idmillington/undum">here</a>.
+            El príncipe de Dragonborn ha caido enfermo. Su padre, el rey Artorias, ofrece una recompensa
+			a aquel que le traiga una cura. Muchos lo han intentado y perecido en el camino. Como valiente aventurero
+			que eres, aceptas el reto y te embarcas en la peligrosa empresa afrontando los peligros del camino.
           </p>
           <!-- End of Game Background -->
 
@@ -84,9 +83,10 @@
           <div class="label">
 
             <!-- Game Title: edit this -->
-            <h1>The Undum Tutorial <span class='fancy'>&amp;</span><br>
-              Interactive Example</h1>
-            <h2>by I D Millington</h2>
+            <h1>Beta Vulgaris</h1>
+            <h3>Luis René Domínguez Fuentes</h3>
+			<h3>Raúl Fernández Cobo</h3>
+			<h3>Martín Ángel Martín Caño</h3>
             <!-- End of Game Title -->
 
             <noscript><p class="noscript_message">This game requires 
@@ -165,7 +165,6 @@
           Let's <a href='todo'>move on again</a>.
         </p>
       </div>
-
       <div id="s_saving">
         <h1>Saving and Loading</h1>
         <p>The only piece of the UI we haven't talked about is the
@@ -338,14 +337,94 @@
 			de lis</b> roto: “Dentro de dos días aparecerá un joven por el camino que tú ya sabes. Liquídalo, traeme una prueba de que 
 			está muerto y te recompensaré.” No está firmada.</p>
 		<br>
-		<p class='transient'><a href='' class='once'>Siguiente página</a>.</p>
+		<p class='transient'><a href='templo' class='once'>Siguiente página</a>.</p>
       </div>
 	  
 	  <div id="no_cartita" class="situation">
 		<p>No ves nada extraño.</p>
 		<br>
-		<p class='transient'><a href='' class='once'>Siguiente página</a>.</p>
+		<p class='transient'><a href='templo' class='once'>Siguiente página</a>.</p>
       </div>
+      <div id="sobrevives_caida" class="situation">
+          <p>Has sobrevivido a la caída, por suerte, sin embargo el vapor te ha producido quemaduras por los brazos y el pecho y,
+          aunque sigues vivo, esa caída ha dolido bastante.</p>
+          <br>
+          <p>Cuando al fin te recuperas del shock de la caída te percatas de algo, no has caído en el suelo, sino sobre una 
+          montaña de huesos.</p>
+          <br>
+          <p class='transient'><a href='sala_huesos'>Siguiente página</a>.</p>
+      </div>
+      <div id="muerte_caida" class="situation">
+          <p>Terminas cayendo en una enorme montaña de huesos, no pareces haber sido la única persona que haya caído ahí, por desgracia, el vapor 
+          desprendido del agujero de la pared te ha provocado fuertes quemaduras por los brazos y el pecho y, además, ha hecho que caigas desde una
+          altura demasiado alta. Tu cuerpo no ha sido capaz de soportarlo, has muerto.</p>
+          <br>
+          <p>Ahora tu cuerpo pasará a aumentar esa enorme colección de huesos haciendo que la montaña sea un poco más alta.</p>
+          <br>
+          <p><b>FIN DEL JUEGO</b></p>
+      </div>
+      <div id="muerte_riada" class="situation">
+          <p>Arrastrado por la riada, uno de los golpes que recibes, fruto del empuje del agua hacia las paredes, es justo en la cabeza
+          abriéndote una enorme brecha que provoca que te desangres.</p>
+          <br>
+          <p>Aquí acaba tu aventura.</p>
+          <br>
+          <p><b>FIN DEL JUEGO</b></p>
+      </div>
+      <div id="sobrevives_riada" class="situation">
+          <p>Esos golpes y cortes duelen bastante, pero al menos has sobrevivido. La fuerza del agua hizo que avanzases a toda velocidad
+          por el túnel y llegases al final con vida, aunque te desmayaste por el camino.</p>
+          <br>
+          <p class="transient">Tu aventura continúa, te despiertas dolorido en una <a href='sala_lago'>nueva sala</a>.</p>
+      </div>
+      <div id="vences_manticora" class="situation">
+          <p>Finalmente le asestas un golpe mortal a la letal mantícora, esta lanza un devastador bramido y cae al suelo haciéndolo retumbar.
+             Estás exhausto y cubierto en sangre, pero has salido victorioso.</p>
+          <br>
+          <p class="transient">Por fin podrás salir de la cueva, no sin antes recoger <a href="recoge_remolacha">aquello que venías buscando</a>.</p>
+      </div>
+      <div id="mueres_manticora" class="situation">
+          <p>Te lanzas decidido a por la mantícora, sin embargo, para vencer a un monstruo de semejantes dimensiones no solo hace falta decisión.</p>
+          <br>
+          <p>Mientras tú te acercabas a ella, la mantícora dio un rápido giro, golpeándote con su cola venenosa. Aquí acaba tu aventura.</p>
+          <br>
+          <p><b>FIN DEL JUEGO.</b></p>
+      </div>
+	  
+	  <div id="acusar_monje" class="situation">
+		<p>Al examinar la planta te das cuenta de que es una planta común y la has visto varias veces
+          en el camino. El monje te está engañando.</p>
+		<br>
+		<p>―Así que la famosa Remolacha, por la que tantos se juegan el pellejo, ha resultado ser una vulgar planta.― dices con sarcasmo y desilusión.</p>
+		<br>
+		<p>―Vaya, vaya― el monje empieza a sacar una daga larga de una manga ―Así que tenemos a un graciosillo experto en botánica.</p>
+		<br>
+		<p>¿A quién llamas "graciosillo"? Eh, tontito― te preparas para el inminente <a href='./combate_monje'>combate</a>.</p>
+		<br>
+	  </div>
+	  
+	  <div id="nosabiduria" class="situation">
+		<p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.
+		Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta
+		que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p>
+	   <br><p><b>FIN DEL JUEGO</b></p>
+	  </div>
+	  
+		<div id="pelea_monje" class="situation">
+			<p>El monje se deshace de su vestimenta, resulta ser un asesino contratado por Felipo para evitar que consigas la planta. El musculoso y maloliente asesino sostiene su reluciente daga y espera tu ataque.</p>
+			<br>
+		</div>
+      
+		<div id="vives_monje" class="situation">
+			<p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este suelte su arma. Corres a cogerla y consigues esquivar un puñetazo. Ya tienes su espada, él se arranca el
+			cuchillo e intenta atacarte rápidamente. Recibes un corte en el brazo, pero cuando menos se lo espera atraviesas su vientre con su propia daga.</p>
+			<br>
+		</div>
+          
+		<div id="mueres_monje" class="situation">
+            <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla pero el asesino te derriba de un puñetazo. Acto seguido recoge su espada y la clava en tu pecho.</p>
+            <p><b>FIN DEL JUEGO</b></p>
+        </div>
     </div>
 
     <!-- Load the libraries we depend on -->
