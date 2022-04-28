@@ -401,6 +401,123 @@ undum.game.situations = {
 		}
 	),
 	
+	tu_turno: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				system.write("<p><b>TU TURNO</b></p>");
+				if(character.qualities.vida > 0){
+					system.write($("#op_atq").html());
+				}else{
+					system.write($("#muerte").html());
+				}
+			},
+			actions:{
+				"atacar":function(character, system, action){
+					var dado = jsRandom.get(1,20);
+					
+					if(character.qualities.bonf == 1){
+						dado = dado + jsRandom.get(1,4)
+						character.qualities.bonf = 0;
+					}
+					
+					if(dado == 1){
+						system.write("<p>Has fallado el ataque. Encima te tropiezas y quedas expuesto.<p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño infligido: 0 </p><br>");
+						system.setQuality("vulnerable", 1);
+					}else{
+						dado = dado + character.qualities.fuerza;
+						if (dado > 10){		//ATAQUE EXITO						
+							var atq = jsRandom.get(1,6);
+							if(dado>=20){	//CRÍTICO!! Tira otro dado
+								atq = atq + jsRandom.get(1,6);
+								system.write("<p><b>CRÍTICO</b><p>")
+							}
+							system.write("<p>Has realizazo un ataque con éxito<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: " + atq + "</p><br>");
+							//BAJAR VIDA ADVERSARIO
+						}else{							
+								system.write("<p>Has fallado el ataque.<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: 0 </p><br>");
+							}
+					}
+					//system.setQuality("tirada", dado);
+				}
+			}
+		}
+	),
+	
+	turno_def:new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				system.write("<p><b>TURNO DEL RIVAL</b></p>");
+				if(character.qualities.vida_adv > 0){
+					system.write("<ul class='options'>\
+									<li><a href='bloqueo' class='transient'>Bloquear</a></li>\
+									<li><a href='esquive' class='transient'>Esquivar</a></li>\
+								</ul>");
+				}else{
+					system.write($("#victoria").html());
+				}
+			},
+		}
+	),
+	
+	bloqueo:new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20) - character.qualities.defensa;
+				
+				if(character.qualities.vulnerable==1 || dado>12){
+					var danio = jsRandom.get(1,6);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el bloqueo.<p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño recibido: "+ danio +"</p><br>");
+				}else{
+					system.write("<p>Has bloqueado el ataque<p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+				}
+				system.write("<p><a href='tu_turno' class='transient'>Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	esquive: :new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20) - character.qualities.agilidad;
+				
+				if(character.qualities.vulnerable==1 || dado>8){
+					var danio = jsRandom.get(1,8);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el esquive<p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño recibido: "+ danio +"</p><br>");
+				}else{
+					system.write("<p>Has esquivado el ataque con éxito<p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>\
+									<p>Ganas una bonificación para tu siguiente ataque</p>");
+					
+					system.setQuality("bonf", 1);
+				}
+				system.write("<p><a href='tu_turno' class='transient'>Tu turno</a></p><br>");
+			}
+		}
+	),
+	
 	asesino1: new undum.SimpleSituation(
 	"",
 		{
@@ -1357,7 +1474,15 @@ undum.game.qualities = {
     progreso: new undum.NumericQuality(
         "%", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
 
-    )
+    ),
+	
+	bonf: new undum.OnOffQuality(
+        "Bonificación", { priority:"0001", group:'stats', onDisplay:"&#10003;"}
+    ),
+	
+	vulnerable: new undum.OnOffQuality(
+        "Bonificación", { priority:"0001", group:'stats', onDisplay:"&#10003;"}
+    ),
 	
 };
 
@@ -1395,5 +1520,7 @@ undum.game.init = function(character, system) {
     character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
-
+	
+	character.qualities.bonf = 0; //Bonificación combate
+	character.qualities.vulnerable = 0;
 };

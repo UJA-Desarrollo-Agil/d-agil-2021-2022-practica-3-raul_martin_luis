@@ -84,9 +84,9 @@
 
             <!-- Game Title: edit this -->
             <h1>Beta Vulgaris</h1>
-            <h2>Luis René Domínguez Fuentes</h2>
-			<h2>Raúl Fernández Cobo</h2>
-			<h2>Martín Ángel Martín Caño</h2>
+            <h3>Luis René Domínguez Fuentes</h3>
+			<h3>Raúl Fernández Cobo</h3>
+			<h3>Martín Ángel Martín Caño</h3>
             <!-- End of Game Title -->
 
             <noscript><p class="noscript_message">This game requires 
@@ -425,6 +425,14 @@
             <p>Le arrojas tu cuchillo al brazo que sujeta la espada consiguiendo que este la suelte. Corres a cogerla pero el asesino te derriba de un puñetazo. Acto seguido recoge su espada y la clava en tu pecho.</p>
             <p><b>FIN DEL JUEGO</b></p>
         </div>
+		
+		<div class="op_atq">
+			<p><a href='./atacar' class='once'>Atacar<a></p>
+		</div>
+	  
+		<div class="Muerte">
+			<h3>Fin del juego</h3>
+		</div>
     </div>
 
     <!-- Load the libraries we depend on -->
