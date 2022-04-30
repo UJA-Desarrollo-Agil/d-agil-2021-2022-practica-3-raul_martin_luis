@@ -426,12 +426,21 @@
             <p><b>FIN DEL JUEGO</b></p>
         </div>
 		
-		<div class="op_atq">
-			<p><a href='./atacar' class='once'>Atacar<a></p>
+		<div id="op_atq" class="situation">
+			<p><a href='./atacar' class='once'>Atacar</a></p>
 		</div>
 	  
-		<div class="Muerte">
+		<div id="Muerte" class="situation">
 			<h3>Fin del juego</h3>
+		</div>
+		
+		<div id="op_def" class="situation">
+			<p><a href='./esquivar' class='once'>Esquivar</a></p>
+			<p><a href='./bloquear' class='once'>Bloquear</a></p>
+		</div>
+		
+		<div id="to_def"  class="situation">
+			<p class='transient'><a href='turno_def' >Pasar turno</a></p>
 		</div>
     </div>
 
