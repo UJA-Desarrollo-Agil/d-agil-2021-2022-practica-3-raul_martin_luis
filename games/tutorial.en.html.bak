@@ -282,7 +282,8 @@
 		<br>
 		<p>―Maldita sea― maldice hacia sus adentros.</p>
 		<br>
-		<p class='transient'><a href='asesino1' >Siguiente página</a></p>
+		<!-- <p class='transient'><a href='asesino1' >Siguiente página</a></p> -->
+		<p class='transient'><a href='tu_turno' >Siguiente página</a></p>
       </div>
 	  
 	  <div id="te_engaña" class="situation">
@@ -290,7 +291,8 @@
 		sospechosamente bajo su capa. Te dispones a dar un salto hacia atrás pero es demasiado tarde, la punta de su espada te alcanza
 		el antebrazo. Por suerte tus protectores de cuero evitan un daño mayor, y la herida solo queda en un corte superficial .</p>
 		<br>
-		<p class='transient'><a href='asesino1' >Siguiente página</a></p>
+		<!-- <p class='transient'><a href='asesino1' >Siguiente página</a></p> -->
+		<p class='transient'><a href='tu_turno' >Siguiente página</a></p>
       </div>
 	  
 	  <div id="pelea_asesino" class="situation">
@@ -337,7 +339,12 @@
 			de lis</b> roto: “Dentro de dos días aparecerá un joven por el camino que tú ya sabes. Liquídalo, traeme una prueba de que 
 			está muerto y te recompensaré.” No está firmada.</p>
 		<br>
-		<p class='transient'><a href='templo' class='once'>Siguiente página</a>.</p>
+		<p>También encuentras una petaca con fuerte bebida alcoholica. Resoplas con fuerza y te echas un poco en la herida pa desinfectarla. 
+		Un electrizante escozor te hace apretar los dientes. El resto va directo al gaznate, celebras tu victoria sobre el enemigo caído y que aún
+		vives para sentir el amargo y ardiente sabor de aquel brebaje.</p>
+		<br>
+		<p>―¡Skol!</p>
+		<br>
       </div>
 	  
 	  <div id="no_cartita" class="situation">
@@ -427,7 +434,7 @@
         </div>
 		
 		<div id="op_atq" class="situation">
-			<p><a href='./atacar' class='once'>Atacar</a></p>
+			<p class='transient'><a href='./atacar' >Atacar</a></p>
 		</div>
 	  
 		<div id="Muerte" class="situation">
@@ -435,8 +442,8 @@
 		</div>
 		
 		<div id="op_def" class="situation">
-			<p><a href='./esquivar' class='once'>Esquivar</a></p>
-			<p><a href='./bloquear' class='once'>Bloquear</a></p>
+			<p class='transient'><a href='./esquivar' >Esquivar</a></p>
+			<p class='transient'><a href='./bloquear' >Bloquear</a></p>
 		</div>
 		
 		<div id="to_def"  class="situation">

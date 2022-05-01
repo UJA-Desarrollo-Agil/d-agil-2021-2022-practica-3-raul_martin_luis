@@ -403,35 +403,39 @@ undum.game.situations = {
 		}
 	),
 	
-	//------------- ALGO PETA Y NO SÉ EL QUÉ -------------
 	tu_turno: new undum.SimpleSituation(
 		"",
 		{
-			enter:function(character, system, action) {
-				system.write("<p><b>TU TURNO</b></p>");
+			enter:function(character, system, action) {				
 				if(character.qualities.vida > 0){
-					system.write($("#op_atq").html());
+					system.write("<p><b>TU TURNO</b></p>");
+					system.write("<p class='transient'><a href='atacar' >Atacar</a>: Escala con <b>fuerza</b></p>");
 				}else{
 					system.write($("#mueres").html());
 				}
-			},
-			actions:{
-				"atacar":function(character, system, action){
-					var dado = jsRandom.get(1,20);
+			}
+		}
+	),
+	
+	atacar: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				var dado = jsRandom.get(1,20);
 					
 					if(character.qualities.bonf == 1){
 						dado = dado + jsRandom.get(1,4)
-						character.qualities.bonf = 0;
+						system.setQuality("bonf", 0);
 					}
 					
 					if(dado == 1){
-						system.write("<p>Has fallado el ataque. Encima te tropiezas y quedas expuesto.</p>\
+						system.write("<p>Has fallado el ataque estrepitosamente. Ahora eres <b>vulnerable</b></p>\
 									<p> · Tirada: "+ dado + " </p>\
 									<p> · Daño infligido: 0 </p><br>");
 						system.setQuality("vulnerable", 1);
 					}else{
-						dado = dado + character.qualities.fuerza;
-						if (dado > 10){		//ATAQUE EXITO						
+						var ajuste = dado + character.qualities.fuerza;
+						if (ajuste > 10){		//ATAQUE EXITO						
 							var atq = jsRandom.get(1,6);
 							if(dado>=20){	//CRÍTICO!! Tira otro dado
 								atq = atq + jsRandom.get(1,6);
@@ -440,7 +444,7 @@ undum.game.situations = {
 							system.write("<p>Has realizazo un ataque con éxito<p>\
 										<p> · Tirada: "+ dado + " </p>\
 										<p> · Daño infligido: " + atq + "</p><br>");
-							system.setQuality("vida_adv", character.qualities.vida_adv-daño);//Bajar vida adversario
+							system.setQuality("vida_adv", character.qualities.vida_adv-atq);//Bajar vida adversario
 						}else{							
 								system.write("<p>Has fallado el ataque.</p>\
 										<p> · Tirada: "+ dado + " </p>\
@@ -448,47 +452,49 @@ undum.game.situations = {
 							}
 					}
 					//system.setQuality("tirada", dado);
-					system.write("<p class='transient'><a href='turno_def' >Tu turno</a></p><br>");
-				}
-				
-			}
+					system.write("<p class='transient'><a href='turno_def' >Pasar turno</a></p><br>");
+			}			
 		}
 	),
 	
 	turno_def:new undum.SimpleSituation(
 		"",
 		{
-			enter:function(character, system, action) {
-				system.write("<p><b>TURNO DEL RIVAL</b></p>");
+			enter:function(character, system, action) {				
 				if(character.qualities.vida_adv > 0){
+					system.write("<p><b>TURNO DEL RIVAL</b></p>");
 					system.write("<ul class='options'>\
-									<li><a href='bloqueo' class='transient'>Bloquear</a></li>\
-									<li><a href='esquive' class='transient'>Esquivar</a></li>\
+									<li><a href='bloqueo' >Bloquear</a>: Escala con <b>defensa</b></li>\
+									<li><a href='esquive' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
 								</ul>");
 				}else{
-					system.write($("#vives").html());
+					system.write("<p> <a href='victoria1' class='once'> Continuar </a> </p> <br>");
+					system.setQuality("vida_adv", 0);
+					system.setQuality("bonf", 0);
+					system.setQuality("vulnerable", 0);
 				}
 			},
 		}
 	),
 	
-	bloqueo:new undum.SimpleSituation(
+	bloqueo: new undum.SimpleSituation(
 		"",
 		{
 			enter:function(character, system, action) {
 				
-				var dado = jsRandom.get(1,20) - character.qualities.defensa;
+				var dado = jsRandom.get(1,20) ;
+				var ajuste = dado - character.qualities.defensa;
 				
-				if(character.qualities.vulnerable==1 || dado>12){
+				if(character.qualities.vulnerable==1 || ajuste>12){
 					var daño = jsRandom.get(1,6);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el bloqueo.</p>\
-									<p> · Tirada: "+ dado + " </p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
 									<p> · Daño recibido: "+ daño +"</p><br>");
 				}else{
 					system.write("<p>Has bloqueado el ataque</p>\
-									<p> · Tirada: "+ dado + " </p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
 									<p> · Daño recibido: 0 </p><br>");
 				}
 				system.write("<p class='transient'><a href='tu_turno'>Tu turno</a></p><br>");
@@ -496,25 +502,24 @@ undum.game.situations = {
 		}
 	),
 	
-	esquive: :new undum.SimpleSituation(
+	esquive: new undum.SimpleSituation(
 		"",
 		{
 			enter:function(character, system, action) {
 				
-				var dado = jsRandom.get(1,20) - character.qualities.agilidad;
-				
-				if(character.qualities.vulnerable==1 || dado>8){
+				var dado = jsRandom.get(1,20);
+				var ajuste = dado - character.qualities.agilidad;
+				if(character.qualities.vulnerable==1 || ajuste>=8){
 					var daño = jsRandom.get(1,8);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el esquive</p>\
-									<p> · Tirada: "+ dado + " </p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
 									<p> · Daño recibido: "+ daño +"</p><br>");
 				}else{
-					system.write("<p>Has esquivado el ataque con éxito</p>\
-									<p> · Tirada: "+ dado + " </p>\
-									<p> · Daño recibido: 0 </p><br>\
-									<p>Ganas una bonificación para tu siguiente ataque</p>");
+					system.write("<p>Has esquivado el ataque con éxito. Ganas una <b>bonificación</b> para tu siguiente ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
 					
 					system.setQuality("bonf", 1);
 				}
@@ -523,30 +528,39 @@ undum.game.situations = {
 		}
 	),
 	
-	asesino1: new undum.SimpleSituation(
-	"",
+	victoria1: new undum.SimpleSituation(
+		"<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
+		al hombro para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca el\
+		tu cuchillo oculto. Amagas para atacar con la derecha. Él se prepara para rechazar y dar el golpe final. Realizas un rápido\
+		y doloroso giro del codo izquierdo y el cuchillo vuela hasta su cuello. El asesino de cuatro labios cae de rodillas, se le escapa un\
+		grito sordo y escupe sangre. Ya no es un profesional.</p>\
+		<br>\
+		<p>Con el enemigo muerto a tus pies, la euforia de la victoria y la adrenalina se disparan, aumentando el ritmo de tus pulsaciones.\
+		Notas como la sangre brota con fuerza de tu brazo. Te mareas, hay que actuar rápido: rajas un trozo de la capa tras la que se ocultaba\
+		el cazarrecompensas, envuelves varias veces la herida y ayudándote con los dientes aseguras el nudo. Permaneces sentado, observando el\
+		cadáver, controlando la respiración.</p>\
+		<p><a href='./registrar' class='once'>Registrar cuerpo</a></p>\
+		<br>"
+		,
 		{
-			enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+3);
-				system.write($("#pelea_asesino").html());
-					if(character.qualities.cuchillo > 0){
-						system.write($("#vives").html());
-						system.setQuality("cuchillo", 0);
-						system.setQuality("vida", character.qualities.vida-3);
-						
-						var dado = jsRandom.get(1,10);
-						if ((dado+character.qualities.sigilo) > 5){
-							system.write($("#cartita").html());						
-						}else{
-							system.write($("#no_cartita").html());
-						}
-						
+			actions:{
+				"registrar":function(character, system, action) {
+					var dado = jsRandom.get(1,10);
+					system.setQuality("tirada", dado);
+					if(dado>=3){
+						system.write($("#cartita").html());
+						system.setQuality("vida", 20);
 					}else{
-						system.write($("#mueres").html());
+						system.write($("#no_cartita").html());
 					}
 				}
+			}
 		}
-    ),
+		
+	),
+	
+	
+	
 	
    templo: new undum.SimpleSituation(
         "<h1>CAPITULO 4</h1>\
