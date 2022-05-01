@@ -398,7 +398,9 @@ undum.game.situations = {
 					}else{
 						system.write($("#te_engaña").html());
 						system.setQuality("vida", character.qualities.vida-1);
-					}					
+					}
+					
+					system.setQuality("vida_adv", 15);
 				}
 			},
             enter:function(character, system, action) {
@@ -407,30 +409,164 @@ undum.game.situations = {
 		}
 	),
 	
-	asesino1: new undum.SimpleSituation(
-	"",
+	tu_turno: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida > 0){
+					system.write("<p><b>TU TURNO</b></p>");
+					system.write("<p class='transient'><a href='atacar' >Atacar</a>: Escala con <b>fuerza</b></p>");
+				}else{
+					system.write($("#mueres").html());
+				}
+			}
+		}
+	),
+	
+	atacar: new undum.SimpleSituation(
+		"",
 		{
 			enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+3);
-				system.write($("#pelea_asesino").html());
-					if(character.qualities.cuchillo > 0){
-						system.write($("#vives").html());
-						system.setQuality("cuchillo", 0);
-						system.setQuality("vida", character.qualities.vida-3);
-						
-						var dado = jsRandom.get(1,10);
-						if ((dado+character.qualities.sigilo) > 5){
-							system.write($("#cartita").html());						
-						}else{
-							system.write($("#no_cartita").html());
-						}
-						
+				var dado = jsRandom.get(1,20);
+					
+					if(character.qualities.bonf == 1){
+						dado = dado + jsRandom.get(1,4)
+						system.setQuality("bonf", 0);
+					}
+					
+					if(dado == 1){
+						system.write("<p>Has fallado el ataque estrepitosamente. Ahora eres <b>vulnerable</b></p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño infligido: 0 </p><br>");
+						system.setQuality("vulnerable", 1);
 					}else{
-						system.write($("#mueres").html());
+						var ajuste = dado + character.qualities.fuerza;
+						if (ajuste > 10){		//ATAQUE EXITO						
+							var atq = jsRandom.get(1,6);
+							if(dado>=20){	//CRÍTICO!! Tira otro dado
+								atq = atq + jsRandom.get(1,6);
+								system.write("<p><b>CRÍTICO</b></p>")
+							}
+							system.write("<p>Has realizazo un ataque con éxito<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: " + atq + "</p><br>");
+							system.setQuality("vida_adv", character.qualities.vida_adv-atq);//Bajar vida adversario
+						}else{							
+								system.write("<p>Has fallado el ataque.</p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: 0 </p><br>");
+							}
+					}
+					//system.setQuality("tirada", dado);
+					system.write("<p class='transient'><a href='turno_def' >Pasar turno</a></p><br>");
+			}			
+		}
+	),
+	
+	turno_def:new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida_adv > 0){
+					system.write("<p><b>TURNO DEL RIVAL</b></p>");
+					system.write("<ul class='options'>\
+									<li><a href='bloqueo' >Bloquear</a>: Escala con <b>defensa</b></li>\
+									<li><a href='esquive' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
+								</ul>");
+				}else{
+					system.write("<p> <a href='victoria1' class='once'> Continuar </a> </p> <br>");
+					system.setQuality("vida_adv", 0);
+					system.setQuality("bonf", 0);
+					system.setQuality("vulnerable", 0);
+				}
+			},
+		}
+	),
+	
+	bloqueo: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20) ;
+				var ajuste = dado - character.qualities.defensa;
+				
+				if(character.qualities.vulnerable==1 || ajuste>12){
+					var daño = jsRandom.get(1,6);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el bloqueo.</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has bloqueado el ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+				}
+				system.write("<p class='transient'><a href='tu_turno'>Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	esquive: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20);
+				var ajuste = dado - character.qualities.agilidad;
+				if(character.qualities.vulnerable==1 || ajuste>=8){
+					var daño = jsRandom.get(1,8);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el esquive</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has esquivado el ataque con éxito. Ganas una <b>bonificación</b> para tu siguiente ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+					
+					system.setQuality("bonf", 1);
+				}
+				system.write("<p class='transient'><a href='tu_turno' >Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	victoria1: new undum.SimpleSituation(
+		"<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
+		al hombro para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca el\
+		tu cuchillo oculto. Amagas para atacar con la derecha. Él se prepara para rechazar y dar el golpe final. Realizas un rápido\
+		y doloroso giro del codo izquierdo y el cuchillo vuela hasta su cuello. El asesino de cuatro labios cae de rodillas, se le escapa un\
+		grito sordo y escupe sangre. Ya no es un profesional.</p>\
+		<br>\
+		<p>Con el enemigo muerto a tus pies, la euforia de la victoria y la adrenalina se disparan, aumentando el ritmo de tus pulsaciones.\
+		Notas como la sangre brota con fuerza de tu brazo. Te mareas, hay que actuar rápido: rajas un trozo de la capa tras la que se ocultaba\
+		el cazarrecompensas, envuelves varias veces la herida y ayudándote con los dientes aseguras el nudo. Permaneces sentado, observando el\
+		cadáver, controlando la respiración.</p>\
+		<p><a href='./registrar' class='once'>Registrar cuerpo</a></p>\
+		<br>"
+		,
+		{
+			actions:{
+				"registrar":function(character, system, action) {
+					var dado = jsRandom.get(1,10);
+					system.setQuality("tirada", dado);
+					if(dado>=3){
+						system.write($("#cartita").html());
+						system.setQuality("vida", 20);
+					}else{
+						system.write($("#no_cartita").html());
 					}
 				}
+			}
 		}
-    ),
+		
+	),
+	
+	
+	
 	
    templo: new undum.SimpleSituation(
         "<h1>CAPITULO 4</h1>\
@@ -1364,10 +1500,22 @@ undum.game.qualities = {
         "%", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
 
     ),
+	
     name: new undum.OnOffQuality(
         "Nombre: "+"<b>" + nombre + "</b>",{priority:"0000", group:'stats'}
     ),
+
+	bonf: new undum.OnOffQuality(
+        "Bonificación", { priority:"0002", group:'stats', onDisplay:"&#10003;"}
+    ),
 	
+	vulnerable: new undum.OnOffQuality(
+        "Vulnerable", { priority:"0002", group:'stats', onDisplay:"&#10003;"}
+    ),
+	
+	vida_adv: new undum.NumericQuality(
+		"Vida",{ priority:"0005", group:'enemigo', onDisplay:"&#10003;"}
+	)
 };
 
 // ---------------------------------------------------------------------------
@@ -1380,14 +1528,15 @@ undum.game.qualityGroups = {
     stats: new undum.QualityGroup(null, {priority:"0001"}),
     dado: new undum.QualityGroup('Dado', {priority:"0002"}),
 	objetos: new undum.QualityGroup('Objetos' , {priority:"0003"}),
-    progreso: new undum.QualityGroup('Progreso', {priority:"0004"})
+    progreso: new undum.QualityGroup('Progreso', {priority:"0004"}),
+	enemigo:  new undum.QualityGroup('Enemigo', {priority:"0005"})
 };
 
 // ---------------------------------------------------------------------------
 /* This function gets run before the game begins. It is normally used
  * to configure the character at the start of play. */
 undum.game.init = function(character, system) {
-	character.qualities.vida = 10;
+	character.qualities.vida = 20;
     character.qualities.fuerza = 3;
 	character.qualities.agilidad = 3;
 	character.qualities.defensa = 3;
@@ -1404,6 +1553,12 @@ undum.game.init = function(character, system) {
     character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
+
     system.setQuality("name",true);
+
+	character.qualities.bonf = 0; //Bonificación combate
+	character.qualities.vulnerable = 0;
+	character.qualities.vida_adv = 0;
+	
 
 };

@@ -26,7 +26,13 @@ undum.game.fadeSpeed = 1500
 /* A variable that changes the slide up speed after clicking on an
  * option. */
 undum.game.slideUpSpeed = 500
-
+var nombre;
+nombre = prompt(
+    "Antes de comenzar, por favor, ingrese un nombre para su personaje "
+  );
+  if(nombre == ''){
+      nombre = "Caballero";
+  }
 
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
@@ -41,11 +47,12 @@ undum.game.situations = {
 		Tus provisiones empiezan a escasear y estás harto de dormir a la intemperie, y sabes que\
 		donde hay castillos, hay comida y lechos calientes.</p>\
 		<br>\
-		<p class='transient'><a href='muralla'>Siguiente Página</a></p>",{
+		<p class='transient'><a href='muralla'>Siguiente Página</a></p>",
+        {
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso.value=0);   
+            }
         }
-    }
 	),
 	
 	muralla: new undum.SimpleSituation(
@@ -57,11 +64,12 @@ undum.game.situations = {
 		queremos gente rebelde en nuestra ciudad, solo borregos que obedezcan sin hacer ruido”. Y como\
 		no, camuflado bajo la excusa de la religión y esa retahíla de salvar el alma de los pecadores.</p>\
 		<br>\
-		<p class='transient'><a href='ciudad'>Siguiente Página</a></p>",{
+		<p class='transient'><a href='ciudad'>Siguiente Página</a></p>",
+        {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);   
+                system.setQuality("progreso", character.qualities.progreso+3);   
+            }
         }
-    }
 	),
 	
 	ciudad: new undum.SimpleSituation(
@@ -78,11 +86,12 @@ undum.game.situations = {
 		<p>Sigues avanzando por la calle más ancha, evitando charcos, hasta que ves un cartel oxidado:\
 		“El Patito Frito”.</p>\
 		<br>\
-		<p class='transient'><a href='posada'>Siguiente Página</a></p>",{
+		<p class='transient'><a href='posada'>Siguiente Página</a></p>",
+        {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);   
+                system.setQuality("progreso", character.qualities.progreso+3);   
+            }
         }
-    }
 	),
 	
 	posada: new undum.SimpleSituation(
@@ -156,8 +165,8 @@ undum.game.situations = {
 							<p class='transient'><a href='calle'>Siguiente Página</a></p>"
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-		}
+                system.setQuality("progreso", character.qualities.progreso+3);
+		    }
     }
 
 	),
@@ -175,7 +184,7 @@ undum.game.situations = {
 		escudos reales. Pero si llega a ser por su físico, no dirías que son soldados, ya que no son altos ni especialmente jóvenes, y a\
 		juzgar por sus redondeadas barrigas, y fuerte olor, apostarías que son amantes del aguardiente.</p>\
 		<br>\
-		<p>―Soy [insertar nombre]― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
+		<p>―Soy "+ nombre + " ― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
 		gustaría prestar mis servicios.</p>\
 		<br>\
 		<p>―Bien, seguidnos</p>\
@@ -188,11 +197,12 @@ undum.game.situations = {
 		<p>Continuais recto por el patio, subis unas escaleras que dan a un gran portón entreabierto. Uno de los soldados lo empuja con esfuerzo\
 		y entrais al castillo.</p>\
 		<br>\
-		<p class='transient'><a href='castillo' class='once'>Siguiente página</a>.</p>",{
+		<p class='transient'><a href='castillo' class='once'>Siguiente página</a>.</p>",
+        {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
-    }
 	),
 	
 	castillo: new undum.SimpleSituation(
@@ -219,7 +229,7 @@ undum.game.situations = {
 		<br>\
 		<p>―Su majestad este…― dice tímidamente uno de los soldados.</p>\
 		<br>\
-		<p>―Me llamo [insertar nombre], alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
+		<p>―Me llamo " + nombre + " , alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
 		A mis oídos ha llegado que buscáis la cura para la enfermedad que atormenta a vuestro hijo. Y humildemente os presto mis servicios.</p>\
 		<br>\
 		<p>―Bien, bien…― asiente con la boca llena.</p>\
@@ -252,11 +262,12 @@ undum.game.situations = {
 		te dé caviar y cerveza de reserva. ¡Turdis!― grita y señala a uno de los guardias ―Sácalo de aquí y explicale a donde ha de ir en\
 		busca de la cura, y dale un mendrugo pan y, si eso, algo de mantequilla.</p>\
 		<br>\
-		<p class='transient'><a href='cocina' class='once'>Siguiente página</a>.</p>",{
+		<p class='transient'><a href='cocina' class='once'>Siguiente página</a>.</p>",
+        {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
-    }
 	),
 	
 	cocina: new undum.SimpleSituation(
@@ -293,7 +304,8 @@ undum.game.situations = {
 				}
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);}
+                system.setQuality("progreso", character.qualities.progreso + 3);
+            }
 		}
 	),
 	
@@ -309,9 +321,11 @@ undum.game.situations = {
 		<br>\
 		<p>―Está bien, está bien.― vuelves los ojos en blanco y suspiras― Dame el mapa ya, a ver si terminamos con esto pronto.</p>\
 		<br>\
-		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>",{
-        enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);}
+		<p class='transient'><a href='camino' class='once'>Siguiente página</a>.</p>",
+        {
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso + 3);
+            }
         }
 	),
 	
@@ -356,7 +370,7 @@ undum.game.situations = {
 				}				
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
 		}
 	),
@@ -384,41 +398,178 @@ undum.game.situations = {
 					}else{
 						system.write($("#te_engaña").html());
 						system.setQuality("vida", character.qualities.vida-1);
-					}					
+					}
+					
+					system.setQuality("vida_adv", 15);
 				}
 			},
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);}
+                system.setQuality("progreso", character.qualities.progreso + 3);
+            }
 		}
 	),
 	
-	asesino1: new undum.SimpleSituation(
-	"",
+	tu_turno: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida > 0){
+					system.write("<p><b>TU TURNO</b></p>");
+					system.write("<p class='transient'><a href='atacar' >Atacar</a>: Escala con <b>fuerza</b></p>");
+				}else{
+					system.write($("#mueres").html());
+				}
+			}
+		}
+	),
+	
+	atacar: new undum.SimpleSituation(
+		"",
 		{
 			enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-				system.write($("#pelea_asesino").html());
-					if(character.qualities.cuchillo > 0){
-						system.write($("#vives").html());
-						system.setQuality("cuchillo", 0);
-						system.setQuality("vida", character.qualities.vida-3);
-						
-						var dado = jsRandom.get(1,10);
-						if ((dado+character.qualities.sigilo) > 5){
-							system.write($("#cartita").html());						
-						}else{
-							system.write($("#no_cartita").html());
-						}
-						
+				var dado = jsRandom.get(1,20);
+					
+					if(character.qualities.bonf == 1){
+						dado = dado + jsRandom.get(1,4)
+						system.setQuality("bonf", 0);
+					}
+					
+					if(dado == 1){
+						system.write("<p>Has fallado el ataque estrepitosamente. Ahora eres <b>vulnerable</b></p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño infligido: 0 </p><br>");
+						system.setQuality("vulnerable", 1);
 					}else{
-						system.write($("#mueres").html());
+						var ajuste = dado + character.qualities.fuerza;
+						if (ajuste > 10){		//ATAQUE EXITO						
+							var atq = jsRandom.get(1,6);
+							if(dado>=20){	//CRÍTICO!! Tira otro dado
+								atq = atq + jsRandom.get(1,6);
+								system.write("<p><b>CRÍTICO</b></p>")
+							}
+							system.write("<p>Has realizazo un ataque con éxito<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: " + atq + "</p><br>");
+							system.setQuality("vida_adv", character.qualities.vida_adv-atq);//Bajar vida adversario
+						}else{							
+								system.write("<p>Has fallado el ataque.</p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: 0 </p><br>");
+							}
+					}
+					//system.setQuality("tirada", dado);
+					system.write("<p class='transient'><a href='turno_def' >Pasar turno</a></p><br>");
+			}			
+		}
+	),
+	
+	turno_def:new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida_adv > 0){
+					system.write("<p><b>TURNO DEL RIVAL</b></p>");
+					system.write("<ul class='options'>\
+									<li><a href='bloqueo' >Bloquear</a>: Escala con <b>defensa</b></li>\
+									<li><a href='esquive' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
+								</ul>");
+				}else{
+					system.write("<p> <a href='victoria1' class='once'> Continuar </a> </p> <br>");
+					system.setQuality("vida_adv", 0);
+					system.setQuality("bonf", 0);
+					system.setQuality("vulnerable", 0);
+				}
+			},
+		}
+	),
+	
+	bloqueo: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20) ;
+				var ajuste = dado - character.qualities.defensa;
+				
+				if(character.qualities.vulnerable==1 || ajuste>12){
+					var daño = jsRandom.get(1,6);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el bloqueo.</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has bloqueado el ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+				}
+				system.write("<p class='transient'><a href='tu_turno'>Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	esquive: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20);
+				var ajuste = dado - character.qualities.agilidad;
+				if(character.qualities.vulnerable==1 || ajuste>=8){
+					var daño = jsRandom.get(1,8);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el esquive</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has esquivado el ataque con éxito. Ganas una <b>bonificación</b> para tu siguiente ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+					
+					system.setQuality("bonf", 1);
+				}
+				system.write("<p class='transient'><a href='tu_turno' >Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	victoria1: new undum.SimpleSituation(
+		"<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
+		al hombro para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca el\
+		tu cuchillo oculto. Amagas para atacar con la derecha. Él se prepara para rechazar y dar el golpe final. Realizas un rápido\
+		y doloroso giro del codo izquierdo y el cuchillo vuela hasta su cuello. El asesino de cuatro labios cae de rodillas, se le escapa un\
+		grito sordo y escupe sangre. Ya no es un profesional.</p>\
+		<br>\
+		<p>Con el enemigo muerto a tus pies, la euforia de la victoria y la adrenalina se disparan, aumentando el ritmo de tus pulsaciones.\
+		Notas como la sangre brota con fuerza de tu brazo. Te mareas, hay que actuar rápido: rajas un trozo de la capa tras la que se ocultaba\
+		el cazarrecompensas, envuelves varias veces la herida y ayudándote con los dientes aseguras el nudo. Permaneces sentado, observando el\
+		cadáver, controlando la respiración.</p>\
+		<p><a href='./registrar' class='once'>Registrar cuerpo</a></p>\
+		<br>"
+		,
+		{
+			actions:{
+				"registrar":function(character, system, action) {
+					var dado = jsRandom.get(1,10);
+					system.setQuality("tirada", dado);
+					if(dado>=3){
+						system.write($("#cartita").html());
+						system.setQuality("vida", 20);
+					}else{
+						system.write($("#no_cartita").html());
 					}
 				}
+			}
 		}
-    ),
+		
+	),
+	
+	
+	
 	
    templo: new undum.SimpleSituation(
-        "<h1>CAITULO 4</h1>\
+        "<h1>CAPITULO 4</h1>\
         <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.</p>\
@@ -431,8 +582,7 @@ undum.game.situations = {
          <br>",
          {
             enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
          }
     ),
@@ -466,11 +616,26 @@ undum.game.situations = {
 									}else{
 										system.write($("#nosabiduria").html());
 									}
+                },
+                'combate_monje':function(character,system,action){
+                    system.write($("#pelea_monje").html());
+                //system.setQuality("progreso", character.qualities.progreso+3);
+                
+				var dado = jsRandom.get(1,10);
+					if((dado + character.qualities.fuerza) > 5){
+						system.write($("#vives_monje").html());
+                        system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");	//-SERÁ UNA PELEA A MUERTE CON CUCHILLOS
+						//system.setQuality("cuchillo", character.qualities.cuchillo-1);	//-¿DUELO A MUERTE CON CUCHILLOS?
+						system.setQuality("vida", character.qualities.vida-3);				//-NO SÉ QUÉ ES ESO... CREO QUE VAN A PELEAR CON CUCHILLOS
+						
+					}else{
+						system.write($("#mueres_monje").html());
+					}
                 }
-            },enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+            },
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 	
@@ -489,23 +654,15 @@ undum.game.situations = {
     //Situación en la que no le explicas al monje y decides pasar
     noexplicar: new undum.SimpleSituation(
         "<p>Decides entrar en el templo sin el consentimiento del monje, \
-        no te fías ni un pelo de él. Este se ve reacio a dejaros entrar y de pronto\
-        saca una larga y afilada daga. Al moverse bruscamente, un colgante asoma de su hábito. Lleva \
-        la marca de la <b>flor de Lis</b>.</p>\
+        no te fías ni un pelo de él. Este se ve reacio a dejarte entrar y cuando vas a pasar a su lado te da un violento empujón. Al moverse bruscamente, un colgante asoma de su hábito. LLeva \
+        la marca de la flor Lis. La misma que llevaba Felipo.</p>\
 		<br>\
-		<p>Te enzarzas en un duro <a href='combatemonje'>combate</a> con él.</p>",{
-        enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-            }}
-    ),
-
-    //Combate con el monje(falta escribirlo)
-    combatemonje: new undum.SimpleSituation(
-        "",
+		<p>Te enzarzas en un duro <a href='./combate_monje'>combate</a> con él.</p>",
         {
-			enter:function(character, system, action) {
-				system.write($("#pelea_monje").html());
-                system.setQuality("progreso", character.qualities.progreso+1);
+            actions:{
+                'combate_monje':function(character,system,action){
+                    system.write($("#pelea_monje").html());
+               // system.setQuality("progreso", character.qualities.progreso+3);
                 
 				var dado = jsRandom.get(1,10);
 					if((dado + character.qualities.fuerza) > 5){
@@ -517,8 +674,12 @@ undum.game.situations = {
 					}else{
 						system.write($("#mueres_monje").html());
 					}
-				}
-		}
+                }
+            },
+            enter:function(character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
     ),
 
     aftercombate: new undum.SimpleSituation(
@@ -534,9 +695,8 @@ undum.game.situations = {
                 donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p><br>",
                 'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p><br>" 
             },enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 
@@ -566,8 +726,8 @@ undum.game.situations = {
                             <p class='transient'><a href='rumbo_caverna'>Rumbo a la caverna</a>.</p>'"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 
@@ -601,15 +761,13 @@ undum.game.situations = {
                                     <a href='gran_caverna'>la caída</a>.</p>"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 
     gran_caverna: new undum.SimpleSituation(
-        "<h2>La gran caverna.</h2>\
-        <p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
+        "<p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
         Además, toda la colonia de murciélagos que había durmiendo en el interior de la caverna se ha\
         despertado a causa de tu estruendosa caída y, asustados, han salido volando directos hacia tí\
         enganchándose en tu ropa y rasgándola un poco.</p>\
@@ -624,7 +782,7 @@ undum.game.situations = {
         pequeñas grietas por las que entran escasos y tímidos rayos de sol y, tras unos segundos,\
         la vista se te hace a esos bajos niveles de luz.</p>\
         <br>\
-        <p>―Bien, es más que obvio que no puedo volver por donde ha venido, así que no me queda más\
+        <p>―Bien, es más que obvio que no puedo volver por donde he venido, así que no me queda más\
         opción que explorar la caverna― dices mientras te incorporas y te sacudes la ropa para\
         intentar limpiarla un poco.</p>\
         <br>\
@@ -632,11 +790,11 @@ undum.game.situations = {
         <ul class='options'>\
             <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
             <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
-        </ul>",{
+        </ul>",
+        {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
         
     ),
@@ -647,10 +805,8 @@ undum.game.situations = {
             <li><a href='oeste_gc' class='once'>Ir al Oeste</a>.</li>\
             <li><a href='este_gc' class='once'>Ir al Este</a>.</li>\
         </ul>",
-        {enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
+        {
+        }
     ),
 
     oeste_gc: new undum.SimpleSituation(
@@ -660,10 +816,11 @@ undum.game.situations = {
         una piedra del suelo, la dejas caer foso abajo y te pones a contar.</p>\
         <br>\
         <p>―Veamos, uno... dos... tres... Mmmm... De acuerdo, son unos once metros― aproximas.</p>\
+		<br>\
         <p>Observas a tu alrededor y ves un gancho de acero clavado en una de las paredes de la sala,\
         parece que se puede bajar usando una <a href='./cuerda' class='once'>cuerda</a>. También puedes\
         <a href='vuelta_gc' class='once'>volver a la zona anterior</a> y probar suerte por el otro\
-        camino.</p>",
+        camino.</p><br>",
         {
             actions: {
                 "cuerda": function (character, system, action) {
@@ -676,10 +833,8 @@ undum.game.situations = {
                     <a href='bajada_foso' class='once'>intentar bajar por el foso</p>")
                 },
                 enter:function(character, system, action) {
-                    system.setQuality("progreso", character.qualities.progreso+1);
-        
-                    }
-                
+                    system.setQuality("progreso", character.qualities.progreso+3);
+                }
             }
         }
     ),
@@ -687,6 +842,7 @@ undum.game.situations = {
     bajada_foso: new undum.SimpleSituation(
         "<p>Coges la cuerda que había en el suelo, le haces un buen nudo en uno de los extremos, lo enganchas\
         con firmeza en el gancho de la pared y comienzasa descender cuidadósamente por el foso.</p>\
+		<br>\
         <p>Con cada paso que das hacia abajo puedes notar cómo, extráñamente, se eleva la temperatura\
         cada vez más. Continúas el descenso cuando te percatas de un extraño\
         <a href='agujero_foso' class='once'>agujero en la pared</a>.</p>\
@@ -695,7 +851,7 @@ undum.game.situations = {
         {
             enter: function (character, system, from) {
                 system.setQuality("cuerda", 0);
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
     ),
@@ -710,27 +866,22 @@ undum.game.situations = {
         poder dar otro paso, un chorro de vapor sale del agujero dándote en los brazos y el torso y\
         lanzándote hacia abajo en caída libre.</p>\
         <br>\
-        <p><a href='vapor_foso' class='once'>Continuar descenso</a>.</p>",
+        <p><a href='./vapor_foso' class='once'>Continuar descenso</a>.</p>",
         {
             enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
-    ),
-
-    vapor_foso: new undum.SimpleSituation(
-        "",
-        {
-            enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-                var dado1 = jsRandom.get(1, 4);
-                var dado2 = jsRandom.get(1, 6);
-                dado2 += jsRandom.get(1, 6);
-                if ((dado1 + dado2) < character.qualities.vida) {
-                    system.setQuality("vida", character.qualities.vida - (dado1 + dado2));
-                    system.write($("#sobrevives_caida").html());
-                } else {
-                    system.write($("#muerte_caida").html());
+                system.setQuality("progreso", character.qualities.progreso+3);
+            },
+            actions: {
+                "vapor_foso": function (character, system, action) {
+                    system.setQuality("progreso", character.qualities.progreso + 1);
+                    var dado1 = jsRandom.get(1, 10);
+                    system.setQuality("tirada", dado1);
+                    if (dado1 < character.qualities.vida) {
+                        system.setQuality("vida", character.qualities.vida - dado1);
+                        system.write($("#sobrevives_caida").html());
+                    } else {
+                        system.write($("#muerte_caida").html());
+                    }
                 }
             }
         }
@@ -753,6 +904,7 @@ undum.game.situations = {
         {
             actions: {
                 "montana_huesos": function (character, system, from) {
+                   
                     if (character.qualities.monedas_oro == 0) {
                         system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
                                        no son pocos los exploradores y aventureros que han acabado su travesía aquí\
@@ -763,7 +915,8 @@ undum.game.situations = {
                                        arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
                                        de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
                                        otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
-                                       que se trata de una poción sanadora.</p>")
+                                       que se trata de una poción sanadora.</p><br>")
+                        system.setQuality("progreso", character.qualities.progreso+3);
                         system.setQuality("monedas_oro", 200);
                         system.setQuality("monedas_pl", 300);
                         system.setQuality("espada_corta", 1);
@@ -773,11 +926,7 @@ undum.game.situations = {
                         system.setQuality("comida_mal", 1);
                     }
                 }
-            },
-            enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+            }
         }
     ),
 
@@ -785,7 +934,6 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
-                system.setQuality("progreso", character.qualities.progreso+1);
                 system.write("<h2>La sala de los huesos</h2>\
                             <p>Este nuevo área de la caverna tiene un enorme agujero en el techo y, justo debajo de este, una\
                             inmensa montaña de huesos, tanto humanos como animales, que se extienden por toda la sala.</p>\
@@ -799,7 +947,7 @@ undum.game.situations = {
                     system.write("<p>Quizás no sería una mala idea\
                     <a href='examina_montana' class='once'>examinar la montaña</a> por\
                     si algún desafortunado viajero hubiese encontrado ahí el final y sus pertenencias siguieran en buen\
-                    estado.</p>");
+                    estado.</p><br>");
                 }
             }
         }
@@ -809,7 +957,7 @@ undum.game.situations = {
         "",
         {
             enter: function (character, system, from) {
-                system.setQuality("progreso", character.qualities.progreso+1);
+                system.setQuality("progreso", character.qualities.progreso+3);
                 system.write("<p>Decides rebuscar entre los huesos, si tienes en cuenta la cantidad que hay,\
                                        no son pocos los exploradores y aventureros que han acabado su travesía aquí\
                                        agrandando la montaña.</p>\
@@ -819,9 +967,9 @@ undum.game.situations = {
                                        arrojadiza y un par de pociones; una de ellas tiene un color cian y un dibujo\
                                        de lo que recuerda a una corriente, nunca antes habías visto una poción así; la\
                                        otra, de un color rojo intenso, un dibujo de una gota, no te es difícil reconocer\
-                                       que se trata de una poción sanadora.</p>")
-                system.setQuality("monedas_oro", 200);
-                system.setQuality("monedas_pl", 300);
+                                       que se trata de una poción sanadora.</p><br>")
+                system.setQuality("monedas_oro", 20);
+                system.setQuality("monedas_pl", 30);
                 system.setQuality("espada_corta", 1);
                 system.setQuality("daga_arr", 1);
                 system.setQuality("pocion_roja", 1);
@@ -845,9 +993,8 @@ undum.game.situations = {
         <a href='vuelta_gc' class='once'>volver a la zona anterior</a> para probar suerte por el otro camino.</p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+               // system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 
@@ -875,11 +1022,7 @@ undum.game.situations = {
                                 <p>Puedes <a href='sala_lago' class='once'>correr</a> hacia atrás y volver\
                                 a la sala del lago, intentar <a href='techo' class='once'>subirte al techo</a>\
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
-            },
-            enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+            }
         }
     ),
 
@@ -908,36 +1051,39 @@ undum.game.situations = {
                                 o <a href='dejarte_llevar' class='once'>dejarte llevar por la corriente</a>.</p>"
             },
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 
     techo: new undum.SimpleSituation(
-        "",
+        "<p>Echas un vistazo rápido a la sala y encuentras unos ganchos en el techo, así que\
+        decides intentar agarrarte a ellos, con la esperanza de que el agua no termine\
+        llenando la sala.</p>\
+        <br>\
+        <p><a href='./continua_techo' class='once'>Siguiente página</a>.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-                system.write("<p>Echas un vistazo rápido a la sala y encuentras unos ganchos en el techo, así que\
-                                 decides intentar agarrarte a ellos, con la esperanza de que el agua no termine\
-                                 llenando la sala.</p>\
-                              <br>")
-                var dado = jsRandom.get(1, 10);
-                if ((dado + character.qualities.agilidad) > 6) {
-                    system.write("<p>Logras engancharte a ellos gracias a tu agilidad.</p>\
+                system.setQuality("progreso", character.qualities.progreso + 3);
+            },
+            actions: {
+                "continua_techo": function (character, system, action) {
+                    var dado = jsRandom.get(1, 10);
+                    system.setQuality("tirada", dado);
+                    if ((dado + character.qualities.agilidad) > 8) {
+                        system.write("<p>Logras engancharte a ellos gracias a tu agilidad.</p>\
                                   <br>\
                                   <p>Tras unos instantes empieza a bajar el nivel del agua, has tenido suerte, aunque\
                                     cuando empezaste a notar el agua llegarte al pecho pensaste que sería tu fin.</p>\
                                   <br>\
                                   <p>Finalmente bajas de nuevo al suelo, decidido a\
                                   <a href='sala_lago' class='once'>continuar</a>.</p>")
-                } else {
-                    system.write("<p>Agarras los ganchos con firmeza y, cuando dejas caer tu peso, ambos se desencajan\
+                    } else {
+                        system.write("<p>Agarras los ganchos con firmeza y, cuando dejas caer tu peso, ambos se desencajan\
                                     la pared.</p>\
                                    <br>")
-                    if (character.qualities.pocion_azul == 1) {
-                        system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
+                        if (character.qualities.pocion_azul == 1) {
+                            system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
                                         tarde como para correr, y tus intentos de nadar a contra corriente no están dando\
                                         resultado. En pleno momento de desesperación, una idea golpea tu mente: La poción\
                                         azul. No conoces sus efectos, pero a estas alturas acabarás muerto por\
@@ -957,9 +1103,9 @@ undum.game.situations = {
                                         a las grietas de las paredes, que permiten que el agua escape por ellas.</p>\
                                       <p>―Un golpe de suerte― piensas, mientras te diriges a la \
                                         <a href='sala_lago' class='once'>siguiente sala</a>.</p>")
-                        system.setQuality("pocion_azul", 0);
-                    } else {
-                        system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
+                            system.setQuality("pocion_azul", 0);
+                        } else {
+                            system.write("<p>Cuando caes al suelo, el agua ya te llega a la altura del estómago, es demasiado\
                                         tarde como para correr, y tus intentos de nadar a contra corriente no están dando\
                                         resultado.</p>\
                                       <br>\
@@ -967,14 +1113,13 @@ undum.game.situations = {
                                         empujándote contra los afilados bordes de las paredes del túnel y provocándote cortes\
                                         por todo el cuerpo.</p>\
                                       <br>")
-                        var dado2 = jsRandom.get(1, 4);
-                        dado2 += jsRandom.get(1, 4);
-                        dado2 += jsRandom.get(1, 4);
-                        dado2 += jsRandom.get(1, 4);
-                        if (dado2 >= character.qualities.vida) {
-                            system.write($("#muerte_riada").html());
-                        } else {
-                            system.write($("#sobrevives_riada").html());
+                            var dado2 = jsRandom.get(1, 10);
+                            system.setQuality("tirada", dado2);
+                            if (dado2 >= character.qualities.vida) {
+                                system.write($("#muerte_riada").html());
+                            } else {
+                                system.write($("#sobrevives_riada").html());
+                            }
                         }
                     }
                 }
@@ -988,10 +1133,11 @@ undum.game.situations = {
         como si de un tobogán acuático se tratara.</p>\
         <br>\
         <p>Finalmente, acabas llegando a una <a href='sala_lago' class='once'>nueva sala</a>.</p>",
-        {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
+        {
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
     ),
 
     sala_lago: new undum.SimpleSituation(
@@ -1009,9 +1155,8 @@ undum.game.situations = {
         </ul>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
 
@@ -1022,17 +1167,31 @@ undum.game.situations = {
         <br>\
         <p>No parece haber nada a simple vista, tendrás que\
         <a href='sumergirte' class='once'>sumergirte en el agua</a> un poco para explorar más a fondo.</p>",
-        {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
+        {
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
     ),
 
     sumergirte: new undum.SimpleSituation(
-        "<p>Empiezas a examinar pegado a las paredes y finalmente en una de ellas parece haber un hueco\
-        de unos dos metros, podrías <a href='./entrar_hueco' class='once'>intentar entrar</a> o\
-        <a href='./explora_lago' class='once'>seguir explorando el lago</a>.</p>",
+        "",
         {
+            enter: function(character, system, action) {
+                if (character.qualities.monedas_oro != 0) {
+                    system.setQuality("progreso", character.qualities.progreso + 3);
+                    system.write("<p>Empiezas a examinar pegado a las paredes y finalmente en una de ellas parece\
+                                haber un hueco de unos dos metros, podrías\
+                                <a href='./entrar_hueco' class='once'>intentar entrar</a> o\
+                                <a href='./explora_lago' class='once'>seguir explorando el lago</a>.</p>");
+                } else {
+                    system.write("<p>Empiezas a examinar pegado a las paredes y finalmente en una de ellas parece\
+                                haber un hueco de unos dos metros, podrías intentar entrar, aunque quizás sería\
+                                buena idea <a href='sala_lago' class='once'>volver atrás</a> por si hubiera algo que pudiera\
+                                ser de utilidad.</p>");
+                    system.setQuality("progreso", character.qualities.progreso - 3);
+                }
+            },
             actions: {
                 "entrar_hueco": "<p>Pruebas a entrar por el hueco en la pared, cabe un cuerpo sin problema,\
                                 así que tomas una gran bocanada de aire y te pones a nadar por él, parece\
@@ -1041,10 +1200,6 @@ undum.game.situations = {
                 "explora_lago": "<p>Das unas cuantas vueltas al lago, incluso has buceado hasta el fondo,\
                                 pero no encuentras ninguna pista más.</p>"
             },
-            enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
         }
     ),
 
@@ -1074,51 +1229,130 @@ undum.game.situations = {
         <p>La mantícora bloquea tu paso a la salida y, peor aún, dudas que te deje coger la Remolacha\
         tranquilamente si se lo pides por favor; tendrás que\
         <a href='manticora' class='once'>enfrentarte a ella</a>.</p>",
-        {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
+        {
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
     ),
 
     manticora: new undum.SimpleSituation(
         "<p>La feroz mantícora, una quimera con cabeza y cuerpo de león, cuernos, alas y la cola de un escorpión,\
         con la que es capaz de envenenar a sus enemigos.</p>\
         <br>\
-        <p>Sea como sea tienes que <a href='./pelear' class='once'>pelear</a> y derrotarla para poder salir de la caverna con vida y con la tan preciada Remolacha.</p>",
+        <p>Sea como sea tienes que <a href='./pelear' class='once'>pelear</a> y derrotarla para poder salir de la\
+        caverna con vida y con la tan preciada Remolacha.</p>\
+        <br>\
+        <p>Aunque quizás deberías <a href='curarte' class='once'>curarte</a> si tienes algo para hacerlo.</p>",
         {
             actions: {
                 "pelear": function (character, system, action) {
                     if (character.qualities.espada_corta == 1) {
                         system.write("<p><a href='combate_manticora' class='once'>Comienza el combate</a></p>")
                     }
+                },
+            },
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
+    ),
+
+    curarte: new undum.SimpleSituation(
+        "<p>Decides mantener la mente fría y curar tus heridas antes de lanzarte al combate, eso aumentará\
+        tus oportunidades de supervivencia.</p>\
+        <br>\
+        <p>¿Qué usarás para curarte?</p>\
+        <ul class='options'>\
+            <li><a href='./pocion' class='once'>Usar la poción roja</a>.</li>\
+            <li><a href='./comidamal' class='once'>Usar la comida en mal estado</a>.</li>\
+        </ul>",
+        {
+            actions: {
+                "pocion": function (character, system, action) {
+                    system.setQuality("vida", character.qualities.vida + 7);
+                    system.setQuality("pocion_roja", 0);
+                    system.write("<p>―Será mejor no arriesgar― piensas, así que destapas la poción y te la\
+                                    tomas de un trago; al menos esta tiene buen sabor.</p>\
+                                    <br>\
+                                    <p>Nada más acabarla empiezas a notar cómo se cierran tus heridas y\
+                                    tienes mucha más energía. Estás preparado para\
+                                    <a href='combate_manticora' class='once'>el combate</a>.</p>");
+                },
+                "comidamal": function (character, system, action) {
+                    system.setQuality("vida", character.qualities.vida + 3);
+                    system.setQuality("comida_mal", 0);
+                    system.write("<p>Piensas que va a ser mejor guardar la poción para cuando acabes el\
+                                    combate, si sobrevives, por lo que sacas la comida que encontraste en\
+                                    la montaña de huesos.</p>\
+                                    <br>\
+                                    <p>Aprovechas las partes que no tienen moho ―Pan para hoy y hambre para\
+                                    mañana― dices ―Algo me dice que después de esto voy a pasarme días en el\
+                                    baño, pero al menos me llena la barriga.― </p>\
+                                    <br>\
+                                    <p>No ha sido de especial ayuda, pero lo suficiente para estar en mejores\
+                                    condiciones para <a href='combate_manticora'> el combate</a>.</p>");
                 }
-            },     enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
-                }
+            }
         }
     ),
 
     combate_manticora: new undum.SimpleSituation(
-        "<ul class='options'>\
-            <li><a href='./espadacorta' class='once'>Usar espada corta</a>.</li>\
+        "<h3>Combate</h3>\
+        <ul class='options'>\
+            <li><a href='espadacorta' class='once'>Usar la espada corta</a>.</li>\
+            <li><a href='daga_arrojadiza' class='once'>Usar la daga arrojadiza</a>.</li>\
         </ul>",
         {
+            enter: function(character, system, from){
+                system.setQuality("progreso", character.qualities.progreso + 3);
+            },
+        }
+    ),
+
+    espadacorta: new undum.SimpleSituation(
+        "<p>Tomas la espada corta que encontraste en la montaña de huesos y corres\
+         para lanzarle al monstruo un tajo certero.</p>\
+        <br>\
+        <p><a href='continuar_espada' class='once'>Continuar combate</a>.</p>",
+        {
+            enter: function (character, system, action) {
+                system.setQuality("espada_corta", 0);
+            },
             actions: {
-                "espadacorta": function (character, system, action) {
-                    var vidaManticora = 18;
-                    var danioEspadacorta = 15;
-                    system.write("<p>Tomas la espada corta que encontraste en la montaña de huesos y corres para lanzarle al monstruo un tajo certero.</p>");
-                    system.setQuality("espada_corta", 0);
-                    if ((danioEspadacorta + character.qualities.fuerza) >= vidaManticora) {
+                "continuar_espada": function (character, system, action) {
+                    var dado = jsRandom.get(1, 6);
+                    system.setQuality("tirada", dado);
+                    if (dado >= 3) {
                         system.write($("#vences_manticora").html());
+                    } else {
+                        system.write($("#mueres_manticora").html());
                     }
                 }
+            }
+        }
+    ),
+
+    daga_arrojadiza: new undum.SimpleSituation(
+        "<p>Coges la daga arrojadiza que encontraste entre los huesos, un ataque a\
+         distancia puede ser una buena idea, pero tiene que acertar en el objetivo.</p>\
+        <br>\
+        <p><a href='continuar_daga' class='once'>Continuar combate</a>.</p>",
+        {
+            enter: function (character, system, action) {
+                system.setQuality("daga_arr", 0);
             },
-            enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-    
+            actions: {
+                "continuar_daga": function (character, system, action) {
+                    var dado = jsRandom.get(1, 6);
+                    system.setQuality("tirada", dado);
+                    if (dado >= 4) {
+                        system.write($("#vences_manticora").html());
+                    } else {
+                        system.write($("#mueres_manticora").html());
+                    }
                 }
+            }
         }
     ),
 
@@ -1133,10 +1367,11 @@ undum.game.situations = {
         <br>\
         <p>Es hora de poner <a href='ataquefinal' class='once'>rumbo al castillo</a> de los Dragonborn de\
         nuevo.</p>",
-        {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
+        {
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
     ),
    
     ataquefinal: new undum.SimpleSituation(
@@ -1152,22 +1387,23 @@ undum.game.situations = {
         <br>\
 		<p class='transient'><a href='vueltacastillo'>Siguiente Página</a></p>",
         {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
+            system.setQuality("progreso", character.qualities.progreso+3);
 
             }}
     ),
     vueltacastillo: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>Regresas al castillo por fin para entregarle la hierba al Duque y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
+        <p>Regresas al castillo por fin para entregarle la hierba al rey Astorias y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
         <ul class='options'>\
         <li><a href= 'noperdonar'>Decides mostrar el anillo para acusar a Felipo de intentar matarte</a></li>\
         <li><a href='perdonar'>Decides perdonarlo y guardar el anillo para venderlo por una gran cantidad de dinero</a></li>\
         </ul>\
          <br>",
-         {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+1);
-
-            }}
+        {
+            enter: function (character, system, action) {
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
+        }
     ),
     noperdonar: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
@@ -1176,13 +1412,13 @@ undum.game.situations = {
         El Duque Agnar te da las gracias por tu labor y te entrega tu merecida recompensa.<p><b>FIN</b></p>",
         {
             enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+1);
-                }
+                system.setQuality("progreso", character.qualities.progreso+3);
+            }
         }
     ),
     perdonar: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>El Duque Agnar te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
+        <p>El rey Astorias te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
         que aún desconfía de ti, ordena que te maten nada mas salir del castillo. Allí, sus guardias te pillan desprevenido\
         y consiguen derrotarte sin mucho esfuerzo.</p> <p><b>FIN DEL JUEGO</b></p>"
     ),
@@ -1263,8 +1499,25 @@ undum.game.qualities = {
     progreso: new undum.NumericQuality(
         "%", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
 
-    )
+    ),
+<<<<<<< HEAD
+    name: new undum.OnOffQuality(
+        "Nombre: "+"<b>" + nombre + "</b>",{priority:"0000", group:'stats'}
+    ),
+=======
+>>>>>>> RamaLuis
 	
+	bonf: new undum.OnOffQuality(
+        "Bonificación", { priority:"0002", group:'stats', onDisplay:"&#10003;"}
+    ),
+	
+	vulnerable: new undum.OnOffQuality(
+        "Vulnerable", { priority:"0002", group:'stats', onDisplay:"&#10003;"}
+    ),
+	
+	vida_adv: new undum.NumericQuality(
+		"Vida",{ priority:"0005", group:'enemigo', onDisplay:"&#10003;"}
+	)
 };
 
 // ---------------------------------------------------------------------------
@@ -1277,14 +1530,15 @@ undum.game.qualityGroups = {
     stats: new undum.QualityGroup(null, {priority:"0001"}),
     dado: new undum.QualityGroup('Dado', {priority:"0002"}),
 	objetos: new undum.QualityGroup('Objetos' , {priority:"0003"}),
-    progreso: new undum.QualityGroup('Progreso', {priority:"0004"})
+    progreso: new undum.QualityGroup('Progreso', {priority:"0004"}),
+	enemigo:  new undum.QualityGroup('Enemigo', {priority:"0005"})
 };
 
 // ---------------------------------------------------------------------------
 /* This function gets run before the game begins. It is normally used
  * to configure the character at the start of play. */
 undum.game.init = function(character, system) {
-	character.qualities.vida = 10;
+	character.qualities.vida = 20;
     character.qualities.fuerza = 3;
 	character.qualities.agilidad = 3;
 	character.qualities.defensa = 3;
@@ -1301,5 +1555,15 @@ undum.game.init = function(character, system) {
     character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
+<<<<<<< HEAD
+    system.setQuality("name",true);
 
+=======
+	
+	
+	character.qualities.bonf = 0; //Bonificación combate
+	character.qualities.vulnerable = 0;
+	character.qualities.vida_adv = 0;
+	
+>>>>>>> RamaLuis
 };
