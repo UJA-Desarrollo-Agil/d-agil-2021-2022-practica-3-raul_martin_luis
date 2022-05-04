@@ -26,7 +26,13 @@ undum.game.fadeSpeed = 1500
 /* A variable that changes the slide up speed after clicking on an
  * option. */
 undum.game.slideUpSpeed = 500
-
+var nombre;
+nombre = prompt(
+    "Antes de comenzar, por favor, ingrese un nombre para su personaje "
+  );
+  if(nombre == ''){
+      nombre = "Caballero";
+  }
 
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
@@ -178,7 +184,7 @@ undum.game.situations = {
 		escudos reales. Pero si llega a ser por su físico, no dirías que son soldados, ya que no son altos ni especialmente jóvenes, y a\
 		juzgar por sus redondeadas barrigas, y fuerte olor, apostarías que son amantes del aguardiente.</p>\
 		<br>\
-		<p>―Soy [insertar nombre]― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
+		<p>―Soy "+ nombre + " ― contestas sosegadamente ―Acabo de llegar. He oído que vuestro rey necesita ayuda con la enfermedad, me\
 		gustaría prestar mis servicios.</p>\
 		<br>\
 		<p>―Bien, seguidnos</p>\
@@ -223,7 +229,7 @@ undum.game.situations = {
 		<br>\
 		<p>―Su majestad este…― dice tímidamente uno de los soldados.</p>\
 		<br>\
-		<p>―Me llamo [insertar nombre], alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
+		<p>―Me llamo " + nombre + " , alteza― te presentas antes de que el militar terminase de hablar― Recorro el mundo en busca de aventuras.\
 		A mis oídos ha llegado que buscáis la cura para la enfermedad que atormenta a vuestro hijo. Y humildemente os presto mis servicios.</p>\
 		<br>\
 		<p>―Bien, bien…― asiente con la boca llena.</p>\
@@ -539,7 +545,7 @@ undum.game.situations = {
 		Notas como la sangre brota con fuerza de tu brazo. Te mareas, hay que actuar rápido: rajas un trozo de la capa tras la que se ocultaba\
 		el cazarrecompensas, envuelves varias veces la herida y ayudándote con los dientes aseguras el nudo. Permaneces sentado, observando el\
 		cadáver, controlando la respiración.</p>\
-		<p><a href='./registrar' class='once'>Registrar cuerpo<a></p>\
+		<p><a href='./registrar' class='once'>Registrar cuerpo</a></p>\
 		<br>"
 		,
 		{
@@ -1387,7 +1393,7 @@ undum.game.situations = {
     ),
     vueltacastillo: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>Regresas al castillo por fin para entregarle la hierba al Duque y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
+        <p>Regresas al castillo por fin para entregarle la hierba al rey Astorias y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
         <ul class='options'>\
         <li><a href= 'noperdonar'>Decides mostrar el anillo para acusar a Felipo de intentar matarte</a></li>\
         <li><a href='perdonar'>Decides perdonarlo y guardar el anillo para venderlo por una gran cantidad de dinero</a></li>\
@@ -1412,7 +1418,7 @@ undum.game.situations = {
     ),
     perdonar: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>El Duque Agnar te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
+        <p>El rey Astorias te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
         que aún desconfía de ti, ordena que te maten nada mas salir del castillo. Allí, sus guardias te pillan desprevenido\
         y consiguen derrotarte sin mucho esfuerzo.</p> <p><b>FIN DEL JUEGO</b></p>"
     ),
@@ -1494,6 +1500,12 @@ undum.game.qualities = {
         "%", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
 
     ),
+<<<<<<< HEAD
+    name: new undum.OnOffQuality(
+        "Nombre: "+"<b>" + nombre + "</b>",{priority:"0000", group:'stats'}
+    ),
+=======
+>>>>>>> RamaLuis
 	
 	bonf: new undum.OnOffQuality(
         "Bonificación", { priority:"0002", group:'stats', onDisplay:"&#10003;"}
@@ -1543,10 +1555,15 @@ undum.game.init = function(character, system) {
     character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
+<<<<<<< HEAD
+    system.setQuality("name",true);
+
+=======
 	
 	
 	character.qualities.bonf = 0; //Bonificación combate
 	character.qualities.vulnerable = 0;
 	character.qualities.vida_adv = 0;
 	
+>>>>>>> RamaLuis
 };
