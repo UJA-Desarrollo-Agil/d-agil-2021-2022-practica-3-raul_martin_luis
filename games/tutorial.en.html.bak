@@ -59,6 +59,8 @@
             El príncipe de Dragonborn ha caido enfermo. Su padre, el rey Artorias, ofrece una recompensa
 			a aquel que le traiga una cura. Muchos lo han intentado y perecido en el camino. Como valiente aventurero
 			que eres, aceptas el reto y te embarcas en la peligrosa empresa afrontando los peligros del camino.
+
+      <audio style="width: 100%" src="./media/music/cancion.mp3" controls="controls" type="audio/mpeg"></audio>
           </p>
           <!-- End of Game Background -->
 
@@ -237,6 +239,23 @@
           this example:</p>
       </div>
 	  
+	  <div id="te_da_comida" class="situation">
+		<p>―Antes de irte― escuchas cómo Falka se dirige apresurada detrás tuya ― Toma anda.</p>
+		<br>
+		<p>―Oh... gracias</p>
+		<br>
+		<p>La joven chica te ofrece un trozo de tortilla sobre una tostada de pan con salsa amarilla.</p>
+		<br>
+		<p>―Me has caido bien, y depués de pedirte que vayas tras la cura... me ha parecido lo más justo― continúna diciendo mientras se retira dos mechones rebeldes de la frente.</p>
+		<br>
+		<p>―¡Wow!― saboreas el primer bocado ―Esto está de muerte. ¿Qué salsa es?</p>
+		<br>
+		<p>―¡Ay! Gracias― ves cómo se sonroja ―Es currimango, una vieja receta familiar.</p>
+		<br>
+		<p>Tras haber saciado tu hambre te despides de Falka con una sutil reverencia</p>
+		<br>		
+	  </div>
+	  
 	  <div id="chorizo" class="situation">
 		<p>Rápidamente, coges un <b>cuchillo</b> de la mesa, cortas los extremos de uno de los chorizos y te haces con él sin ser visto.</p>
       </div>
@@ -345,12 +364,13 @@
 		<br>
 		<p>―¡Skol!</p>
 		<br>
+		<p class='transient'><a href='templo' >Siguiente página</a>.</p>
       </div>
 	  
 	  <div id="no_cartita" class="situation">
 		<p>No ves nada extraño.</p>
 		<br>
-		<p class='transient'><a href='templo' class='once'>Siguiente página</a>.</p>
+		<p class='transient'><a href='templo' >Siguiente página</a>.</p>
       </div>
       <div id="sobrevives_caida" class="situation">
           <p>Has sobrevivido a la caída, por suerte, sin embargo el vapor te ha producido quemaduras por los brazos y el pecho y,
@@ -412,7 +432,7 @@
 	  
 	  <div id="nosabiduria" class="situation">
 		<p>Debe de ser la Remolacha, piensas. Satisfecho con tu labor, decides volver al castillo para entregarle la hierba al Duque y obtener tu recompensa.
-		Una vez allí eres muy bien recibido, el Duque Agnar te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta
+		Una vez allí eres muy bien recibido, el rey Astorias te da las gracias y entrega la planta a sus expertos. Estos le comunican enseguida que la planta
 		que has traído no es la Remolacha sino una planta muy común. El enfado del Duque es tal, que ordena tu decapitación pública inmediatamente... </p>
 	   <br><p><b>FIN DEL JUEGO</b></p>
 	  </div>

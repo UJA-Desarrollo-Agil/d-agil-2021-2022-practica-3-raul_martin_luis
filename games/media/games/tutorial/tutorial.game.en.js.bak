@@ -34,6 +34,8 @@ nombre = prompt(
       nombre = "Caballero";
   }
 
+var confianza = 0;
+
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
 
@@ -47,6 +49,9 @@ undum.game.situations = {
 		Tus provisiones empiezan a escasear y estás harto de dormir a la intemperie, y sabes que\
 		donde hay castillos, hay comida y lechos calientes.</p>\
 		<br>\
+		<video controls autoplay width='100%'>\
+          <source src='media/video/guerrero_negro.mp4' type='video/mp4' />\
+        </video>\
 		<p class='transient'><a href='muralla'>Siguiente Página</a></p>",
         {
             enter:function(character, system, action) {
@@ -95,28 +100,28 @@ undum.game.situations = {
 	),
 	
 	posada: new undum.SimpleSituation(
-	"<p>No hay gente, al menos a la vista, porque está muy oscuro, malamente iluminado por unas cuantas lámparas de\
-	aceite que hacen que las penumbras sean aún más intensas. Pero por otro lado lo agradeces, porque si llega a\
-	haber más luz seguramente te sorprendería la cantidad de polvo y grasa acumulada en el simple y tosco inmobiliario.</p>\
-	<br>\
-	<p>―¿¡Hola!?― saludas, para ver si hay alguien.</p>\
-	<br>\
-	<p>―¡Qué sorpresa!― dice una pequeña silueta de voz aguda desde detrás de la barra ― Un cliente. Pasa, pasa. ¿Qué se te ofrece?</p>\
-	<br>\
-	<p>Te acercas y ves a una chica joven, no muy alta, de cabellos cenicientos que lleva un delantal no muy limpio.</p>\
-	<br>\
-	<ul class='options'>\
-		<li><a href='./p_comida' class='once'>Pedir comida</a>.</li>\
-		<li><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</li>\
-		<li><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</li>\
-		<li><a href='./p_irse' class='once'>Marcharse</a>.</li>\
-	</ul>\
-	<br>\
-	",
-		{
+		"<p>No hay gente, al menos a la vista, porque está muy oscuro, malamente iluminado por unas cuantas lámparas de\
+		aceite que hacen que las penumbras sean aún más intensas. Pero por otro lado lo agradeces, porque si llega a\
+		haber más luz seguramente te sorprendería la cantidad de polvo y grasa acumulada en el simple y tosco inmobiliario.</p>\
+		<br>\
+		<p>―¿¡Hola!?― saludas, para ver si hay alguien.</p>\
+		<br>\
+		<p>―¡Qué sorpresa!― dice una pequeña silueta de voz aguda desde detrás de la barra ― Un cliente. Pasa, pasa. ¿Qué se te ofrece?</p>\
+		<br>\
+		<p>Te acercas y ves a una chica joven, no muy alta, de cabellos cenicientos que lleva un delantal no muy limpio.</p>\
+		<br>\
+		<ul class='options'>\
+			<li><a href='./p_comida' class='once'>Pedir comida</a>.</li>\
+			<li><a href='./p_dinero' class='once'>Preguntar por un trabajo</a>.</li>\
+			<li><a href='./p_nombre' class='once'>Preguntar por su nombre</a>.</li>\
+			<li><a href='./p_irse' class='once'>Marcharse</a>.</li>\
+		</ul>\
+		<br>"
+		,{
             
 			actions: {
-				"p_comida":"<p>―Algo de comer por favor, llevo varios días en el camino.</p>\
+				"p_comida":function(character, system, action) {
+						system.write("<p>―Algo de comer por favor, llevo varios días en el camino.</p>\
 							<br>\
 							<p>―Perdona mi desconfianza pero…―dice estirando la cabeza mientras te mira de arriba abajo con sus\
 							grandes ojos verdes― ¿tienes dinero pa pagar?</p>\
@@ -124,9 +129,11 @@ undum.game.situations = {
 							<p>―A decir verdad no, lo siento.</p>\
 							<br>\
 							<p>―Pos no hay comida.―exclama agitando sus grisáceos cabellos― No voy a gastar la escasa\
-							comida que queda a cambio de nada.</p>"
-							,
-				'p_dinero': "<br><p>―¿Hay alguna manera de conseguir dinero rápido por aquí?</p>\
+							comida que queda a cambio de nada.</p>");
+						confianza = confianza + 1;
+				},
+				'p_dinero': function(character, system, action) {
+						system.write("<br><p>―¿Hay alguna manera de conseguir dinero rápido por aquí?</p>\
 							<br>\
 							<p>―Que va. ¿Acaso no has visto cómo está la ciudad? El rey nos despoja tos los meses del poco\
 							oro que tenemos. Muchos artesanos y comerciantes se fueron de la ciudad porque apenas tenían pa vivir.</p>\
@@ -142,9 +149,11 @@ undum.game.situations = {
 							que habíamos traído el mal a esta tierra y la enfermedad era un castigo divino. Y a todo aquel que se acercaba\
 							a pedir ayuda o a exigir que hiciera algo, terminaba con la testa en una pica.</p>\
 							<br>\
-							<p>―Wow, la cosa mejora por momentos. Será mejor que me vaya de aquí."
-							,
-				'p_nombre':	"<p>―Antes de irme. ¿Cómo te llamas?</p>\
+							<p>―Wow, la cosa mejora por momentos. Será mejor que me vaya de aquí.");
+						confianza = confianza + 1;
+				},
+				'p_nombre':	function(character, system, action) {
+						system.write("<p>―Antes de irme. ¿Cómo te llamas?</p>\
 							<br>\
 							<p>―<b>Falka</b></p>\
 							<br>\
@@ -153,21 +162,30 @@ undum.game.situations = {
 							<p>―Mis padres, que regentaban esta taberna, murieron a causa de la enfermedad. Y tampoco tengo dinero como\
 							para ir a algún sitio. Además una chica como yo, sola vagabundeando por los caminos…</p>\
 							<br>\
-							<p>―Comprendo. No prometo nada, pero haré lo que pueda. Hasta pronto Falka.</p>"
-							,
-				'p_irse':	"<p>―Espera un momento, por favor. Por tus pintas diría que eres una persona valiente y aventurera, de las que han\
+							<p>―Comprendo. No prometo nada, pero haré lo que pueda. Hasta pronto Falka.</p>");
+						confianza = confianza + 1;
+				},
+				'p_irse':	function(character, system, action) {
+						system.write("<p>―Espera un momento, por favor. Por tus pintas diría que eres una persona valiente y aventurera, de las que han\
 							visto mundo. Se rumorea que el rey ofrece una recompensa por la cura pa salvar al príncipe, por mu avaro que sea.\
 							Deseo que se muera el mu gusano, pero la cura vendría bien a todo el reino.</p>\
 							<br>\
 							<p>―Estupendo. O me muero de hambre por el camino o voy al castillo y con un poco de suerte no me decapitan. Supongo\
 							que no tengo más opción. Gracias pequeña.</p>\
 							<br>\
-							<p class='transient'><a href='calle'>Siguiente Página</a></p>"
+							<p class='transient'><a href='calle'>Siguiente Página</a></p>");
+				}
 			},
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+3);
+		    },
+			exit:function(character, system, action) {
+                if( confianza==3 ){
+					system.setQuality("vida", character.qualities.vida+3);
+					system.write($("#te_da_comida").html());
+				}
 		    }
-    }
+		}
 
 	),
 	
@@ -1500,13 +1518,11 @@ undum.game.qualities = {
         "%", {priority:"0004", group:'progreso', onDisplay:"&#10003;"}
 
     ),
-<<<<<<< HEAD
+	
     name: new undum.OnOffQuality(
         "Nombre: "+"<b>" + nombre + "</b>",{priority:"0000", group:'stats'}
     ),
-=======
->>>>>>> RamaLuis
-	
+
 	bonf: new undum.OnOffQuality(
         "Bonificación", { priority:"0002", group:'stats', onDisplay:"&#10003;"}
     ),
@@ -1555,15 +1571,12 @@ undum.game.init = function(character, system) {
     character.qualities.pocion_roja = 0;
 	character.qualities.tirada = 0;
     character.qualities.progreso = 0;
-<<<<<<< HEAD
+
     system.setQuality("name",true);
 
-=======
-	
-	
 	character.qualities.bonf = 0; //Bonificación combate
 	character.qualities.vulnerable = 0;
 	character.qualities.vida_adv = 0;
 	
->>>>>>> RamaLuis
+
 };
