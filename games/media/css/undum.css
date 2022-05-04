@@ -1,10 +1,42 @@
 body {
-    background: #170804 url("../img/page_bg.jpg") repeat-x left top;
+    /*: #170804 url("../img/page_bg.jpg") repeat-x left top;*/
     font-family: Palatino, Times, "Times New Roman", serif;
     font-size: 18px;
     line-height: 1.6em;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
     overflow-y: scroll;
+}
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* Add some content at the bottom of the video/page */
+.content {
+  position: fixed;
+  bottom: 0;
+  padding: 20px;
+}
+
+/* Style the button used to pause/play the video */
+#myBtn {
+  width: 100px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
 }
 
 /* Basic structure */
@@ -22,10 +54,10 @@ body {
 }
 #title {
     max-width: 28em;
-    background: #e6e6c6 url("../img/title_bg.jpg") repeat -1.1em -1.1em;
+    /*background: #e6e6c6 url("../img/title_bg.jpg") repeat -1.1em -1.1em;*/
     margin: 2.2em auto 1.1em auto;
     padding: 1.7em;
-    border: 1.1em solid rgba(0,0,0,0.25);
+    /*border: 1.1em solid rgba(0,0,0,0.25);*/
     cursor: pointer; /* Until we click to start. */
 }
 #title .label {
