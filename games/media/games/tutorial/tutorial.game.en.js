@@ -40,23 +40,25 @@ var confianza = 0;
 undum.game.situations = {
 
     seleccion_personaje: new undum.SimpleSituation(
-        "<p>Antes de comenzar tu aventura debes seleccionar un tipo de personaje. Selecciona un tipo para ver sus estadísticas:</p>\
-        <ul class='options'>\
-            <li><a href='guerrero'>Guerrero</a></li>\
-            <li><a href='barbaro'>Bárbaro</a></li>\
-            <li><a href='asesino'>Asesino</a></li>\
-            <li><a href='erudito'>Erudito</a></li>\
-            <li><a href='desecho'>Desecho</a></li>\
-        </ul>"
+        "<p class='transient'>Antes de comenzar tu aventura debes seleccionar un tipo de personaje. Selecciona un tipo para ver sus estadísticas:</p>\
+        <p class='transient'>\
+            <ul class='options'>\
+                <li><a href='guerrero'>Guerrero</a></li>\
+                <li><a href='barbaro'>Bárbaro</a></li>\
+                <li><a href='asesino'>Asesino</a></li>\
+                <li><a href='erudito'>Erudito</a></li>\
+                <li><a href='desecho'>Desecho</a></li>\
+            </ul>\
+        </p>"
     ),
 
     guerrero: new undum.SimpleSituation(
-        "<h3>Guerrero</h3>\
-        <img src='media/img/guerrero.jpg' class='float_right' height='50%' width='50%'/>\
-        <p>El guerrero ha sido entrenado en el arte del combate, por lo que sus habilidades están bien pulidas y balanceadas.\
+        "<h3 class='transient'>Guerrero</h3>\
+        <p class='transient'><img src='media/img/guerrero.jpg' class='float_right' height='50%' width='50%'/></p>\
+        <p class='transient'>El guerrero ha sido entrenado en el arte del combate, por lo que sus habilidades están bien pulidas y balanceadas.\
         Además, tuvo la suerte de recibir una educación decente, por lo que su capacidad mental también es buena.\
         Cuenta con una espada larga, el arma con el que aprendió a combatir y que tanto tiempo le ha acompañado.</p><br/>\
-        <p>Estadísticas: <br/>\
+        <p class='transient'>Estadísticas: <br/>\
         * Fuerza: 3 <br/>\
         * Agilidad: 3 <br/>\
         * Defensa: 3 <br/>\
@@ -64,10 +66,12 @@ undum.game.situations = {
         * Sigilo: 3 <br/>\
         * Arma: Espada larga.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
-        <ul class='options'>\
-            <li><a href='./selecciona'>Sí.</a></li>\
-            <li><a href='seleccion_personaje'>No.</a></li>\
-        </ul>",
+        <p class='transient'>\
+            <ul class='options'>\
+                <li><a href='./selecciona'>Sí.</a></li>\
+                <li><a href='seleccion_personaje'>No.</a></li>\
+            </ul>\
+        </p>",
         {
             actions: {
                 "selecciona": function (character, system, action) {
@@ -84,12 +88,12 @@ undum.game.situations = {
     ),
 
     barbaro: new undum.SimpleSituation(
-        "<h3>Bárbaro</h3>\
-        <img src='media/img/barbaro.jpg' class='float_right' height='50%' width='50%'/>\
-        <p>Criado en los bosques, el bárbaro es un aventurero aguerrido y muy temido por sus enemigos debido a su increíble fuerza.\
+        "<h3 class='transient'>Bárbaro</h3>\
+        <p class='transient'><img src='media/img/barbaro.jpg' class='float_right' height='50%' width='50%'/></p>\
+        <p class='transient'>Criado en los bosques, el bárbaro es un aventurero aguerrido y muy temido por sus enemigos debido a su increíble fuerza.\
         Es una persona hecha a sí misma, pero en sus planes nunca estuvo la lectura, por lo que no es el más inteligente.\
         Su arma favorita es el hacha de guerra ya que su estilo de combate no se caracteriza precisamente por el sigilo.</p><br/>\
-        <p>Estadísticas: <br/>\
+        <p class='transient'>Estadísticas: <br/>\
         * Fuerza: 5 <br/>\
         * Agilidad: 2 <br/>\
         * Defensa: 4 <br/>\
@@ -97,10 +101,12 @@ undum.game.situations = {
         * Sigilo: 1 <br/>\
         * Arma: Hacha de combate.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
-        <ul class='options'>\
-            <li><a href='./selecciona'>Sí.</a></li>\
-            <li><a href='seleccion_personaje'>No.</a></li>\
-        </ul>",
+        <p class='transient'>\
+            <ul class='options'>\
+                <li><a href='./selecciona'>Sí.</a></li>\
+                <li><a href='seleccion_personaje'>No.</a></li>\
+            </ul>\
+        </p>",
         {
             actions: {
                 "selecciona": function (character, system, action) {
@@ -117,11 +123,11 @@ undum.game.situations = {
     ),
 
     asesino: new undum.SimpleSituation(
-        "<h3>Asesino</h3>\
-        <img src='media/img/asesino.jpg' class='float_right' height='50%' width='50%'/>\
-        <p>Aunque su fuerza no sea lo que le caracteriza, el asesino se vale de su agilidad para hacerse temer por los enemigos.\
+        "<h3 class='transient'>Asesino</h3>\
+        <p class='transient'><img src='media/img/asesino.jpg' class='float_right' height='50%' width='50%'/></p>\
+        <p class='transient'>Aunque su fuerza no sea lo que le caracteriza, el asesino se vale de su agilidad para hacerse temer por los enemigos.\
         Cuenta con un par de dagas que emplea de forma rápida y efectiva.</p><br/>\
-        <p>Estadísticas: <br/>\
+        <p class='transient'>Estadísticas: <br/>\
         * Fuerza: 2 <br/>\
         * Agilidad: 5 <br/>\
         * Defensa: 2 <br/>\
@@ -129,10 +135,12 @@ undum.game.situations = {
         * Sigilo: 4 <br/>\
         * Arma: Dos dagas.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
-        <ul class='options'>\
-            <li><a href='./selecciona'>Sí.</a></li>\
-            <li><a href='seleccion_personaje'>No.</a></li>\
-        </ul>",
+        <p class='transient'>\
+            <ul class='options'>\
+                <li><a href='./selecciona'>Sí.</a></li>\
+                <li><a href='seleccion_personaje'>No.</a></li>\
+            </ul>\
+        </p>",
         {
             actions: {
                 "selecciona": function (character, system, action) {
@@ -149,12 +157,12 @@ undum.game.situations = {
     ),
 
     erudito: new undum.SimpleSituation(
-        "<h3>Erudito</h3>\
-        <img src='media/img/erudito.jpg' class='float_right' height='50%' width='50%'/>\
-        <p>El erudito es una rata de biblioteca. Su pasión por los libros lo ha convertido en todo un intelectual y lo ha llevado\
+        "<h3 class='transient'>Erudito</h3>\
+        <p class='transient'><img src='media/img/erudito.jpg' class='float_right' height='50%' width='50%'/></p>\
+        <p class='transient'>El erudito es una rata de biblioteca. Su pasión por los libros lo ha convertido en todo un intelectual y lo ha llevado\
         explorar el mundo en busca de nuevas obras que deborar. Haber pasado tanto tiempo entre libros no lo ha convertido en un portento físico, \
         sino todo lo contrario, se trata de una persona alta y delgada por lo que no destaca por su fuerza y agilidad.</p><br/>\
-        <p>Estadísticas: <br/>\
+        <p class='transient'>Estadísticas: <br/>\
         * Fuerza: 2 <br/>\
         * Agilidad: 2 <br/>\
         * Defensa: 2 <br/>\
@@ -162,10 +170,12 @@ undum.game.situations = {
         * Sigilo: 2 <br/>\
         * Arma: Espada corta.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
+        <p class='transient'>\
         <ul class='options'>\
             <li><a href='./selecciona'>Sí.</a></li>\
             <li><a href='seleccion_personaje'>No.</a></li>\
-        </ul>",
+        </ul>\
+        </p>",
         {
             actions: {
                 "selecciona": function (character, system, action) {
@@ -182,11 +192,11 @@ undum.game.situations = {
     ),
 
     desecho: new undum.SimpleSituation(
-        "<h3>Desecho</h3>\
-        <img src='media/img/desecho.jpg' class='float_right' height='50%' width='50%'/>\
-        <p>Vestido con harapos y de origen desconocido. O fue un necio inconmensurable o le arrebataron todo.\
+        "<h3 class='transient'>Desecho</h3>\
+        <p class='transient'><img src='media/img/desecho.jpg' class='float_right' height='50%' width='50%'/></p>\
+        <p class='transient'>Vestido con harapos y de origen desconocido. O fue un necio inconmensurable o le arrebataron todo.\
         El desecho es un tipo pálido y casi desnutrido que va vagando por las ciudades para sobrevivir como puede.</p><br/>\
-        <p>Estadísticas: <br/>\
+        <p class='transient'>Estadísticas: <br/>\
         * Fuerza: 1 <br/>\
         * Agilidad: 2 <br/>\
         * Defensa: 1 <br/>\
@@ -194,10 +204,12 @@ undum.game.situations = {
         * Sigilo: 2 <br/>\
         * Arma: Espada de madera.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
-        <ul class='options'>\
-            <li><a href='./selecciona'>Sí.</a></li>\
-            <li><a href='seleccion_personaje'>No.</a></li>\
-        </ul>",
+        <p class='transient'>\
+            <ul class='options'>\
+                <li><a href='./selecciona'>Sí.</a></li>\
+                <li><a href='seleccion_personaje'>No.</a></li>\
+            </ul>\
+        </p>",
         {
             actions: {
                 "selecciona": function (character, system, action) {
