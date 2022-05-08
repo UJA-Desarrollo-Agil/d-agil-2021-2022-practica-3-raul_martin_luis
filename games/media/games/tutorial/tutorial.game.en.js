@@ -1716,7 +1716,7 @@ undum.game.situations = {
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
-undum.game.start = "templo";
+undum.game.start = "inicio";
 
 // ---------------------------------------------------------------------------
 /* Here we define all the qualities that our characters could
