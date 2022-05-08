@@ -294,6 +294,8 @@ undum.game.situations = {
 		<br>\
 		<p>―Espera aquí forastero, y no toques nada.</p>\
 		<br>\
+		<p><img src='media/img/cocina.jpg' width='500px' height='300px'/></p>\
+		<br>\
 		<p>Te encuentras solo en la cocina. Sobre una amplia mesa hay cacharros, diversos cuchillos y verduras, algunas troceadas. En la\
 		pared junto a la puerta hay ristras de tripas de chorizo y salchichón. Escuchas unos pasos que se acercan a la cocina.</p>\
 		<p><a href='./robar_chorizo' class='once'>Intentar robar un chorizo</a>.</p>\
@@ -492,7 +494,7 @@ undum.game.situations = {
 									<li><a href='esquive' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
 								</ul>");
 				}else{
-					system.write("<p> <a href='victoria1' class='once'> Continuar </a> </p> <br>");
+					system.write("<p class='transient'> <a href='victoria1' class='once'> Continuar </a> </p> <br>");
 					system.setQuality("vida_adv", 0);
 					system.setQuality("bonf", 0);
 					system.setQuality("vulnerable", 0);
@@ -553,7 +555,8 @@ undum.game.situations = {
 	),
 	
 	victoria1: new undum.SimpleSituation(
-		"<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
+		"<p><img src='media/img/asesino_1.jpg' width='200px' height='300px' align='right'/></p><br>\
+		<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
 		al hombro para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca el\
 		tu cuchillo oculto. Amagas para atacar con la derecha. Él se prepara para rechazar y dar el golpe final. Realizas un rápido\
 		y doloroso giro del codo izquierdo y el cuchillo vuela hasta su cuello. El asesino de cuatro labios cae de rodillas, se le escapa un\
