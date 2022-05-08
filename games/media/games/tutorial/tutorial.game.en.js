@@ -39,6 +39,180 @@ var confianza = 0;
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
 
+    seleccion_personaje: new undum.SimpleSituation(
+        "<p>Antes de comenzar tu aventura debes seleccionar un tipo de personaje. Selecciona un tipo para ver sus estadísticas:</p>\
+        <ul class='options'>\
+            <li><a href='guerrero'>Guerrero</a></li>\
+            <li><a href='barbaro'>Bárbaro</a></li>\
+            <li><a href='asesino'>Asesino</a></li>\
+            <li><a href='erudito'>Erudito</a></li>\
+            <li><a href='desecho'>Desecho</a></li>\
+        </ul>"
+    ),
+
+    guerrero: new undum.SimpleSituation(
+        "<h3>Guerrero</h3>\
+        <img src='media/img/guerrero.jpg' class='float_right' height='50%' width='50%'/>\
+        <p>El guerrero ha sido entrenado en el arte del combate, por lo que sus habilidades están bien pulidas y balanceadas.\
+        Además, tuvo la suerte de recibir una educación decente, por lo que su capacidad mental también es buena.\
+        Cuenta con una espada larga, el arma con el que aprendió a combatir y que tanto tiempo le ha acompañado.</p><br/>\
+        <p>Estadísticas: <br/>\
+        * Fuerza: 3 <br/>\
+        * Agilidad: 3 <br/>\
+        * Defensa: 3 <br/>\
+        * Sabiduría: 3 <br/>\
+        * Sigilo: 3 <br/>\
+        * Arma: Espada larga.<br/>\
+        ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
+        <ul class='options'>\
+            <li><a href='./selecciona'>Sí.</a></li>\
+            <li><a href='seleccion_personaje'>No.</a></li>\
+        </ul>",
+        {
+            actions: {
+                "selecciona": function (character, system, action) {
+                    system.setQuality("fuerza", 3);
+                    system.setQuality("agilidad", 3);
+                    system.setQuality("defensa", 3);
+                    system.setQuality("sabiduria", 3);
+                    system.setQuality("sigilo", 3);
+                    system.setQuality("espada_larga", 1);
+                    system.write("<p class='transient'>¡Buena elección! Es hora de <a href='inicio'>comenzar tu aventura</a>.</p>");
+                }
+            }
+        }
+    ),
+
+    barbaro: new undum.SimpleSituation(
+        "<h3>Bárbaro</h3>\
+        <img src='media/img/barbaro.jpg' class='float_right' height='50%' width='50%'/>\
+        <p>Criado en los bosques, el bárbaro es un aventurero aguerrido y muy temido por sus enemigos debido a su increíble fuerza.\
+        Es una persona hecha a sí misma, pero en sus planes nunca estuvo la lectura, por lo que no es el más inteligente.\
+        Su arma favorita es el hacha de guerra ya que su estilo de combate no se caracteriza precisamente por el sigilo.</p><br/>\
+        <p>Estadísticas: <br/>\
+        * Fuerza: 5 <br/>\
+        * Agilidad: 2 <br/>\
+        * Defensa: 4 <br/>\
+        * Sabiduría: 1 <br/>\
+        * Sigilo: 1 <br/>\
+        * Arma: Hacha de combate.<br/>\
+        ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
+        <ul class='options'>\
+            <li><a href='./selecciona'>Sí.</a></li>\
+            <li><a href='seleccion_personaje'>No.</a></li>\
+        </ul>",
+        {
+            actions: {
+                "selecciona": function (character, system, action) {
+                    system.setQuality("fuerza", 5);
+                    system.setQuality("agilidad", 2);
+                    system.setQuality("defensa", 4);
+                    system.setQuality("sabiduria", 1);
+                    system.setQuality("sigilo", 1);
+                    system.setQuality("hacha", 1);
+                    system.write("<p class='transient'>¡Buena elección! Es hora de <a href='inicio'>comenzar tu aventura</a>.</p>");
+                }
+            }
+        }
+    ),
+
+    asesino: new undum.SimpleSituation(
+        "<h3>Asesino</h3>\
+        <img src='media/img/asesino.jpg' class='float_right' height='50%' width='50%'/>\
+        <p>Aunque su fuerza no sea lo que le caracteriza, el asesino se vale de su agilidad para hacerse temer por los enemigos.\
+        Cuenta con un par de dagas que emplea de forma rápida y efectiva.</p><br/>\
+        <p>Estadísticas: <br/>\
+        * Fuerza: 2 <br/>\
+        * Agilidad: 5 <br/>\
+        * Defensa: 2 <br/>\
+        * Sabiduría: 3 <br/>\
+        * Sigilo: 4 <br/>\
+        * Arma: Dos dagas.<br/>\
+        ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
+        <ul class='options'>\
+            <li><a href='./selecciona'>Sí.</a></li>\
+            <li><a href='seleccion_personaje'>No.</a></li>\
+        </ul>",
+        {
+            actions: {
+                "selecciona": function (character, system, action) {
+                    system.setQuality("fuerza", 2);
+                    system.setQuality("agilidad", 5);
+                    system.setQuality("defensa", 2);
+                    system.setQuality("sabiduria", 3);
+                    system.setQuality("sigilo", 4);
+                    system.setQuality("dagas", 1);
+                    system.write("<p class='transient'>¡Buena elección! Es hora de <a href='inicio'>comenzar tu aventura</a>.</p>");
+                }
+            }
+        }
+    ),
+
+    erudito: new undum.SimpleSituation(
+        "<h3>Erudito</h3>\
+        <img src='media/img/erudito.jpg' class='float_right' height='50%' width='50%'/>\
+        <p>El erudito es una rata de biblioteca. Su pasión por los libros lo ha convertido en todo un intelectual y lo ha llevado\
+        explorar el mundo en busca de nuevas obras que deborar. Haber pasado tanto tiempo entre libros no lo ha convertido en un portento físico, \
+        sino todo lo contrario, se trata de una persona alta y delgada por lo que no destaca por su fuerza y agilidad.</p><br/>\
+        <p>Estadísticas: <br/>\
+        * Fuerza: 2 <br/>\
+        * Agilidad: 2 <br/>\
+        * Defensa: 2 <br/>\
+        * Sabiduría: 5 <br/>\
+        * Sigilo: 2 <br/>\
+        * Arma: Espada corta.<br/>\
+        ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
+        <ul class='options'>\
+            <li><a href='./selecciona'>Sí.</a></li>\
+            <li><a href='seleccion_personaje'>No.</a></li>\
+        </ul>",
+        {
+            actions: {
+                "selecciona": function (character, system, action) {
+                    system.setQuality("fuerza", 2);
+                    system.setQuality("agilidad", 2);
+                    system.setQuality("defensa", 2);
+                    system.setQuality("sabiduria", 5);
+                    system.setQuality("sigilo", 2);
+                    system.setQuality("espada_corta", 1);
+                    system.write("<p class='transient'>¡Buena elección! Es hora de <a href='inicio'>comenzar tu aventura</a>.</p>");
+                }
+            }
+        }
+    ),
+
+    desecho: new undum.SimpleSituation(
+        "<h3>Desecho</h3>\
+        <img src='media/img/desecho.jpg' class='float_right' height='50%' width='50%'/>\
+        <p>Vestido con harapos y de origen desconocido. O fue un necio inconmensurable o le arrebataron todo.\
+        El desecho es un tipo pálido y casi desnutrido que va vagando por las ciudades para sobrevivir como puede.</p><br/>\
+        <p>Estadísticas: <br/>\
+        * Fuerza: 1 <br/>\
+        * Agilidad: 2 <br/>\
+        * Defensa: 1 <br/>\
+        * Sabiduría: 1 <br/>\
+        * Sigilo: 2 <br/>\
+        * Arma: Espada de madera.<br/>\
+        ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
+        <ul class='options'>\
+            <li><a href='./selecciona'>Sí.</a></li>\
+            <li><a href='seleccion_personaje'>No.</a></li>\
+        </ul>",
+        {
+            actions: {
+                "selecciona": function (character, system, action) {
+                    system.setQuality("fuerza", 1);
+                    system.setQuality("agilidad", 2);
+                    system.setQuality("defensa", 1);
+                    system.setQuality("sabiduria", 1);
+                    system.setQuality("sigilo", 2);
+                    system.setQuality("espada_madera", 1);
+                    system.write("<p class='transient'>¡Buena elección! Ahora sí, es hora de <a href='inicio'>comenzar tu aventura</a>.</p>");
+                }
+            }
+        }
+    ),
+
 	
 	inicio: new undum.SimpleSituation(
 		"<h1>Capítulo 1</h1>\
@@ -304,9 +478,11 @@ undum.game.situations = {
 			actions: {
 				"robar_chorizo":function(character, system, action) {
 									//int dado = system.rnd.randomInt(1,10);//+character.qualities.skill
+                                    /*
 									if(character.qualities.cuchillo < 1){
 										system.setQuality("cuchillo", 1);
 									}
+                                    */
 									
 									var dado = jsRandom.get(1,10);
 									if ((dado+character.qualities.agilidad) > 5){
@@ -448,7 +624,7 @@ undum.game.situations = {
 				var dado = jsRandom.get(1,20);
 					
 					if(character.qualities.bonf == 1){
-						dado = dado + jsRandom.get(1,4)
+                        dado = dado + jsRandom.get(1, 4);
 						system.setQuality("bonf", 0);
 					}
 					
@@ -458,14 +634,26 @@ undum.game.situations = {
 									<p> · Daño infligido: 0 </p><br>");
 						system.setQuality("vulnerable", 1);
 					}else{
-						var ajuste = dado + character.qualities.fuerza;
+                        var ajuste = dado + character.qualities.fuerza;
+                        if (character.qualities.espada_larga == 1) {
+                            ajuste = ajuste + 4;
+                        } else if (character.qualities.hacha == 1) {
+                            ajuste = ajuste + 4;
+                        } else if (character.qualities.dagas == 1) {
+                            ajuste = ajuste + 2;
+                        } else if (character.qualities.espada_corta == 1) {
+                            ajuste = ajuste + 3;
+                        } else if (character.qualities.espada_madera == 1) {
+                            ajuste = ajuste + 1;
+                        }
+
 						if (ajuste > 10){		//ATAQUE EXITO						
 							var atq = jsRandom.get(1,6);
 							if(dado>=20){	//CRÍTICO!! Tira otro dado
 								atq = atq + jsRandom.get(1,6);
 								system.write("<p><b>CRÍTICO</b></p>")
 							}
-							system.write("<p>Has realizazo un ataque con éxito<p>\
+							system.write("<p>Has realizado un ataque con éxito<p>\
 										<p> · Tirada: "+ dado + " </p>\
 										<p> · Daño infligido: " + atq + "</p><br>");
 							system.setQuality("vida_adv", character.qualities.vida_adv-atq);//Bajar vida adversario
@@ -937,8 +1125,8 @@ undum.game.situations = {
                         system.setQuality("progreso", character.qualities.progreso+3);
                         system.setQuality("monedas_oro", 200);
                         system.setQuality("monedas_pl", 300);
-                        system.setQuality("espada_corta", 1);
-                        system.setQuality("daga_arr", 1);
+                        //system.setQuality("espada_corta", 1);
+                        //system.setQuality("daga_arr", 1);
                         system.setQuality("pocion_roja", 1);
                         system.setQuality("pocion_azul", 1);
                         system.setQuality("comida_mal", 1);
@@ -988,8 +1176,8 @@ undum.game.situations = {
                                        que se trata de una poción sanadora.</p><br>")
                 system.setQuality("monedas_oro", 20);
                 system.setQuality("monedas_pl", 30);
-                system.setQuality("espada_corta", 1);
-                system.setQuality("daga_arr", 1);
+                //system.setQuality("espada_corta", 1);
+                //system.setQuality("daga_arr", 1);
                 system.setQuality("pocion_roja", 1);
                 system.setQuality("pocion_azul", 1);
                 system.setQuality("comida_mal", 1);
@@ -1265,13 +1453,16 @@ undum.game.situations = {
         {
             actions: {
                 "pelear": function (character, system, action) {
-                    if (character.qualities.espada_corta == 1) {
-                        system.write("<p><a href='combate_manticora' class='once'>Comienza el combate</a></p>")
-                    }
+                    //if (character.qualities.espada_corta == 1) {
+                    system.write("<p><a href='tu_turno2' class='once'>Comienza el combate</a></p>");
+                    //}
                 },
             },
             enter: function (character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+3);
+            },
+            exit: function (character, system, action) {
+                system.setQuality("vida_adv", 30);
             }
         }
     ),
@@ -1295,7 +1486,7 @@ undum.game.situations = {
                                     <br>\
                                     <p>Nada más acabarla empiezas a notar cómo se cierran tus heridas y\
                                     tienes mucha más energía. Estás preparado para\
-                                    <a href='combate_manticora' class='once'>el combate</a>.</p>");
+                                    <a href='tu_turno2' class='once'>el combate</a>.</p>");
                 },
                 "comidamal": function (character, system, action) {
                     system.setQuality("vida", character.qualities.vida + 3);
@@ -1309,12 +1500,182 @@ undum.game.situations = {
                                     baño, pero al menos me llena la barriga.― </p>\
                                     <br>\
                                     <p>No ha sido de especial ayuda, pero lo suficiente para estar en mejores\
-                                    condiciones para <a href='combate_manticora'> el combate</a>.</p>");
+                                    condiciones para <a href='tu_turno2'> el combate</a>.</p>");
                 }
             }
         }
     ),
 
+    tu_turno2: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+                if (character.qualities.vida > 0) {
+                    system.write("<p><b>TU TURNO</b></p>");
+                    system.write("<p class='transient'><a href='atacar2' >Atacar</a>: Escala con <b>fuerza</b></p>");
+                } else {
+                    system.write($("#mueres_manticora").html());
+                }
+            }
+        }
+    ),
+
+    atacar2: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+                var dado = jsRandom.get(1, 20);
+
+                if (character.qualities.bonf == 1) {
+                    dado = dado + jsRandom.get(1, 4);
+                    system.setQuality("bonf", 0);
+                }
+
+                system.setQuality("tirada", dado);
+                if (dado == 1) {
+                    system.write("<p>Has fallado el ataque estrepitosamente. Ahora eres <b>vulnerable</b></p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño infligido: 0 </p><br>");
+                    system.setQuality("vulnerable", 1);
+                } else {
+                    var ajuste = dado + character.qualities.fuerza;
+                    if (character.qualities.espada_larga == 1) {
+                        ajuste = ajuste + 4;
+                    } else if (character.qualities.hacha == 1) {
+                        ajuste = ajuste + 4;
+                    } else if (character.qualities.dagas == 1) {
+                        ajuste = ajuste + 2;
+                    } else if (character.qualities.espada_corta == 1) {
+                        ajuste = ajuste + 3;
+                    } else if (character.qualities.espada_madera == 1) {
+                        ajuste = ajuste + 1;
+                    }
+
+                    if (ajuste > 10) {		//ATAQUE EXITO						
+                        var atq = jsRandom.get(1, 6);
+                        if (dado >= 20) {	//CRÍTICO!! Tira otro dado
+                            atq = atq + jsRandom.get(1, 6);
+                            system.write("<p><b>CRÍTICO</b></p>")
+                        }
+                        system.write("<p>Has realizado un ataque con éxito<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: " + atq + "</p><br>");
+                        system.setQuality("vida_adv", character.qualities.vida_adv - atq);//Bajar vida adversario
+                    } else {
+                        system.write("<p>Has fallado el ataque.</p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: 0 </p><br>");
+                    }
+                }
+                //system.setQuality("tirada", dado);
+                system.write("<p class='transient'><a href='turno_def2' >Pasar turno</a></p><br>");
+            }
+        }
+    ),
+
+    turno_def2: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+                if (character.qualities.vida_adv > 0) {
+                    system.write("<p><b>TURNO DEL RIVAL</b></p>");
+                    system.write("<ul class='options'>\
+									<li><a href='bloqueo2' >Bloquear</a>: Escala con <b>defensa</b></li>\
+									<li><a href='esquive2' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
+								</ul>");
+                } else {
+                    system.write($("#vences_manticora").html());
+
+                    /*
+                    system.write("<p>Enhorabuena, por haber salido victorioso puedes usar un punto de habilidad para aumentar uno de tus atributos:</p><br/>\
+                                  <ul class='options'>\
+                                    <li><a href='./aumenta_fuerza'>Aumentar fuerza</a></li>\
+                                    <li><a href='./aumenta_agilidad'>Aumentar agilidad</a></li>\
+                                    <li><a href='./aumenta_defensa'>Aumentar defensa</a></li>\
+                                    <li><a href='./aumenta_sabiduria'>Aumentar sabiduría</a></li>\
+                                    <li><a href='./aumenta_sigilo'>Aumentar sigilo</a></li>\
+                                  </ul><br/>\
+                                  <p>Por fin podrás salir de la cueva, no sin antes recoger <a href='recoge_remolacha'>aquello que venías buscando</a></p>");
+                                  */
+                    system.setQuality("vida_adv", 0);
+                    system.setQuality("bonf", 0);
+                    system.setQuality("vulnerable", 0);
+                }
+            }/*,
+            actions: {
+                "aumenta_fuerza": function(character, system, action) {
+                    system.setQuality("fuerza", character.qualities.fuerza + 1);
+                },
+                "aumenta_agilidad": function(character, system, action) {
+                    system.setQuality("agilidad", character.qualities.agilidad + 1);
+                },
+                "aumenta_defensa": function(character, system, action) {
+                    system.setQuality("defensa", character.qualities.defensa + 1);
+                },
+                "aumenta_sabiduria": function(character, system, action) {
+                    system.setQuality("sabiduria", character.qualities.sabiduria + 1);
+                },
+                "aumenta_sigilo": function(character, system, action) {
+                    system.setQuality("sigilo", character.qualities.sigilo + 1);
+                },
+
+
+            }*/
+        }
+    ),
+
+    bloqueo2: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+
+                var dado = jsRandom.get(1, 20);
+                var ajuste = dado - character.qualities.defensa;
+
+                if (character.qualities.vulnerable == 1 || ajuste > 8) {
+                    var daño = jsRandom.get(1, 6);
+                    system.setQuality("vida", character.qualities.vida - daño);
+                    system.setQuality("vulnerable", 0);
+                    system.write("<p>Has fallado el bloqueo.</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño + "</p><br>");
+                } else {
+                    system.write("<p>Has bloqueado el ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+                }
+                system.write("<p class='transient'><a href='tu_turno2'>Tu turno</a></p><br>");
+            }
+        }
+    ),
+
+    esquive2: new undum.SimpleSituation(
+        "",
+        {
+            enter: function (character, system, action) {
+
+                var dado = jsRandom.get(1, 20);
+                var ajuste = dado - character.qualities.agilidad;
+                if (character.qualities.vulnerable == 1 || ajuste >= 6) {
+                    var daño = jsRandom.get(1, 8);
+                    system.setQuality("vida", character.qualities.vida - daño);
+                    system.setQuality("vulnerable", 0);
+                    system.write("<p>Has fallado el esquive</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño + "</p><br>");
+                } else {
+                    system.write("<p>Has esquivado el ataque con éxito. Ganas una <b>bonificación</b> para tu siguiente ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+
+                    system.setQuality("bonf", 1);
+                }
+                system.write("<p class='transient'><a href='tu_turno2' >Tu turno</a></p><br>");
+            }
+        }
+    ),
+
+    /*
     combate_manticora: new undum.SimpleSituation(
         "<h3>Combate</h3>\
         <ul class='options'>\
@@ -1327,6 +1688,7 @@ undum.game.situations = {
             },
         }
     ),
+    
 
     espadacorta: new undum.SimpleSituation(
         "<p>Tomas la espada corta que encontraste en la montaña de huesos y corres\
@@ -1373,6 +1735,7 @@ undum.game.situations = {
             }
         }
     ),
+    */
 
     recoge_remolacha: new undum.SimpleSituation(
         "<p>Tras haber derrotado a la mantícora, te diriges a donde se desprende ese brillo rojo intenso para\
@@ -1444,7 +1807,7 @@ undum.game.situations = {
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
-undum.game.start = "inicio";
+undum.game.start = "seleccion_personaje";
 
 // ---------------------------------------------------------------------------
 /* Here we define all the qualities that our characters could
@@ -1464,20 +1827,22 @@ undum.game.qualities = {
 	),
 	
 	defensa: new undum.NumericQuality(
-		"defensa", {priority:"0001", group:'stats'}
+		"Defensa", {priority:"0001", group:'stats'}
 	),
 	
 	sabiduria: new undum.NumericQuality(
-		"Sabiduía", {priority:"0001", group:'stats'}
+		"Sabiduría", {priority:"0001", group:'stats'}
 	),
 	
 	sigilo: new undum.NumericQuality(
 		"Sigilo", {priority:"0001", group:'stats'}
 	),
-	
+
+    /*
 	cuchillo: new undum.OnOffQuality(
         "Cuchillo", {priority:"0003", group:'objetos', onDisplay:"&#10003;"}
     ),
+    */
 
     cuerda: new undum.OnOffQuality(
         "Cuerda", { priority: "0003", group: 'objetos'}
@@ -1491,12 +1856,24 @@ undum.game.qualities = {
         "Monedas de plata", {priority: "0003", group: 'objetos', onDisplay:"&#10003;"}
     ),
 
+    espada_larga: new undum.OnOffQuality(
+        "Espada larga", { priority: "0003", group: 'objetos' }
+    ),
+
+    hacha: new undum.OnOffQuality(
+        "Hacha", { priority: "0003", group: 'objetos' }
+    ),
+    
+    dagas: new undum.OnOffQuality(
+        "Dagas", { priority: "0003", group: 'objetos'}
+    ),
+
     espada_corta: new undum.OnOffQuality(
         "Espada corta", { priority: "0003", group: 'objetos'}
     ),
 
-    daga_arr: new undum.OnOffQuality(
-        "Daga arrojadiza", { priority: "0003", group: 'objetos'}
+    espada_madera: new undum.OnOffQuality(
+        "Espada de madera", { priority: "0003", group: 'objetos'}
     ),
 
     comida_mal: new undum.OnOffQuality(
@@ -1555,17 +1932,20 @@ undum.game.qualityGroups = {
  * to configure the character at the start of play. */
 undum.game.init = function(character, system) {
 	character.qualities.vida = 20;
-    character.qualities.fuerza = 3;
-	character.qualities.agilidad = 3;
-	character.qualities.defensa = 3;
-	character.qualities.sabiduria = 3;
-	character.qualities.sigilo = 3;
+    character.qualities.fuerza = 0;
+	character.qualities.agilidad = 0;
+	character.qualities.defensa = 0;
+	character.qualities.sabiduria = 0;
+	character.qualities.sigilo = 0;
     character.qualities.monedas_oro = 0;
     character.qualities.monedas_pl = 0;
     character.qualities.cuerda = 0;
-    character.qualities.cuchillo = 0;
+    //character.qualities.cuchillo = 0;
+    character.qualities.espada_larga = 0;
+    character.qualities.hacha = 0;
+    character.qualities.dagas = 0;
     character.qualities.espada_corta = 0;
-    character.qualities.daga_arr = 0;
+    character.qualities.espada_madera = 0;
     character.qualities.comida_mal = 0;
     character.qualities.pocion_azul = 0;
     character.qualities.pocion_roja = 0;
