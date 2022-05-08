@@ -588,6 +588,7 @@ undum.game.situations = {
 	
    templo: new undum.SimpleSituation(
         "<h1>CAPITULO 4</h1>\
+        <img src='media/img/templo_monje.png'>\
         <p>Tras día y medio de travesía, el templo de Ver-duleria se deja ver al fin. Este se encuetra en lo alto de una colina\
         rodeado por un bosque de escasos árboles. Distingues un pequeño sendero que parece dirigirse al templo y decides tomarlo. Se trata de un\
         pequeño edificio de dos plantas hecho de piedra marrón desgastada. En la entrada te recibe un monje vestido con un hábito marron y blanco.</p>\
@@ -638,8 +639,8 @@ undum.game.situations = {
                 'combate_monje':function(character,system,action){
                     system.write($("#pelea_monje").html());
                 //system.setQuality("progreso", character.qualities.progreso+3);
-                
-				var dado = jsRandom.get(1,10);
+                /*
+				    var dado = jsRandom.get(1,10);
 					if((dado + character.qualities.fuerza) > 5){
 						system.write($("#vives_monje").html());
                         system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");	//-SERÁ UNA PELEA A MUERTE CON CUCHILLOS
@@ -649,13 +650,141 @@ undum.game.situations = {
 					}else{
 						system.write($("#mueres_monje").html());
 					}
+                    */
                 }
             },
             enter: function (character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+3);
+            },
+            exit:function (character, system, action) {
+                system.setQuality("vida_adv", 20);
             }
         }
     ),
+    tu_turno3: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida > 0){
+					system.write("<p><b>TU TURNO</b></p>");
+					system.write("<p class='transient'><a href='atacar3' >Atacar</a>: Escala con <b>fuerza</b></p>");
+				}else{
+					system.write($("#mueres_monje").html());
+				}
+			}
+		}
+	),
+	
+	atacar3: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				var dado = jsRandom.get(1,20);
+					
+					if(character.qualities.bonf == 1){
+						dado = dado + jsRandom.get(1,4)
+						system.setQuality("bonf", 0);
+					}
+					
+					if(dado == 1){
+						system.write("<p>Has fallado el ataque estrepitosamente. Ahora eres <b>vulnerable</b></p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño infligido: 0 </p><br>");
+						system.setQuality("vulnerable", 1);
+					}else{
+						var ajuste = dado + character.qualities.fuerza;
+						if (ajuste > 10){		//ATAQUE EXITO						
+							var atq = jsRandom.get(2,6);
+							if(dado>=20){	//CRÍTICO!! Tira otro dado
+								atq = atq + jsRandom.get(2,6);
+								system.write("<p><b>CRÍTICO</b></p>")
+							}
+							system.write("<p>Has realizazo un ataque con éxito<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: " + atq + "</p><br>");
+							system.setQuality("vida_adv", character.qualities.vida_adv-atq);//Bajar vida adversario
+						}else{							
+								system.write("<p>Has fallado el ataque.</p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: 0 </p><br>");
+							}
+					}
+					//system.setQuality("tirada", dado);
+					system.write("<p class='transient'><a href='turno_def3' >Pasar turno</a></p><br>");
+			}			
+		}
+	),
+	
+	turno_def3:new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida_adv > 0){
+					system.write("<p><b>TURNO DEL RIVAL</b></p>");
+					system.write("<ul class='options'>\
+									<li><a href='bloqueo3' >Bloquear</a>: Escala con <b>defensa</b></li>\
+									<li><a href='esquive3' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
+								</ul>");
+				}else{
+					system.write("<p> <a href='vives_monje' class='once'> Continuar </a> </p> <br>");
+					system.setQuality("vida_adv", 0);
+					system.setQuality("bonf", 0);
+					system.setQuality("vulnerable", 0);
+				}
+			},
+		}
+	),
+	
+	bloqueo3: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20) ;
+				var ajuste = dado - character.qualities.defensa;
+				
+				if(character.qualities.vulnerable==1 || ajuste>12){
+					var daño = jsRandom.get(2,6);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el bloqueo.</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has bloqueado el ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+				}
+				system.write("<p class='transient'><a href='tu_turno3'>Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	esquive3: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20);
+				var ajuste = dado - character.qualities.agilidad;
+				if(character.qualities.vulnerable==1 || ajuste>=8){
+					var daño = jsRandom.get(2,8);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el esquive</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has esquivado el ataque con éxito. Ganas una <b>bonificación</b> para tu siguiente ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+					
+					system.setQuality("bonf", 1);
+				}
+				system.write("<p class='transient'><a href='tu_turno3' >Tu turno</a></p><br>");
+			}
+		}
+	),
 	
     //si no tienes la sabiduria necesaria
 	/*
@@ -1397,17 +1526,152 @@ undum.game.situations = {
         De pronto se da la vuelta y ante tu sorpresa se quita de su sucio dedo un anillo de tres rubíes. Recuerdas que es el mismo anillo que llevaba Felipo el día que lo viste en el castillo. Es imprescindible conseguirlo, pues es una prueba contra él. \
         GAL lanza el anillo a un lodazal para que se hunda en él y dice : \
         <p class= 'dialogo'>― Podrás vencerme a mi, pero jamás acabareis con Felipo. Aunque dudo que pueda contra mi un necio de tu calibre.</p>\
-        <p>Acto seguido se lanza al ataque. Es tan veloz que no tienes tiempo de reaccionar y y consigue hacerle un corte en el brazo. Desenvainas tu espada mientras observas como el anillo, la única prueba contra\
+        <br>\
+		<p class='transient'><a href='tu_turno4'>Atacar</a></p>",
+        {     enter:function(character, system, action) 
+            {
+            system.setQuality("progreso", character.qualities.progreso+3);
+
+            },
+            exit:function(character, system, action) 
+            {
+            system.setQuality("vida_adv",20);
+
+            } 
+        }
+    ),
+    tu_turno4: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida > 0){
+					system.write("<p><b>TU TURNO</b></p>");
+					system.write("<p class='transient'><a href='atacar4' >Atacar</a>: Escala con <b>fuerza</b></p>");
+				}else{
+					system.write($("#mueres_monje").html());
+				}
+			}
+		}
+	),
+	
+	atacar4: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				var dado = jsRandom.get(1,20);
+					
+					if(character.qualities.bonf == 1){
+						dado = dado + jsRandom.get(1,4)
+						system.setQuality("bonf", 0);
+					}
+					
+					if(dado == 1){
+						system.write("<p>Has fallado el ataque estrepitosamente. Ahora eres <b>vulnerable</b></p>\
+									<p> · Tirada: "+ dado + " </p>\
+									<p> · Daño infligido: 0 </p><br>");
+						system.setQuality("vulnerable", 1);
+					}else{
+						var ajuste = dado + character.qualities.fuerza;
+						if (ajuste > 10){		//ATAQUE EXITO						
+							var atq = jsRandom.get(1,6);
+							if(dado>=20){	//CRÍTICO!! Tira otro dado
+								atq = atq + jsRandom.get(1,6);
+								system.write("<p><b>CRÍTICO</b></p>")
+							}
+							system.write("<p>Has realizazo un ataque con éxito<p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: " + atq + "</p><br>");
+							system.setQuality("vida_adv", character.qualities.vida_adv-atq);//Bajar vida adversario
+						}else{							
+								system.write("<p>Has fallado el ataque.</p>\
+										<p> · Tirada: "+ dado + " </p>\
+										<p> · Daño infligido: 0 </p><br>");
+							}
+					}
+					//system.setQuality("tirada", dado);
+					system.write("<p class='transient'><a href='turno_def4' >Pasar turno</a></p><br>");
+			}			
+		}
+	),
+	
+	turno_def4:new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {				
+				if(character.qualities.vida_adv > 0){
+					system.write("<p><b>TURNO DEL RIVAL</b></p>");
+					system.write("<ul class='options'>\
+									<li><a href='bloqueo4' >Bloquear</a>: Escala con <b>defensa</b></li>\
+									<li><a href='esquive4' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
+								</ul>");
+				}else{
+					system.write("<p> <a href='victoria4' class='once'> Continuar </a> </p> <br>");
+					system.setQuality("vida_adv", 0);
+					system.setQuality("bonf", 0);
+					system.setQuality("vulnerable", 0);
+				}
+			},
+		}
+	),
+	
+	bloqueo4: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20) ;
+				var ajuste = dado - character.qualities.defensa;
+				
+				if(character.qualities.vulnerable==1 || ajuste>12){
+					var daño = jsRandom.get(1,6);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el bloqueo.</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has bloqueado el ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+				}
+				system.write("<p class='transient'><a href='tu_turno4'>Tu turno</a></p><br>");
+			}
+		}
+	),
+	
+	esquive4: new undum.SimpleSituation(
+		"",
+		{
+			enter:function(character, system, action) {
+				
+				var dado = jsRandom.get(1,20);
+				var ajuste = dado - character.qualities.agilidad;
+				if(character.qualities.vulnerable==1 || ajuste>=8){
+					var daño = jsRandom.get(1,8);
+					system.setQuality("vida", character.qualities.vida - daño);
+					system.setQuality("vulnerable", 0);
+					system.write("<p>Has fallado el esquive</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: "+ daño +"</p><br>");
+				}else{
+					system.write("<p>Has esquivado el ataque con éxito. Ganas una <b>bonificación</b> para tu siguiente ataque</p>\
+									<p> · Tirada enemigo: "+ dado + " </p>\
+									<p> · Daño recibido: 0 </p><br>");
+					
+					system.setQuality("bonf", 1);
+				}
+				system.write("<p class='transient'><a href='tu_turno4' >Tu turno</a></p><br>");
+			}
+		}
+	),
+    victoria4 : new undum.SimpleSituation(
+       " <p>Acto seguido se lanza al ataque. Es tan veloz que no tienes tiempo de reaccionar y y consigue hacerle un corte en el brazo. Desenvainas tu espada mientras observas como el anillo, la única prueba contra\
          Felipo, se hunde en el lodo. El combate es trepidante, es sin duda el mejor de los asesinos contratados por Felipo, y tu te encuentras exhausto tras el combate con la bestia. Decides desequilibrarlo \
         y zambullarte en el lodazal para tratar de coger el anillo pero justo cuando un palmo separa tu dedo de este GAL agarra tu pierna y tira con fuerza. El lodo es denso y espeso y aprovechas que tu enemigo  \
         ha perdido su arma en él para darle una última oportunidad de vivir, con tu espada rozando su cuello. GAL desvía su mirada de la tuya para observar el anillo. Tu te giras para contemplarlo también y en ese despiste\
         aprovecha para coger su espada y blandirla contra ti. Consigues esquivarla y esta vez no concedes ninguna oportunidad. Le das muerte a tu enemigo. Rápidamente sumerges bien tu brazo en el lodo para sacar el anillo.</p>\
         <br>\
-		<p class='transient'><a href='vueltacastillo'>Siguiente Página</a></p>",
-        {     enter:function(character, system, action) {
-            system.setQuality("progreso", character.qualities.progreso+3);
-
-            }}
+        <p class='transient'><a href='vueltacastillo' >Continuar</a></p><br>"
     ),
     vueltacastillo: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
@@ -1436,15 +1700,23 @@ undum.game.situations = {
     ),
     perdonar: new undum.SimpleSituation(
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>El rey Astorias te da las gracias por tu labor y te entrega una merecida recompensa. Felipo, \
-        que aún desconfía de ti, ordena que te maten nada mas salir del castillo. Allí, sus guardias te pillan desprevenido\
-        y consiguen derrotarte sin mucho esfuerzo.</p> <p><b>FIN DEL JUEGO</b></p>"
+        <p>El rey Artorias te da las gracias por tu labor. Felipo, \
+        allí presente, es consciente de que le has perdonado la vida al no enseñar el anillo. Ve bondad en tí y con su mirada clavada en la tuya alza la voz:</p>\
+        <p>―Oh majestad, dejadme recompensar yo mismo al valiente caballero.</p><br>\
+        <p>El rey acepta su petición y juntos, Felipo y tú, abandonáis la sala del trono. Cuando estáis solos Felipo se disculpa por haber intentado matarte.</p>\
+        <p>―Mis mas sinceras disculpas, no sabía que aún habia caballeros con bondad, pero era necesario acabar con este reinado. El rey Astorias es un despreciable gusano que\
+        sólo piensa en si mismo, mientras su pueblo muere ante sus ojos.</p>\
+        <p>―¿Qué podemos hacer? ― preguntas al instante</p>\
+        <p>―Debemos deshacernos de esta monarquía podrida y repartir la remolacha por todo el pueblo para así curar a mi gente.</p><br>\
+        <p>Juntos volvéis a la sala del trono y hacéis frente al rey como nunca nadie se atrevió. Sus guardas, hartos de él, deciden ayudaros así que no os es difícil encarcelar a los reyes. \
+        Felipo será el nuevo rey de DragonBorn. Su primer acto como rey es elaborar una cura con la remolacha y repartirla a todos los habitantes enfermos de DragonBorn.</p><br>\
+        <p><b>FIN</b></p>"
     ),
     }
 
 // ---------------------------------------------------------------------------
 /* The Id of the starting situation. */
-undum.game.start = "inicio";
+undum.game.start = "templo";
 
 // ---------------------------------------------------------------------------
 /* Here we define all the qualities that our characters could
