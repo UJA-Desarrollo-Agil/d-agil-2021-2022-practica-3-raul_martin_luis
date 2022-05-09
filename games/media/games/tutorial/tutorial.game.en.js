@@ -1101,7 +1101,7 @@ undum.game.situations = {
                     system.write($("#pelea_monje").html());
                // system.setQuality("progreso", character.qualities.progreso+3);
                 
-				var dado = jsRandom.get(1,10);
+				/*var dado = jsRandom.get(1,10);
 					if((dado + character.qualities.fuerza) > 5){
 						system.write($("#vives_monje").html());
                         system.write("<p><a href='aftercombate'>Siguiente pagina</a></p>");	//-SERÁ UNA PELEA A MUERTE CON CUCHILLOS
@@ -1112,11 +1112,13 @@ undum.game.situations = {
 						system.write($("#mueres_monje").html());
 					}
                 }
+                */
             },
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+3);
             }
         }
+    }
     ),
 
     aftercombate: new undum.SimpleSituation(
