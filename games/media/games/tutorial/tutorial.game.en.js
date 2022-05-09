@@ -35,12 +35,14 @@ nombre = prompt(
   }
 
 var confianza = 0;
+var subida = 0;
 
 /* The situations that the game can be in. Each has a unique ID. */
 undum.game.situations = {
 
     seleccion_personaje: new undum.SimpleSituation(
-        "<p class='transient'>Antes de comenzar tu aventura debes seleccionar un tipo de personaje. Selecciona un tipo para ver sus estadísticas:</p>\
+        "<p class='transient'><h1>Selección de personaje</h1></p>\
+        <p class='transient'>Antes de comenzar tu aventura debes seleccionar un tipo de personaje. Selecciona un tipo para ver sus estadísticas:</p>\
         <p class='transient'>\
             <ul class='options'>\
                 <li><a href='guerrero'>Guerrero</a></li>\
@@ -54,7 +56,7 @@ undum.game.situations = {
 
     guerrero: new undum.SimpleSituation(
         "<h3 class='transient'>Guerrero</h3>\
-        <p class='transient'><img src='media/img/guerrero.jpg' class='float_right' height='50%' width='50%'/></p>\
+        <p class='transient'><img src='media/img/guerrero2.jpg' class='float_right' height='50%' width='50%'/></p>\
         <p class='transient'>El guerrero ha sido entrenado en el arte del combate, por lo que sus habilidades están bien pulidas y balanceadas.\
         Además, tuvo la suerte de recibir una educación decente, por lo que su capacidad mental también es buena.\
         Cuenta con una espada larga, el arma con el que aprendió a combatir y que tanto tiempo le ha acompañado.</p><br/>\
@@ -68,7 +70,7 @@ undum.game.situations = {
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
         <p class='transient'>\
             <ul class='options'>\
-                <li><a href='./selecciona'>Sí.</a></li>\
+                <li><a href='./selecciona' class='once'>Sí.</a></li>\
                 <li><a href='seleccion_personaje'>No.</a></li>\
             </ul>\
         </p>",
@@ -97,7 +99,7 @@ undum.game.situations = {
         * Fuerza: 5 <br/>\
         * Agilidad: 2 <br/>\
         * Defensa: 4 <br/>\
-        * Sabiduría: 1 <br/>\
+        * Sabiduría: 2 <br/>\
         * Sigilo: 1 <br/>\
         * Arma: Hacha de combate.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
@@ -202,7 +204,7 @@ undum.game.situations = {
         * Defensa: 1 <br/>\
         * Sabiduría: 1 <br/>\
         * Sigilo: 2 <br/>\
-        * Arma: Espada de madera.<br/>\
+        * Arma: Bastón de madera.<br/>\
         ¿Deseas comenzar tu aventura con este personaje?</p><br/>\
         <p class='transient'>\
             <ul class='options'>\
@@ -218,7 +220,7 @@ undum.game.situations = {
                     system.setQuality("defensa", 1);
                     system.setQuality("sabiduria", 1);
                     system.setQuality("sigilo", 2);
-                    system.setQuality("espada_madera", 1);
+                    system.setQuality("baston", 1);
                     system.write("<p class='transient'>¡Buena elección! Ahora sí, es hora de <a href='inicio'>comenzar tu aventura</a>.</p>");
                 }
             }
@@ -647,20 +649,22 @@ undum.game.situations = {
 						system.setQuality("vulnerable", 1);
 					}else{
                         var ajuste = dado + character.qualities.fuerza;
-                        if (character.qualities.espada_larga == 1) {
-                            ajuste = ajuste + 4;
-                        } else if (character.qualities.hacha == 1) {
-                            ajuste = ajuste + 4;
-                        } else if (character.qualities.dagas == 1) {
-                            ajuste = ajuste + 2;
-                        } else if (character.qualities.espada_corta == 1) {
-                            ajuste = ajuste + 3;
-                        } else if (character.qualities.espada_madera == 1) {
-                            ajuste = ajuste + 1;
-                        }
 
 						if (ajuste > 10){		//ATAQUE EXITO						
-							var atq = jsRandom.get(1,6);
+                            var atq = jsRandom.get(1, 6);
+
+                            if (character.qualities.espada_larga == 1) {
+                                atq = atq + 4;
+                            } else if (character.qualities.hacha == 1) {
+                                atq = atq + 4;
+                            } else if (character.qualities.dagas == 1) {
+                                atq = atq + 2;
+                            } else if (character.qualities.espada_corta == 1) {
+                                atq = atq + 3;
+                            } else if (character.qualities.baston == 1) {
+                                atq = atq + 1;
+                            }
+
 							if(dado>=20){	//CRÍTICO!! Tira otro dado
 								atq = atq + jsRandom.get(1,6);
 								system.write("<p><b>CRÍTICO</b></p>")
@@ -691,13 +695,39 @@ undum.game.situations = {
 									<li><a href='bloqueo' >Bloquear</a>: Escala con <b>defensa</b></li>\
 									<li><a href='esquive' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
 								</ul>");
-				}else{
+                } else {
+                    system.write("<p>Enhorabuena, por haber salido victorioso puedes usar un punto de habilidad para aumentar uno de tus atributos (el cambio\
+                                  se efectuará al cambiar de situación):</p><br/>\
+                                  <ul class='options'>\
+                                    <li><a href='./aumenta_fuerza'>Aumentar fuerza</a></li>\
+                                    <li><a href='./aumenta_agilidad'>Aumentar agilidad</a></li>\
+                                    <li><a href='./aumenta_defensa'>Aumentar defensa</a></li>\
+                                    <li><a href='./aumenta_sabiduria'>Aumentar sabiduría</a></li>\
+                                    <li><a href='./aumenta_sigilo'>Aumentar sigilo</a></li>\
+                                  </ul><br/>");
 					system.write("<p> <a href='victoria1' class='once'> Continuar </a> </p> <br>");
 					system.setQuality("vida_adv", 0);
 					system.setQuality("bonf", 0);
 					system.setQuality("vulnerable", 0);
 				}
-			},
+            },
+            actions: {
+                "aumenta_fuerza": function (character, system, action) {
+                    subida = 1;
+                },
+                "aumenta_agilidad": function (character, system, action) {
+                    subida = 2;
+                },
+                "aumenta_defensa": function (character, system, action) {
+                    subida = 3;
+                },
+                "aumenta_sabiduria": function (character, system, action) {
+                    subida = 4;
+                },
+                "aumenta_sigilo": function (character, system, action) {
+                    subida = 5;
+                }
+            }
 		}
 	),
 	
@@ -710,7 +740,7 @@ undum.game.situations = {
 				var ajuste = dado - character.qualities.defensa;
 				
 				if(character.qualities.vulnerable==1 || ajuste>12){
-					var daño = jsRandom.get(1,6);
+					var daño = jsRandom.get(3,7);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el bloqueo.</p>\
@@ -734,7 +764,7 @@ undum.game.situations = {
 				var dado = jsRandom.get(1,20);
 				var ajuste = dado - character.qualities.agilidad;
 				if(character.qualities.vulnerable==1 || ajuste>=8){
-					var daño = jsRandom.get(1,8);
+                    var daño = jsRandom.get(3, 7);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el esquive</p>\
@@ -778,7 +808,21 @@ undum.game.situations = {
 						system.write($("#no_cartita").html());
 					}
 				}
-			}
+            },
+            enter: function (character, system, action) {
+                if (subida == 1) {
+                    system.setQuality("fuerza", character.qualities.fuerza + 1);
+                } else if (subida == 2) {
+                    system.setQuality("agilidad", character.qualities.agilidad + 1);
+                } else if (subida == 3) {
+                    system.setQuality("defensa", character.qualities.defensa + 1);
+                } else if (subida == 4) {
+                    system.setQuality("sabiduria", character.qualities.sabiduria + 1);
+                } else {
+                    system.setQuality("sigilo", character.qualities.sigilo + 1);
+                }
+                subida = 0;
+            }
 		}
 		
 	),
@@ -893,20 +937,22 @@ undum.game.situations = {
 						system.setQuality("vulnerable", 1);
 					}else{
                         var ajuste = dado + character.qualities.fuerza;
-                        if (character.qualities.espada_larga == 1) {
-                            ajuste = ajuste + 4;
-                        } else if (character.qualities.hacha == 1) {
-                            ajuste = ajuste + 4;
-                        } else if (character.qualities.dagas == 1) {
-                            ajuste = ajuste + 2;
-                        } else if (character.qualities.espada_corta == 1) {
-                            ajuste = ajuste + 3;
-                        } else if (character.qualities.espada_madera == 1) {
-                            ajuste = ajuste + 1;
-                        }
 
 						if (ajuste > 10){		//ATAQUE EXITO						
-							var atq = jsRandom.get(2,6);
+                            var atq = jsRandom.get(2, 6);
+
+                            if (character.qualities.espada_larga == 1) {
+                                atq = atq + 4;
+                            } else if (character.qualities.hacha == 1) {
+                                atq = atq + 4;
+                            } else if (character.qualities.dagas == 1) {
+                                atq = atq + 2;
+                            } else if (character.qualities.espada_corta == 1) {
+                                atq = atq + 3;
+                            } else if (character.qualities.baston == 1) {
+                                atq = atq + 1;
+                            }
+
 							if(dado>=20){	//CRÍTICO!! Tira otro dado
 								atq = atq + jsRandom.get(2,6);
 								system.write("<p><b>CRÍTICO</b></p>")
@@ -937,13 +983,39 @@ undum.game.situations = {
 									<li><a href='bloqueo3' >Bloquear</a>: Escala con <b>defensa</b></li>\
 									<li><a href='esquive3' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
 								</ul>");
-				}else{
+                } else {
+                    system.write("<p>Enhorabuena, por haber salido victorioso puedes usar un punto de habilidad para aumentar uno de tus atributos (el cambio\
+                                  se efectuará al cambiar de situación):</p><br/>\
+                                  <ul class='options'>\
+                                    <li><a href='./aumenta_fuerza'>Aumentar fuerza</a></li>\
+                                    <li><a href='./aumenta_agilidad'>Aumentar agilidad</a></li>\
+                                    <li><a href='./aumenta_defensa'>Aumentar defensa</a></li>\
+                                    <li><a href='./aumenta_sabiduria'>Aumentar sabiduría</a></li>\
+                                    <li><a href='./aumenta_sigilo'>Aumentar sigilo</a></li>\
+                                  </ul><br/></p>");
 					system.write("<p> <a href='vives_monje' class='once'> Continuar </a> </p> <br>");
 					system.setQuality("vida_adv", 0);
 					system.setQuality("bonf", 0);
 					system.setQuality("vulnerable", 0);
 				}
-			},
+            },
+            actions: {
+                "aumenta_fuerza": function (character, system, action) {
+                    subida = 1;
+                },
+                "aumenta_agilidad": function (character, system, action) {
+                    subida = 2;
+                },
+                "aumenta_defensa": function (character, system, action) {
+                    subida = 3;
+                },
+                "aumenta_sabiduria": function (character, system, action) {
+                    subida = 4;
+                },
+                "aumenta_sigilo": function (character, system, action) {
+                    subida = 5;
+                }
+            }
 		}
 	),
 	
@@ -956,7 +1028,7 @@ undum.game.situations = {
 				var ajuste = dado - character.qualities.defensa;
 				
 				if(character.qualities.vulnerable==1 || ajuste>12){
-					var daño = jsRandom.get(2,6);
+                    var daño = jsRandom.get(3, 7);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el bloqueo.</p>\
@@ -980,7 +1052,7 @@ undum.game.situations = {
 				var dado = jsRandom.get(1,20);
 				var ajuste = dado - character.qualities.agilidad;
 				if(character.qualities.vulnerable==1 || ajuste>=8){
-					var daño = jsRandom.get(2,8);
+                    var daño = jsRandom.get(3, 7);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el esquive</p>\
@@ -1052,9 +1124,21 @@ undum.game.situations = {
             {
                 'libros': "<p> De entre las llamas rescatas un libro con información de la hierba. Está en mal estado pero consigues rescatar un pequeño mapa que dice llevar a un lugar\
                 donde es posible encontrar la planta. <a href = 'post_templo'>Decides seguir el mapa </p><br>",
-                'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p><br>" 
+                'ventana':"<p> Te asomas a la ventana y ves a los hombres que han quemado los libros huir a toda velocidad. No merece la pena perseguirlos</p><br>"
             },enter:function(character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+3);
+                system.setQuality("progreso", character.qualities.progreso + 3);
+                if (subida == 1) {
+                    system.setQuality("fuerza", character.qualities.fuerza + 1);
+                } else if (subida == 2) {
+                    system.setQuality("agilidad", character.qualities.agilidad + 1);
+                } else if (subida == 3) {
+                    system.setQuality("defensa", character.qualities.defensa + 1);
+                } else if (subida == 4) {
+                    system.setQuality("sabiduria", character.qualities.sabiduria + 1);
+                } else {
+                    system.setQuality("sigilo", character.qualities.sigilo + 1);
+                }
+                subida = 0;
             }
         }
     ),
@@ -1126,7 +1210,9 @@ undum.game.situations = {
     ),
 
     gran_caverna: new undum.SimpleSituation(
-        "<p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
+        "<h2>La gran caverna</h2>\
+        <p class='transient'><img src='media/img/caverna.jpg' class='float_right' width='100%' height='100%'/></p>\
+        <p>Te deslizas hacia abajo por esa rampa y finalmente te detienes en un terreno algo más llano.\
         Además, toda la colonia de murciélagos que había durmiendo en el interior de la caverna se ha\
         despertado a causa de tu estruendosa caída y, asustados, han salido volando directos hacia tí\
         enganchándose en tu ropa y rasgándola un poco.</p>\
@@ -1596,21 +1682,15 @@ undum.game.situations = {
     ),
 
     manticora: new undum.SimpleSituation(
-        "<p>La feroz mantícora, una quimera con cabeza y cuerpo de león, cuernos, alas y la cola de un escorpión,\
+        "<img src='media/img/manticora.jpg' class='float_right' width='60%' height='60%'/>\
+        <p>La feroz mantícora, una quimera con cabeza y cuerpo de león, cuernos, alas y la cola de un escorpión,\
         con la que es capaz de envenenar a sus enemigos.</p>\
         <br>\
-        <p>Sea como sea tienes que <a href='./pelear' class='once'>pelear</a> y derrotarla para poder salir de la\
+        <p>Sea como sea tienes que <a href='tu_turno2' class='once'>pelear</a> y derrotarla para poder salir de la\
         caverna con vida y con la tan preciada Remolacha.</p>\
         <br>\
         <p>Aunque quizás deberías <a href='curarte' class='once'>curarte</a> si tienes algo para hacerlo.</p>",
         {
-            actions: {
-                "pelear": function (character, system, action) {
-                    //if (character.qualities.espada_corta == 1) {
-                    system.write("<p><a href='tu_turno2' class='once'>Comienza el combate</a></p>");
-                    //}
-                },
-            },
             enter: function (character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+3);
             },
@@ -1692,20 +1772,22 @@ undum.game.situations = {
                     system.setQuality("vulnerable", 1);
                 } else {
                     var ajuste = dado + character.qualities.fuerza;
-                    if (character.qualities.espada_larga == 1) {
-                        ajuste = ajuste + 4;
-                    } else if (character.qualities.hacha == 1) {
-                        ajuste = ajuste + 4;
-                    } else if (character.qualities.dagas == 1) {
-                        ajuste = ajuste + 2;
-                    } else if (character.qualities.espada_corta == 1) {
-                        ajuste = ajuste + 3;
-                    } else if (character.qualities.espada_madera == 1) {
-                        ajuste = ajuste + 1;
-                    }
 
                     if (ajuste > 10) {		//ATAQUE EXITO						
                         var atq = jsRandom.get(1, 6);
+                       
+                        if (character.qualities.espada_larga == 1) {
+                            atq = atq + 4;
+                        } else if (character.qualities.hacha == 1) {
+                            atq = atq + 4;
+                        } else if (character.qualities.dagas == 1) {
+                            atq = atq + 2;
+                        } else if (character.qualities.espada_corta == 1) {
+                            atq = atq + 3;
+                        } else if (character.qualities.baston == 1) {
+                            atq = atq + 1;
+                        }
+
                         if (dado >= 20) {	//CRÍTICO!! Tira otro dado
                             atq = atq + jsRandom.get(1, 6);
                             system.write("<p><b>CRÍTICO</b></p>")
@@ -1739,8 +1821,9 @@ undum.game.situations = {
                 } else {
                     system.write($("#vences_manticora").html());
 
-                    /*
-                    system.write("<p>Enhorabuena, por haber salido victorioso puedes usar un punto de habilidad para aumentar uno de tus atributos:</p><br/>\
+                    
+                    system.write("<p>Enhorabuena, por haber salido victorioso puedes usar un punto de habilidad para aumentar uno de tus atributos (el cambio\
+                                  se efectuará al cambiar de situación):</p><br/>\
                                   <ul class='options'>\
                                     <li><a href='./aumenta_fuerza'>Aumentar fuerza</a></li>\
                                     <li><a href='./aumenta_agilidad'>Aumentar agilidad</a></li>\
@@ -1749,31 +1832,30 @@ undum.game.situations = {
                                     <li><a href='./aumenta_sigilo'>Aumentar sigilo</a></li>\
                                   </ul><br/>\
                                   <p>Por fin podrás salir de la cueva, no sin antes recoger <a href='recoge_remolacha'>aquello que venías buscando</a></p>");
-                                  */
+                                  
                     system.setQuality("vida_adv", 0);
                     system.setQuality("bonf", 0);
                     system.setQuality("vulnerable", 0);
                 }
-            }/*,
+            },
             actions: {
                 "aumenta_fuerza": function(character, system, action) {
-                    system.setQuality("fuerza", character.qualities.fuerza + 1);
+                    subida = 1;
                 },
                 "aumenta_agilidad": function(character, system, action) {
-                    system.setQuality("agilidad", character.qualities.agilidad + 1);
+                    subida = 2;
                 },
                 "aumenta_defensa": function(character, system, action) {
-                    system.setQuality("defensa", character.qualities.defensa + 1);
+                    subida = 3;
                 },
                 "aumenta_sabiduria": function(character, system, action) {
-                    system.setQuality("sabiduria", character.qualities.sabiduria + 1);
+                    subida = 4;
                 },
                 "aumenta_sigilo": function(character, system, action) {
-                    system.setQuality("sigilo", character.qualities.sigilo + 1);
-                },
-
-
-            }*/
+                    subida = 5;
+                }
+            }
+            
         }
     ),
 
@@ -1786,7 +1868,7 @@ undum.game.situations = {
                 var ajuste = dado - character.qualities.defensa;
 
                 if (character.qualities.vulnerable == 1 || ajuste > 8) {
-                    var daño = jsRandom.get(1, 6);
+                    var daño = jsRandom.get(5, 8);
                     system.setQuality("vida", character.qualities.vida - daño);
                     system.setQuality("vulnerable", 0);
                     system.write("<p>Has fallado el bloqueo.</p>\
@@ -1810,7 +1892,7 @@ undum.game.situations = {
                 var dado = jsRandom.get(1, 20);
                 var ajuste = dado - character.qualities.agilidad;
                 if (character.qualities.vulnerable == 1 || ajuste >= 6) {
-                    var daño = jsRandom.get(1, 8);
+                    var daño = jsRandom.get(5, 8);
                     system.setQuality("vida", character.qualities.vida - daño);
                     system.setQuality("vulnerable", 0);
                     system.write("<p>Has fallado el esquive</p>\
@@ -1903,7 +1985,19 @@ undum.game.situations = {
         nuevo.</p>",
         {
             enter: function (character, system, action) {
-                system.setQuality("progreso", character.qualities.progreso+3);
+                system.setQuality("progreso", character.qualities.progreso + 3);
+                if (subida == 1) {
+                    system.setQuality("fuerza", character.qualities.fuerza + 1);
+                } else if (subida == 2) {
+                    system.setQuality("agilidad", character.qualities.agilidad + 1);
+                } else if (subida == 3) {
+                    system.setQuality("defensa", character.qualities.defensa + 1);
+                } else if (subida == 4) {
+                    system.setQuality("sabiduria", character.qualities.sabiduria + 1);
+                } else {
+                    system.setQuality("sigilo", character.qualities.sigilo + 1);
+                }
+                subida = 0;
             }
         }
     ),
@@ -1959,20 +2053,21 @@ undum.game.situations = {
 						system.setQuality("vulnerable", 1);
 					}else{
                         var ajuste = dado + character.qualities.fuerza;
-                        if (character.qualities.espada_larga == 1) {
-                            ajuste = ajuste + 4;
-                        } else if (character.qualities.hacha == 1) {
-                            ajuste = ajuste + 4;
-                        } else if (character.qualities.dagas == 1) {
-                            ajuste = ajuste + 2;
-                        } else if (character.qualities.espada_corta == 1) {
-                            ajuste = ajuste + 3;
-                        } else if (character.qualities.espada_madera == 1) {
-                            ajuste = ajuste + 1;
-                        }
-
+                        
 						if (ajuste > 10){		//ATAQUE EXITO						
-							var atq = jsRandom.get(1,6);
+                            var atq = jsRandom.get(1, 6);
+                            if (character.qualities.espada_larga == 1) {
+                                atq = atq + 4;
+                            } else if (character.qualities.hacha == 1) {
+                                atq = atq + 4;
+                            } else if (character.qualities.dagas == 1) {
+                                atq = atq + 2;
+                            } else if (character.qualities.espada_corta == 1) {
+                                atq = atq + 3;
+                            } else if (character.qualities.baston == 1) {
+                                atq = atq + 1;
+                            }
+
 							if(dado>=20){	//CRÍTICO!! Tira otro dado
 								atq = atq + jsRandom.get(1,6);
 								system.write("<p><b>CRÍTICO</b></p>")
@@ -2003,13 +2098,39 @@ undum.game.situations = {
 									<li><a href='bloqueo4' >Bloquear</a>: Escala con <b>defensa</b></li>\
 									<li><a href='esquive4' >Esquiva</a>: Escala con <b>agilidad</b>. Menos prob. de exito pero obtienes un ventaja</li>\
 								</ul>");
-				}else{
+                } else {
+                    system.write("<p>Enhorabuena, por haber salido victorioso puedes usar un punto de habilidad para aumentar uno de tus atributos (el cambio\
+                                  se efectuará al cambiar de situación):</p><br/>\
+                                  <ul class='options'>\
+                                    <li><a href='./aumenta_fuerza'>Aumentar fuerza</a></li>\
+                                    <li><a href='./aumenta_agilidad'>Aumentar agilidad</a></li>\
+                                    <li><a href='./aumenta_defensa'>Aumentar defensa</a></li>\
+                                    <li><a href='./aumenta_sabiduria'>Aumentar sabiduría</a></li>\
+                                    <li><a href='./aumenta_sigilo'>Aumentar sigilo</a></li>\
+                                  </ul><br/></p>");
 					system.write("<p> <a href='victoria4' class='once'> Continuar </a> </p> <br>");
 					system.setQuality("vida_adv", 0);
 					system.setQuality("bonf", 0);
 					system.setQuality("vulnerable", 0);
 				}
-			},
+            },
+            actions: {
+                "aumenta_fuerza": function (character, system, action) {
+                    subida = 1;
+                },
+                "aumenta_agilidad": function (character, system, action) {
+                    subida = 2;
+                },
+                "aumenta_defensa": function (character, system, action) {
+                    subida = 3;
+                },
+                "aumenta_sabiduria": function (character, system, action) {
+                    subida = 4;
+                },
+                "aumenta_sigilo": function (character, system, action) {
+                    subida = 5;
+                }
+            }
 		}
 	),
 	
@@ -2022,7 +2143,7 @@ undum.game.situations = {
 				var ajuste = dado - character.qualities.defensa;
 				
 				if(character.qualities.vulnerable==1 || ajuste>12){
-					var daño = jsRandom.get(1,6);
+                    var daño = jsRandom.get(3, 7);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el bloqueo.</p>\
@@ -2046,7 +2167,7 @@ undum.game.situations = {
 				var dado = jsRandom.get(1,20);
 				var ajuste = dado - character.qualities.agilidad;
 				if(character.qualities.vulnerable==1 || ajuste>=8){
-					var daño = jsRandom.get(1,8);
+                    var daño = jsRandom.get(3, 7);
 					system.setQuality("vida", character.qualities.vida - daño);
 					system.setQuality("vulnerable", 0);
 					system.write("<p>Has fallado el esquive</p>\
@@ -2070,7 +2191,23 @@ undum.game.situations = {
         ha perdido su arma en él para darle una última oportunidad de vivir, con tu espada rozando su cuello. GAL desvía su mirada de la tuya para observar el anillo. Tu te giras para contemplarlo también y en ese despiste\
         aprovecha para coger su espada y blandirla contra ti. Consigues esquivarla y esta vez no concedes ninguna oportunidad. Le das muerte a tu enemigo. Rápidamente sumerges bien tu brazo en el lodo para sacar el anillo.</p>\
         <br>\
-        <p class='transient'><a href='vueltacastillo' >Continuar</a></p><br>"
+        <p class='transient'><a href='vueltacastillo' >Continuar</a></p><br>",
+        {
+            enter: function (character, system, action) {
+                if (subida == 1) {
+                    system.setQuality("fuerza", character.qualities.fuerza + 1);
+                } else if (subida == 2) {
+                    system.setQuality("agilidad", character.qualities.agilidad + 1);
+                } else if (subida == 3) {
+                    system.setQuality("defensa", character.qualities.defensa + 1);
+                } else if (subida == 4) {
+                    system.setQuality("sabiduria", character.qualities.sabiduria + 1);
+                } else {
+                    system.setQuality("sigilo", character.qualities.sigilo + 1);
+                }
+                subida = 0;
+            }
+        }
     ),
     vueltacastillo: new undum.SimpleSituation(
         
@@ -2184,8 +2321,8 @@ undum.game.qualities = {
         "Espada corta", { priority: "0003", group: 'objetos'}
     ),
 
-    espada_madera: new undum.OnOffQuality(
-        "Espada de madera", { priority: "0003", group: 'objetos'}
+    baston: new undum.OnOffQuality(
+        "Bastón de madera", { priority: "0003", group: 'objetos'}
     ),
 
     comida_mal: new undum.OnOffQuality(
@@ -2257,7 +2394,7 @@ undum.game.init = function(character, system) {
     character.qualities.hacha = 0;
     character.qualities.dagas = 0;
     character.qualities.espada_corta = 0;
-    character.qualities.espada_madera = 0;
+    character.qualities.baston = 0;
     character.qualities.comida_mal = 0;
     character.qualities.pocion_azul = 0;
     character.qualities.pocion_roja = 0;
