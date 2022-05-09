@@ -274,6 +274,8 @@ undum.game.situations = {
 		<br>\
 		<p>―¿Y bien? ¿Aún estás aquí?― te recrimina con un gesto exagerado.</p>\
 		<br>\
+		<p><img src='media/img/Robert_2.jpg' width='450px' height='300px'/></p>\
+		<br>\
 		<p>―Disculpe su majestad― dices mientras haces una reverencia ― Pero esperaba que me pusierais al tanto de la cura. Y si era posible,\
 		reponer mis víveres para el camino.</p>\
 		<br>\
