@@ -85,6 +85,7 @@ undum.game.situations = {
 		calles inundadas de barro y estiércol, casas con fachadas grises y visiblemente maltratadas por el\
 		tiempo y, lo más extraño, no ves a nadie. De improvisto, como si de puñetazo se tratase, el hambre\
 		golpea tus entrañas.</p>\
+		<p><img src='media/img/ciudad_barro.jpg' width='200px' height='350px' align='right'/></p>\
 		<br>\
 		<p>―Joder…una posada― piensas en voz alta ―necesito comer algo.</p>\
 		<br>\
@@ -1471,7 +1472,7 @@ undum.game.qualities = {
 	),
 	
 	sabiduria: new undum.NumericQuality(
-		"Sabiduía", {priority:"0001", group:'stats'}
+		"Sabiduría", {priority:"0001", group:'stats'}
 	),
 	
 	sigilo: new undum.NumericQuality(

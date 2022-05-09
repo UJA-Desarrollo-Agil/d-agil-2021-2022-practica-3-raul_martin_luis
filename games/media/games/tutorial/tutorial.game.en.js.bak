@@ -85,6 +85,7 @@ undum.game.situations = {
 		calles inundadas de barro y estiércol, casas con fachadas grises y visiblemente maltratadas por el\
 		tiempo y, lo más extraño, no ves a nadie. De improvisto, como si de puñetazo se tratase, el hambre\
 		golpea tus entrañas.</p>\
+		<p><img src='media/img/ciudad_barro.jpg' width='200px' height='350px' align='right'/></p>\
 		<br>\
 		<p>―Joder…una posada― piensas en voz alta ―necesito comer algo.</p>\
 		<br>\
@@ -294,7 +295,7 @@ undum.game.situations = {
 		<br>\
 		<p>―Espera aquí forastero, y no toques nada.</p>\
 		<br>\
-		<p><img src='cocina.jpg' width='500px' height='300px'/></p>\
+		<p><img src='media/img/cocina.jpg' width='500px' height='300px'/></p>\
 		<br>\
 		<p>Te encuentras solo en la cocina. Sobre una amplia mesa hay cacharros, diversos cuchillos y verduras, algunas troceadas. En la\
 		pared junto a la puerta hay ristras de tripas de chorizo y salchichón. Escuchas unos pasos que se acercan a la cocina.</p>\

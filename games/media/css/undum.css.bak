@@ -19,8 +19,9 @@ body {
 /* Add some content at the bottom of the video/page */
 .content {
   position: fixed;
-  bottom: 0;
-  padding: 20px;
+  bottom:0px;
+	right:0px;
+  padding-right: 20px;
 }
 
 /* Style the button used to pause/play the video */
@@ -57,7 +58,7 @@ body {
     /*background: #e6e6c6 url("../img/title_bg.jpg") repeat -1.1em -1.1em;*/
     margin: 2.2em auto 1.1em auto;
     padding: 1.7em;
-    border: 1.1em solid rgba(0,0,0,0.25);
+    /*border: 1.1em solid rgba(0,0,0,0.25);*/
     cursor: pointer; /* Until we click to start. */
 }
 #title .label {
