@@ -273,6 +273,7 @@ undum.game.situations = {
 		calles inundadas de barro y estiércol, casas con fachadas grises y visiblemente maltratadas por el\
 		tiempo y, lo más extraño, no ves a nadie. De improvisto, como si de puñetazo se tratase, el hambre\
 		golpea tus entrañas.</p>\
+		<p><img src='media/img/ciudad_barro.jpg' width='200px' height='350px' align='right'/></p>\
 		<br>\
 		<p>―Joder…una posada― piensas en voz alta ―necesito comer algo.</p>\
 		<br>\
@@ -461,6 +462,8 @@ undum.game.situations = {
 		<br>\
 		<p>―¿Y bien? ¿Aún estás aquí?― te recrimina con un gesto exagerado.</p>\
 		<br>\
+		<p><img src='media/img/Robert_2.jpg' width='450px' height='300px'/></p>\
+		<br>\
 		<p>―Disculpe su majestad― dices mientras haces una reverencia ― Pero esperaba que me pusierais al tanto de la cura. Y si era posible,\
 		reponer mis víveres para el camino.</p>\
 		<br>\
@@ -481,6 +484,8 @@ undum.game.situations = {
 		mantequilla, tal como se le ordenó.</p>\
 		<br>\
 		<p>―Espera aquí forastero, y no toques nada.</p>\
+		<br>\
+		<p><img src='media/img/cocina.jpg' width='500px' height='300px'/></p>\
 		<br>\
 		<p>Te encuentras solo en la cocina. Sobre una amplia mesa hay cacharros, diversos cuchillos y verduras, algunas troceadas. En la\
 		pared junto a la puerta hay ristras de tripas de chorizo y salchichón. Escuchas unos pasos que se acercan a la cocina.</p>\
@@ -783,7 +788,8 @@ undum.game.situations = {
 	),
 	
 	victoria1: new undum.SimpleSituation(
-		"<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
+		"<p><img src='media/img/asesino_1.jpg' width='200px' height='300px' align='right'/></p><br>\
+		<p>El brazo izquierdo palpita, arde y chorrea sangre. Estás harto de bailar. Te llevas la mano derecha, que empuña la espada,\
 		al hombro para palpar la herida. De modo que desvías su atención a esta. Tu mano izquierda, sigilosa y oculta a la vista, busca el\
 		tu cuchillo oculto. Amagas para atacar con la derecha. Él se prepara para rechazar y dar el golpe final. Realizas un rápido\
 		y doloroso giro del codo izquierdo y el cuchillo vuela hasta su cuello. El asesino de cuatro labios cae de rodillas, se le escapa un\

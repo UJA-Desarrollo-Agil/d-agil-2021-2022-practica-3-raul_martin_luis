@@ -33,7 +33,7 @@
   </head>
   <body>
 	<video autoplay muted loop id="myVideo">
-	  <source src="media/video/zelda.mp4" type="video/mp4">
+	  <source src="media/video/guts2.mp4" type="video/mp4">
 	</video>
   
     <!-- This isn't needed and isn't visible in desktop versions,
