@@ -1674,12 +1674,14 @@ undum.game.situations = {
         <p class='transient'><a href='vueltacastillo' >Continuar</a></p><br>"
     ),
     vueltacastillo: new undum.SimpleSituation(
+        
         "<h1>REGRESO AL CASTILLO</h1>\
-        <p>Regresas al castillo por fin para entregarle la hierba al rey Astorias y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia.\
-        <ul class='options'>\
+        <p><img src='media/img/reysentado.jpg'  class='float_right' width='50%' height='50%'></p>\
+        <p>Regresas al castillo por fin para entregarle la hierba al rey Astorias y obtener tu recompensa. Una vez allí eres muy bien recibido. En la sala del trono, un perplejo Felipo observa como entras con elegancia. El rey, con una copa en la mano, te mira con semblante serio.</p><br>\
+        <p><ul class='options'>\
         <li><a href= 'noperdonar'>Decides mostrar el anillo para acusar a Felipo de intentar matarte</a></li>\
         <li><a href='perdonar'>Decides perdonarlo y guardar el anillo para venderlo por una gran cantidad de dinero</a></li>\
-        </ul>\
+        </ul></p>\
          <br>",
         {
             enter: function (character, system, action) {
@@ -1691,7 +1693,7 @@ undum.game.situations = {
         "<h1>REGRESO AL CASTILLO</h1>\
         <p>Al mostrar el anillo Felipo coge a su hermano y le pone una daga en el cuello para intentar escapar con su guardia personal. \
         Sin embargo sus deseos se ven frustrados cuando de una patada de su esposa en los miembros inferiores este cae al suelo y comienza a llorar. Más tarde es encerrado por traidor.\
-        El Duque Agnar te da las gracias por tu labor y te entrega tu merecida recompensa.<p><b>FIN</b></p>",
+        El rey te da las gracias por tu labor y te entrega tu merecida recompensa.<p><b>FIN</b></p>",
         {
             enter:function(character, system, action) {
                 system.setQuality("progreso", character.qualities.progreso+3);
