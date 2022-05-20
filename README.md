@@ -238,6 +238,7 @@ En la siguiente imagen observamos la tabla de velocidades del proyecto.
 #### 6.5 Conclusión  <a name="conclusion"></a>
 
 Con respecto al proyecto en general, observando las gráficas burn-up y burndown, hemos llegado a la conclusión de que tras el primer sprint hicimos más PH de los que correspondería a una situación ideal. Esto se debe a que al principio seleccionamos las historias de usuario que eran innegociables, para asegurarnos de que nos daba tiempo a implementarlas. Estas historias eran las que más valor tenían, por eso se percibe como una gran subida en el primer sprint. 
+
 Sin embargo, durante el segundo sprint, siguiendo la misma dinámica de trabajo seleccionamos más o menos la misma cantidad de historias de usuario, pero no eran tan costosas, de ahí que la pendiente no sea tan pronunciada. Teniendo el juego básico completo, priorizamos en aquellas que aportan mucho valor, como la selección de personaje o el sistema de combate, ya que creemos que dotan a la aventura de personalidad y distinción respecto a otros juegos. Finalmente, en cuanto a las HU que nos quedan por hacer, pueden parecer bastantes pero no las vemos tan influyentes en la jugabilidad como las ya comentadas.
 
 [Subir](#inicio)
