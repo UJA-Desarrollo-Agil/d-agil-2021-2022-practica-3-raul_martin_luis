@@ -23,6 +23,12 @@
   * 5.1 [Product Backlog Refinement](#pbr)
   * 5.2 [Sprint Review](#review2)
   * 5.3 [Sprint Retrospective](#retrospective2)
+* 6 [Métricas](#metricas)
+  * 6.1 [Tabla global del proyecto](#tabla)
+  * 6.2 [Gráficas Burn-up y Burndown PH](#ph)
+  * 6.3 [Gráficas Burn-up y Burndown Valor](#valor)
+  * 6.4 [Tabla de velocidades](#tabla2)
+  * 6.5 [Conclusión](#conclusion)
 
 ## 1 Descripción <a name="descripcion"></a>
 
@@ -188,7 +194,50 @@ También la selección de personaje influye en el sistema de combate, por lo que
 
 Hemos añadido música, fotos y otros elementos que mejoran la inmersión del jugador y hacen la experiencia más entretenida.
 
+### 6 Métricas  <a name="metricas"></a>
+
+En este apartado se expondrán las métricas utilizadas tras la finalización del proyecto, así como las conclusiones obtenidas. No hemos podido realizar las tablas y gráficas de cada sprint en particular porque carecíamos de los datos suficientes
+
+#### 6.1 Tabla global del proyecto  <a name="tabla"></a>
+
+En esta imagen podemos observar una tabla con los datos sobre los puntos de historia y valor realizados en cada sprint.
+
+![image](https://user-images.githubusercontent.com/67553838/169567846-c7c87670-01bb-40ed-ab7a-340c2debd21b.png)
+
+#### 6.2 Gráficas Burn-up y Burndown PH  <a name="ph"></a>
+
+En la siguientes imagenes observamos las graficas Burn-up y Burndown referidas a los puntos de historia de las historias de usuario.
+
+Gráfica Burn-up
+
+![image](https://user-images.githubusercontent.com/67553838/169568220-73529512-0ed5-4a5c-baff-b717536dcbd5.png)
+
+Gráfica Burndown
+
+![image](https://user-images.githubusercontent.com/67553838/169568291-96b67997-4587-47ed-b976-850830172729.png)
 
 
+#### 6.3 Gráficas Burn-up y Burndown Valor  <a name="valor"></a>
+
+En la siguiente imagen observamos las graficas Burn-up y Burndown referidas al valor de las historias de usuario.
+
+Gráfica Burn-up
+
+![image](https://user-images.githubusercontent.com/67553838/169568499-011dfc15-b8df-44a0-aacf-fd2861b719d8.png)
+
+Gráfica Burndown
+
+![image](https://user-images.githubusercontent.com/67553838/169568532-eb249696-3f4d-4e22-a9f4-12c0868bae70.png)
+
+
+#### 6.4 Tabla de velocidades  <a name="tabla2"></a>
+En la siguiente imagen observamos la tabla de velocidades del proyecto.
+
+![image](https://user-images.githubusercontent.com/67553838/169568598-d5503c2b-2c5e-4774-97ea-57b860a75b77.png)
+
+#### 6.5 Conclusión  <a name="conclusion"></a>
+
+Con respecto al proyecto en general, observando las gráficas burn-up y burndown, hemos llegado a la conclusión de que tras el primer sprint hicimos más PH de los que correspondería a una situación ideal. Esto se debe a que al principio seleccionamos las historias de usuario que eran innegociables, para asegurarnos de que nos daba tiempo a implementarlas. Estas historias eran las que más valor tenían, por eso se percibe como una gran subida en el primer sprint. 
+Sin embargo, durante el segundo sprint, siguiendo la misma dinámica de trabajo seleccionamos más o menos la misma cantidad de historias de usuario, pero no eran tan costosas, de ahí que la pendiente no sea tan pronunciada. Teniendo el juego básico completo, priorizamos en aquellas que aportan mucho valor, como la selección de personaje o el sistema de combate, ya que creemos que dotan a la aventura de personalidad y distinción respecto a otros juegos. Finalmente, en cuanto a las HU que nos quedan por hacer, pueden parecer bastantes pero no las vemos tan influyentes en la jugabilidad como las ya comentadas.
 
 [Subir](#inicio)
